@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pilates Studio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pilates Studio</title>
 
-  <!-- SAFE PATH (GitHub Pages friendly) -->
-  <link rel="stylesheet" href="css/styles.css" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<header class="header fade-in">
-  <button class="menu-btn" aria-label="Open menu">Menu</button>
-
+<header class="header">
   <div class="header-inner">
+
     <div class="brand">
-      <img src="images/logo_small.png" alt="Studio Logo">
+      <img src="images/logo_small.png" alt="logo">
       <div class="brand-name">Pilates Studio</div>
     </div>
 
@@ -31,77 +25,48 @@
       <a href="https://lp.momence.com/yoga/emea?..." target="_blank" rel="noopener">Booking</a>
       <a href="#contact">Contact</a>
     </nav>
+
   </div>
 </header>
 
-<!-- HERO -->
 <section class="section hero fade-in">
   <div class="container center flow-lg">
-    <img src="images/logo.png" alt="Studio Logo">
-
+    <img src="images/logo.png" class="hero-logo" alt="logo">
     <h1 class="title">Move with intention.</h1>
-    <p class="subtitle">Strength, balance and calm — all in one place.</p>
-
-    <a class="button" href="https://lp.momence.com/yoga/emea?..." target="_blank" rel="noopener">
-      Book a class
-    </a>
+    <p class="subtitle">Strength, balance and calm.</p>
+    <a class="button" href="https://lp.momence.com/yoga/emea?..." target="_blank">Book a class</a>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="section section-white fade-in">
+<section id="about" class="section section-alt fade-in">
   <div class="container center flow">
     <h2 class="section-title">About</h2>
-
-    <p class="subtitle">
-      Our studio is a calm space designed to help you reconnect with your body.
-      Through mindful movement, we focus on strength, posture, and balance in everyday life.
-    </p>
-
-    <p class="accent">“Small movements. Big change.”</p>
+    <p class="subtitle">A calm space for mindful movement.</p>
   </div>
 </section>
 
-<!-- CLASSES -->
 <section id="classes" class="section fade-in">
   <div class="container center flow-lg">
 
     <h2 class="section-title">Classes</h2>
 
-    <div class="signature-grid">
-      <div class="card">
-        <h3>Flow</h3>
-        <p>Dynamic movement synchronized with breath.</p>
-      </div>
-
-      <div class="card">
-        <h3>Restore</h3>
-        <p>Deep relaxation and recovery.</p>
-      </div>
-
-      <div class="card">
-        <h3>Private</h3>
-        <p>Personalized one-to-one practice.</p>
-      </div>
+    <div class="grid">
+      <div class="card"><h3>Flow</h3><p>Dynamic movement</p></div>
+      <div class="card"><h3>Restore</h3><p>Recovery</p></div>
+      <div class="card"><h3>Private</h3><p>1:1 sessions</p></div>
     </div>
 
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="section section-white fade-in">
+<section id="contact" class="section section-alt fade-in">
   <div class="container contact-grid">
 
     <div class="flow">
-      <h2 class="section-title">Start your journey today</h2>
+      <h2 class="section-title">Contact</h2>
+      <p class="subtitle">Get in touch anytime.</p>
 
-      <p class="subtitle">
-        Consistency creates strength, inside and out. Reach out for classes or questions.
-      </p>
-
-      <a class="email-link" href="mailto:hello@pilatesstudio.com">
-        hello@pilatesstudio.com
-      </a>
+      <a class="email" href="mailto:hello@pilatesstudio.com">hello@pilatesstudio.com</a>
 
       <div class="socials">
         <a href="#">Instagram</a>
@@ -111,64 +76,20 @@
     </div>
 
     <div class="map-wrapper">
-      <iframe
-        src="https://www.google.com/maps?q=45.7640,4.8357&z=14&output=embed"
-        loading="lazy">
-      </iframe>
+      <iframe src="https://www.google.com/maps?q=45.7640,4.8357&z=14&output=embed"></iframe>
     </div>
 
   </div>
 </section>
 
-<footer class="footer fade-in">
-  <div class="container">
-    © 2026 Pilates Studio — Bucharest
-  </div>
-</footer>
+<footer class="footer">© 2026 Pilates Studio</footer>
 
-<!-- FADE IN -->
 <script>
-const fadeElements = document.querySelectorAll(".fade-in");
-const map = document.querySelector(".map-wrapper");
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-    }
-
-    if (entry.target.id === "contact" && entry.isIntersecting) {
-      map.classList.add("visible");
-    }
-  });
-}, { threshold: 0.2 });
-
-fadeElements.forEach(el => observer.observe(el));
+const obs = new IntersectionObserver(entries =>
+  entries.forEach(e => e.isIntersecting && e.target.classList.add("visible"))
+);
+document.querySelectorAll(".fade-in").forEach(el => obs.observe(el));
 </script>
-
-<!-- MOBILE MENU -->
-<script>
-const menuBtn = document.querySelector(".menu-btn");
-const mobileNav = document.querySelector(".mobile-nav");
-const overlay = document.querySelector(".mobile-nav-overlay");
-
-function toggleMenu() {
-  mobileNav.classList.toggle("open");
-  overlay.classList.toggle("open");
-}
-
-menuBtn.addEventListener("click", toggleMenu);
-overlay.addEventListener("click", toggleMenu);
-</script>
-
-<div class="mobile-nav-overlay"></div>
-
-<div class="mobile-nav">
-  <a href="#about">About</a>
-  <a href="#classes">Classes</a>
-  <a href="https://lp.momence.com/yoga/emea?..." target="_blank">Booking</a>
-  <a href="#contact">Contact</a>
-</div>
 
 </body>
 </html>
