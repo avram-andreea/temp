@@ -16,9 +16,9 @@
 <body>
 
 <header class="header fade-in">
-    <button class="menu-btn" aria-label="Open menu">Menu</button>
-  <div class="header-inner container">
+  <button class="menu-btn" aria-label="Open menu">Menu</button>
 
+  <div class="header-inner container">
     <div class="brand">
       <img src="images/logo_small.png" alt="Studio Logo">
       <div class="brand-name">Pilates Studio</div>
@@ -30,31 +30,26 @@
       <a href="https://lp.momence.com/yoga/emea?..." target="_blank" rel="noopener">Booking</a>
       <a href="#contact">Contact</a>
     </nav>
-
   </div>
 </header>
 
 <!-- HERO -->
 <section class="section hero fade-in">
   <div class="container flow-lg center">
-
     <img src="images/logo.png" alt="Studio Logo">
 
     <h1 class="title">Move with intention.</h1>
-
     <p class="subtitle">Strength, balance and calm — all in one place.</p>
 
     <a class="button" href="https://lp.momence.com/yoga/emea?..." target="_blank" rel="noopener">
       Book a class
     </a>
-
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about" class="section section-white fade-in">
   <div class="container flow center">
-
     <h2 class="section-title">About</h2>
 
     <p class="subtitle">
@@ -63,18 +58,15 @@
     </p>
 
     <p class="accent">“Small movements. Big change.”</p>
-
   </div>
 </section>
 
 <!-- CLASSES -->
 <section id="classes" class="section fade-in">
   <div class="container flow-lg center">
-
     <h2 class="section-title">Classes</h2>
 
     <div class="signature-grid">
-
       <div class="card">
         <h3>Flow</h3>
         <p>Dynamic movement synchronized with breath.</p>
@@ -89,9 +81,7 @@
         <h3>Private</h3>
         <p>Personalized one-to-one practice.</p>
       </div>
-
     </div>
-
   </div>
 </section>
 
@@ -99,7 +89,6 @@
 <section id="contact" class="section section-white fade-in">
   <div class="container contact-grid">
 
-    <!-- LEFT: TEXT -->
     <div class="flow">
       <h2 class="section-title">Start your journey today</h2>
 
@@ -112,18 +101,16 @@
       </a>
 
       <div class="socials">
-        <a href="#" target="_blank" rel="noopener">Instagram</a>
-        <a href="#" target="_blank" rel="noopener">Facebook</a>
-        <a href="#" target="_blank" rel="noopener">YouTube</a>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
       </div>
     </div>
 
-    <!-- RIGHT: MAP -->
     <div class="map-wrapper">
       <iframe
         src="https://www.google.com/maps?q=45.7640,4.8357&z=14&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
+        loading="lazy">
       </iframe>
     </div>
 
@@ -136,7 +123,10 @@
   </div>
 </footer>
 
+<!-- SCRIPTS -->
+
 <script>
+/* NAV ACTIVE STATE */
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll(".nav a");
 
@@ -166,38 +156,49 @@ window.addEventListener("load", setActiveLink);
 </script>
 
 <script>
+/* FADE IN + MAP REVEAL */
 const fadeElements = document.querySelectorAll(".fade-in");
 const map = document.querySelector(".map-wrapper");
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-
-    // existing fade-in logic
     if (entry.isIntersecting) {
       entry.target.classList.add("visible");
     }
 
-    // special case: contact section triggers map reveal
     if (entry.target.id === "contact" && entry.isIntersecting) {
       map.classList.add("visible");
     }
-
   });
-}, {
-  threshold: 0.2
-});
+}, { threshold: 0.2 });
 
 fadeElements.forEach(el => observer.observe(el));
-
-
 </script>
 
+<script>
+/* MOBILE MENU */
+const menuBtn = document.querySelector(".menu-btn");
+const mobileNav = document.querySelector(".mobile-nav");
+const overlay = document.querySelector(".mobile-nav-overlay");
+const mobileLinks = document.querySelectorAll(".mobile-nav a");
+
+function toggleMenu() {
+  mobileNav.classList.toggle("open");
+  overlay.classList.toggle("open");
+}
+
+menuBtn.addEventListener("click", toggleMenu);
+overlay.addEventListener("click", toggleMenu);
+mobileLinks.forEach(link => link.addEventListener("click", toggleMenu));
+</script>
+
+<!-- MOBILE MENU STRUCTURE -->
 <div class="mobile-nav-overlay"></div>
 
 <div class="mobile-nav">
   <a href="#about">About</a>
   <a href="#classes">Classes</a>
-  <a href="https://lp.momence.com/yoga/emea?..." target="_blank" rel="noopener">Booking</a>
+  <a href="https://lp.momence.com/yoga/emea?..." target="_blank">Booking</a>
   <a href="#contact">Contact</a>
 </div>
 
