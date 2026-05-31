@@ -270,3 +270,17 @@ iframe {
     pointer-events: all;
   }
 }
+
+.hero img {
+  max-width: clamp(120px, 20vw, 200px);
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+}
