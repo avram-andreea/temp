@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pilates Studio</title>
 
+  <!-- SAFE PATH (GitHub Pages friendly) -->
   <link rel="stylesheet" href="css/styles.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +19,7 @@
 <header class="header fade-in">
   <button class="menu-btn" aria-label="Open menu">Menu</button>
 
-  <div class="header-inner container">
+  <div class="header-inner">
     <div class="brand">
       <img src="images/logo_small.png" alt="Studio Logo">
       <div class="brand-name">Pilates Studio</div>
@@ -35,7 +36,7 @@
 
 <!-- HERO -->
 <section class="section hero fade-in">
-  <div class="container flow-lg center">
+  <div class="container center flow-lg">
     <img src="images/logo.png" alt="Studio Logo">
 
     <h1 class="title">Move with intention.</h1>
@@ -49,7 +50,7 @@
 
 <!-- ABOUT -->
 <section id="about" class="section section-white fade-in">
-  <div class="container flow center">
+  <div class="container center flow">
     <h2 class="section-title">About</h2>
 
     <p class="subtitle">
@@ -63,7 +64,8 @@
 
 <!-- CLASSES -->
 <section id="classes" class="section fade-in">
-  <div class="container flow-lg center">
+  <div class="container center flow-lg">
+
     <h2 class="section-title">Classes</h2>
 
     <div class="signature-grid">
@@ -82,6 +84,7 @@
         <p>Personalized one-to-one practice.</p>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -93,7 +96,7 @@
       <h2 class="section-title">Start your journey today</h2>
 
       <p class="subtitle">
-        Consistency creates strength, inside and out. Reach out for classes, private sessions, or questions.
+        Consistency creates strength, inside and out. Reach out for classes or questions.
       </p>
 
       <a class="email-link" href="mailto:hello@pilatesstudio.com">
@@ -123,40 +126,8 @@
   </div>
 </footer>
 
-<!-- SCRIPTS -->
-
+<!-- FADE IN -->
 <script>
-/* NAV ACTIVE STATE */
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav a");
-
-function setActiveLink() {
-  let current = "";
-  const headerOffset = document.querySelector(".header").offsetHeight;
-
-  sections.forEach(section => {
-    const top = section.offsetTop - headerOffset;
-    const height = section.clientHeight;
-
-    if (window.scrollY >= top && window.scrollY < top + height) {
-      current = section.id;
-    }
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === "#" + current) {
-      link.classList.add("active");
-    }
-  });
-}
-
-window.addEventListener("scroll", setActiveLink);
-window.addEventListener("load", setActiveLink);
-</script>
-
-<script>
-/* FADE IN + MAP REVEAL */
 const fadeElements = document.querySelectorAll(".fade-in");
 const map = document.querySelector(".map-wrapper");
 
@@ -175,12 +146,11 @@ const observer = new IntersectionObserver((entries) => {
 fadeElements.forEach(el => observer.observe(el));
 </script>
 
+<!-- MOBILE MENU -->
 <script>
-/* MOBILE MENU */
 const menuBtn = document.querySelector(".menu-btn");
 const mobileNav = document.querySelector(".mobile-nav");
 const overlay = document.querySelector(".mobile-nav-overlay");
-const mobileLinks = document.querySelectorAll(".mobile-nav a");
 
 function toggleMenu() {
   mobileNav.classList.toggle("open");
@@ -189,10 +159,8 @@ function toggleMenu() {
 
 menuBtn.addEventListener("click", toggleMenu);
 overlay.addEventListener("click", toggleMenu);
-mobileLinks.forEach(link => link.addEventListener("click", toggleMenu));
 </script>
 
-<!-- MOBILE MENU STRUCTURE -->
 <div class="mobile-nav-overlay"></div>
 
 <div class="mobile-nav">
