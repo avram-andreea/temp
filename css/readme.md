@@ -1,0 +1,2 @@
+## Fixes
+  - try centering logo
