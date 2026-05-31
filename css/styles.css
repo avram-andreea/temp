@@ -4,7 +4,7 @@
   --text: #2B2B2B;
   --muted: #8B8177;
   --accent: #70625B;
-  --border: rgba(0, 0, 0, 0.08);
+  --border: rgba(0,0,0,0.08);
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -12,26 +12,26 @@
   --text-xl: 2rem;
   --text-3xl: 3.5rem;
 
-  --space-2: 1rem;
   --space-4: 2rem;
   --space-6: 3rem;
   --space-8: 4rem;
   --space-12: 6rem;
 
-  --container: 1120px;
-  --radius: 12px;
+  --container: 1100px;
 
   --font-heading: "Cormorant Garamond", serif;
   --font-body: "Inter", sans-serif;
   --font-accent: "Montserrat", sans-serif;
 }
 
+/* RESET */
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
   font-family: var(--font-body);
   background: var(--bg);
   color: var(--text);
@@ -49,19 +49,19 @@ h1,h2,h3 {
 }
 
 .section-title {
-  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .subtitle {
   color: var(--muted);
 }
 
-/* LAYOUT */
+/* LAYOUT SYSTEM */
 .section {
-  padding: var(--space-12) var(--space-4);
-  min-height: 60vh;
+  width: 100%;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  padding: var(--space-12) 1.5rem;
 }
 
 .section-white {
@@ -69,28 +69,30 @@ h1,h2,h3 {
 }
 
 .container {
+  width: 100%;
   max-width: var(--container);
-  margin: 0 auto;
 }
 
+/* SPACING SYSTEM */
 .center { text-align: center; }
-
-.flow > * + * { margin-top: var(--space-4); }
-.flow-lg > * + * { margin-top: var(--space-6); }
+.flow > * + * { margin-top: 1.5rem; }
+.flow-lg > * + * { margin-top: 2.5rem; }
 
 /* HEADER */
 .header {
   position: sticky;
   top: 0;
-  height: 72px;
-  background: rgba(246,244,240,0.8);
+  z-index: 1000;
+  background: rgba(246,244,240,0.85);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  z-index: 1000;
 }
 
 .header-inner {
-  height: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -98,12 +100,19 @@ h1,h2,h3 {
 
 .brand {
   display: flex;
-  gap: 0.75rem;
   align-items: center;
+  gap: 0.75rem;
 }
 
 .brand img { height: 32px; }
 
+.brand-name {
+  font-family: var(--font-heading);
+  letter-spacing: 0.12em;
+  font-size: var(--text-sm);
+}
+
+/* NAV */
 .nav {
   display: flex;
   gap: 2rem;
@@ -115,24 +124,16 @@ h1,h2,h3 {
   font-family: var(--font-accent);
   font-size: var(--text-xs);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   position: relative;
 }
 
-.nav a.active::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--text);
-}
+.nav a:hover { opacity: 0.6; }
 
 /* BUTTON */
 .button {
   display: inline-block;
-  padding: 1rem 2rem;
+  padding: 0.9rem 2rem;
   border: 1px solid var(--accent);
   border-radius: 999px;
   text-decoration: none;
@@ -162,7 +163,7 @@ h1,h2,h3 {
   background: var(--surface);
   border: 1px solid var(--border);
   padding: 2rem;
-  border-radius: var(--radius);
+  border-radius: 12px;
 }
 
 /* CONTACT */
@@ -180,7 +181,7 @@ h1,h2,h3 {
 /* MAP */
 .map-wrapper {
   height: 320px;
-  border-radius: var(--radius);
+  border-radius: 12px;
   overflow: hidden;
   opacity: 0;
   transform: translateY(20px);
@@ -201,8 +202,8 @@ iframe {
 
 /* FOOTER */
 .footer {
-  padding: 2rem;
   text-align: center;
+  padding: 2rem;
   color: var(--muted);
 }
 
@@ -218,36 +219,42 @@ iframe {
   transform: translateY(0);
 }
 
-/* MOBILE */
+/* MOBILE MENU */
 .menu-btn {
   display: none;
   background: none;
   border: none;
+  font-family: var(--font-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
+/* MOBILE */
 @media (max-width: 768px) {
   .nav { display: none; }
   .menu-btn { display: block; }
 
-  .section { min-height: auto; }
+  .section { padding: 4rem 1.5rem; }
 
   .mobile-nav {
     position: fixed;
-    right: 0;
     top: 0;
+    right: 0;
     width: 80%;
     height: 100vh;
     background: var(--bg);
     padding: 5rem 2rem;
     transform: translateX(100%);
-    transition: 0.3s;
+    transition: 0.3s ease;
     display: flex;
     flex-direction: column;
     gap: 2rem;
     z-index: 999;
   }
 
-  .mobile-nav.open { transform: translateX(0); }
+  .mobile-nav.open {
+    transform: translateX(0);
+  }
 
   .mobile-nav-overlay {
     position: fixed;
@@ -255,6 +262,7 @@ iframe {
     background: rgba(0,0,0,0.3);
     opacity: 0;
     pointer-events: none;
+    transition: 0.3s;
   }
 
   .mobile-nav-overlay.open {
