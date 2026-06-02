@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="css/styles.css" />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -35,7 +34,7 @@
  <div class="container center flow-lg hero-motion">
   <img src="images/logo.png" class="hero-logo" alt="logo">
   <h1 class="title">Move with intention.</h1>
-  <p class="subtitle">In an ever-changing world, find your center. Choose quite time for yourself</p>
+  <p class="subtitle">At grip., we believe in rewarding our most dedicated movers with a little something extra. Whether they're dropping in occasionally or looking to make us their second home, we’ve got options that fit their lifestyle.</p>
 
 <div class="hero-offer">
 
@@ -71,35 +70,71 @@
 
     <h2 class="section-title">Classes</h2>
 
+    <!-- NAV OUTSIDE GRID VISUALLY -->
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="prevBtn">←</button>
+      <button class="carousel-btn" id="nextBtn">→</button>
+    </div>
+
     <div class="pricing-grid">
 
       <div class="pricing-card">
-        <h3>Flow</h3>
+        <h3>Megaformer</h3>
         <p class="tagline">Dynamic movement</p>
-        <p class="desc">Build strength, mobility and rhythm through controlled sequences.</p>
+        <p class="desc">A full-body, low-impact strength and endurance class performed on a resistance-based reformer machine designed to challenge control, stability, and muscular endurance. The vibe is immersive and energising: slow shakes, deep burns, dim lighting, curated playlists, and that “I’m stronger than I thought” feeling creeping in halfway through class. Benefits include improved core strength, posture, flexibility, balance, muscular tone, and joint-friendly conditioning, while also helping build long, lean muscle definition and body awareness.</p>
       </div>
 
       <div class="pricing-card featured">
         <div class="badge">Most Popular</div>
-        <h3>Restore</h3>
+        <h3>Mat Pilates</h3>
         <p class="tagline">Deep recovery</p>
-        <p class="desc">Slow, intentional sessions designed for nervous system reset.</p>
+        <p class="desc">A floor-based Pilates class focused on controlled movement, alignment, breathwork, and core activation using bodyweight and small equipment. The atmosphere feels grounding, intentional, and quietly powerful, like your nervous system finally unclenching its jaw. Regular practice can improve posture, mobility, flexibility, deep core strength, coordination, and mind-body connection, while supporting injury prevention and everyday movement quality.
+</p>
       </div>
 
       <div class="pricing-card">
-        <h3>Private</h3>
+        <h3>Yoga</h3>
         <p class="tagline">1:1 coaching</p>
-        <p class="desc">Personalised sessions tailored to your body and goals.</p>
+        <p class="desc">A movement and breath-led practice combining flowing sequences, stretches, balance work, and mindfulness to support both physical and mental wellbeing. The vibe can range from candlelit calm to powerful and sweaty depending on the style, but always leaves the room feeling softer around the edges. Yoga helps improve flexibility, mobility, balance, stress management, circulation, recovery, and mental clarity, while encouraging presence and nervous system regulation.</p>
       </div>
+
+      <div class="pricing-card">
+        <h3>HiiT</h3>
+        <p class="tagline">1:1 coaching</p>
+        <p class="desc">A fast-paced workout built around short bursts of intense exercise followed by brief recovery periods, designed to maximise energy output and efficiency. The atmosphere is electric and motivating, somewhere between a nightclub and a comeback montage, with high energy, strong coaching, and a team-driven push. HIIT can improve cardiovascular fitness, stamina, athletic performance, calorie burn, and overall conditioning in a shorter amount of time, while helping build resilience and confidence.</p>
+      </div>
+
+      <div class="pricing-card">
+        <h3>grip.AfterDark</h3>
+        <p class="tagline">1:1 coaching</p>
+        <p class="desc">An after-hours reformer class designed to channel the energy of a night out—without compromising your workout. 
+Set to deep, rhythmic beats and low, ambient lighting, this high-intensity session blends the precision of classical Pilates with the dynamic pulse of a Friday night. 
+Expect sculpting sequences, elevated tempo, and an immersive atmosphere that moves with you. 
+Whether you're trading cocktails for core work or just want to kick off your weekend feeling powerful, grip.AfterDark is your invitation to flow, burn, and glow. 
+Dressed in control. Lit by intention. This is your Friday night, redefined.</p>
+      </div>
+
 
     </div>
 
-    <a class="button" href="https://lp.momence.com/yoga/emea?..." target="_blank">
-      Book a class
-    </a>
-
   </div>
 </section>
+
+
+<div id="ribbon-schedule"></div>
+<script
+  async
+  type="module"
+  host_id="259434"
+  teacher_ids="[]"
+  location_ids="[241194]"
+  tag_ids="[]"
+  lite_mode="true"
+  default_filter="today"
+  locale="en"
+  src="https://momence.com/plugin/host-schedule/host-schedule.js"
+></script>
+
 
 <section id="contact" class="section section-alt fade-in">
   <div class="contact-grid">
@@ -108,8 +143,8 @@
       <h2 class="section-title">Contact</h2>
       <p class="subtitle">Get in touch anytime.</p>
 
-      <a class="email" href="mailto:hello@pilatesstudio.com">
-        hello@pilatesstudio.com
+      <a class="email" href="mailto:support@grip-wellness.com">
+        support@grip-wellness.com
       </a>
 
       <div class="socials">
@@ -120,11 +155,40 @@
     </div>
 
     <div class="map-wrapper">
-      <iframe src="https://www.google.com/maps?q=45.7640,4.8357&z=14&output=embed"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.12279912065!2d-1.8836686732940675!3d52.47691226466752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bc81c9be6e05%3A0x47be66cadae47640!2s48-52%20Floodgate%20St%2C%20Deritend%2C%20Birmingham%20B5%205SL%2C%20UK!5e0!3m2!1sen!2sro!4v1780350872562!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-
+</div>
   </div>
 </section>
+
+<div id="momence-plugin-reviews"></div>
+<script
+    async
+    type="module"
+    host_id="259434"
+    is_profile_picture_enabled="true"
+    is_text_only_enabled="true"
+    layout="grid"
+    signature="c59dd880e929442510f6d1920aad07a06d33ea6b1e4a410a39f875e1be657b1b"
+    src="https://momence.com/plugin/reviews/reviews.js">
+</script>
+
+<style>
+    :root {
+        --momenceReviewColorBackground: #f6f4f0;
+        --momenceBorder: 1px solid rgba(0, 0, 0, 0.08);
+        --momenceBorderRadius: 12px;
+        --momenceBoxShadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+    }
+</style>
+
+<style>
+:root {
+  --momenceColorBackground: #f6f4f0;
+  --momenceColorPrimary: 140, 117, 106;
+  --momenceColorBlack: 0, 0, 0;
+}
+</style>
 
 <footer class="footer">© 2026 Pilates Studio</footer>
 
@@ -135,5 +199,43 @@ const obs = new IntersectionObserver(entries =>
 document.querySelectorAll(".fade-in").forEach(el => obs.observe(el));
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const carousel = document.querySelector(".pricing-grid");
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
+
+  if (!carousel || !nextBtn || !prevBtn) {
+    console.error("Carousel elements missing:", {
+      carousel,
+      nextBtn,
+      prevBtn
+    });
+    return;
+  }
+
+  const scrollAmount = () => {
+    const card = carousel.querySelector(".pricing-card");
+    const gap = 32; // 2rem
+    return card.offsetWidth + gap;
+  };
+
+  nextBtn.addEventListener("click", () => {
+    carousel.scrollBy({
+      left: scrollAmount(),
+      behavior: "smooth"
+    });
+  });
+
+  prevBtn.addEventListener("click", () => {
+    carousel.scrollBy({
+      left: -scrollAmount(),
+      behavior: "smooth"
+    });
+  });
+
+});
+</script>
 </body>
 </html>
