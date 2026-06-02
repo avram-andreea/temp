@@ -1,2 +1,6 @@
+## New
+- 2nd june:
+  - added plugins  
 ## Fixes
-  - try centering logo
+  - 1st june:
+    - try centering logo
