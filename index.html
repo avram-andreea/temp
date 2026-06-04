@@ -12,6 +12,8 @@
 
 <body>
 
+
+
 <header class="header">
   <div class="header-inner">
 
@@ -20,21 +22,49 @@
       <div class="brand-name">Pilates Studio</div>
     </div>
 
-    <nav class="nav">
-      <a href="#about">About</a>
+    <div class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="nav" id="navMenu">
       <a href="#classes">Classes</a>
-      <a href="https://lp.momence.com/yoga/emea?..." target="_blank" rel="noopener">Booking</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
+      <a href="#booking">Book now</a>  
     </nav>
 
   </div>
 </header>
 
+<div class="announcement-bar">
+  <div class="announcement-track">
+
+    <div class="announcement-text">
+      Coming soon: Opening 29th June • New classes • Join the waitlist •
+    </div>
+
+    <div class="announcement-text">
+      Coming soon: Opening 29th June • New classes • Join the waitlist •
+    </div>
+
+    <div class="announcement-text">
+      Coming soon: Opening 29th June • New classes • Join the waitlist •
+    </div>
+
+    <div class="announcement-text">
+      Coming soon: Opening 29th June • New classes • Join the waitlist •
+    </div>
+
+  </div>
+</div>
+
 <section class="section hero fade-in">
  <div class="container center flow-lg hero-motion">
   <img src="images/logo.png" class="hero-logo" alt="logo">
   <h1 class="title">Move with intention.</h1>
-  <p class="subtitle">At grip., we believe in rewarding our most dedicated movers with a little something extra. Whether they're dropping in occasionally or looking to make us their second home, we’ve got options that fit their lifestyle.</p>
+  <p class="subtitle">At grip., we believe in rewarding our most dedicated movers with a little something extra. </br>Whether they're dropping in occasionally or looking to make us their second home, we’ve got options that fit their lifestyle.</p>
 
 <div class="hero-offer">
 
@@ -59,9 +89,34 @@
 </section>
 
 <section id="about" class="section section-alt fade-in">
-  <div class="container center flow">
+  <div class="container center flow-lg">
+
     <h2 class="section-title">About</h2>
-    <p class="subtitle">A calm space for mindful movement.</p>
+
+    <p class="subtitle">
+      Movement should feel intentional. Strength should feel elegant.
+      And consistency should feel sustainable, not punishing.
+    </p>
+
+    <div class="philosophy-grid">
+
+      <div class="philosophy-card">
+        <h3>Precision</h3>
+        <p>Every movement has a purpose. Nothing is random.</p>
+      </div>
+
+      <div class="philosophy-card">
+        <h3>Control</h3>
+        <p>Strength comes from awareness, not speed.</p>
+      </div>
+
+      <div class="philosophy-card">
+        <h3>Presence</h3>
+        <p>You leave better than you arrived. Mentally and physically.</p>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
@@ -76,15 +131,15 @@
       <button class="carousel-btn" id="nextBtn">→</button>
     </div>
 
-    <div class="pricing-grid">
+    <div class="classes-grid">
 
-      <div class="pricing-card">
+      <div class="classes-card">
         <h3>Megaformer</h3>
         <p class="tagline">Dynamic movement</p>
         <p class="desc">A full-body, low-impact strength and endurance class performed on a resistance-based reformer machine designed to challenge control, stability, and muscular endurance. The vibe is immersive and energising: slow shakes, deep burns, dim lighting, curated playlists, and that “I’m stronger than I thought” feeling creeping in halfway through class. Benefits include improved core strength, posture, flexibility, balance, muscular tone, and joint-friendly conditioning, while also helping build long, lean muscle definition and body awareness.</p>
       </div>
 
-      <div class="pricing-card featured">
+      <div class="classes-card featured">
         <div class="badge">Most Popular</div>
         <h3>Mat Pilates</h3>
         <p class="tagline">Deep recovery</p>
@@ -92,19 +147,19 @@
 </p>
       </div>
 
-      <div class="pricing-card">
+      <div class="classes-card">
         <h3>Yoga</h3>
         <p class="tagline">1:1 coaching</p>
         <p class="desc">A movement and breath-led practice combining flowing sequences, stretches, balance work, and mindfulness to support both physical and mental wellbeing. The vibe can range from candlelit calm to powerful and sweaty depending on the style, but always leaves the room feeling softer around the edges. Yoga helps improve flexibility, mobility, balance, stress management, circulation, recovery, and mental clarity, while encouraging presence and nervous system regulation.</p>
       </div>
 
-      <div class="pricing-card">
+      <div class="classes-card">
         <h3>HiiT</h3>
         <p class="tagline">1:1 coaching</p>
         <p class="desc">A fast-paced workout built around short bursts of intense exercise followed by brief recovery periods, designed to maximise energy output and efficiency. The atmosphere is electric and motivating, somewhere between a nightclub and a comeback montage, with high energy, strong coaching, and a team-driven push. HIIT can improve cardiovascular fitness, stamina, athletic performance, calorie burn, and overall conditioning in a shorter amount of time, while helping build resilience and confidence.</p>
       </div>
 
-      <div class="pricing-card">
+      <div class="classes-card">
         <h3>grip.AfterDark</h3>
         <p class="tagline">1:1 coaching</p>
         <p class="desc">An after-hours reformer class designed to channel the energy of a night out—without compromising your workout. 
@@ -121,6 +176,79 @@ Dressed in control. Lit by intention. This is your Friday night, redefined.</p>
 </section>
 
 
+<section id="pricing" class="section section-alt fade-in">
+  <div class="container center flow-lg">
+
+    <h2 class="section-title">Pricing</h2>
+    <p class="subtitle">Flexible options for every practice journey.</p>
+
+    <div class="pricing-tables">
+
+      <!-- SINGLE CLASS -->
+      <div class="price-card">
+        <div class="price-header">
+          <h3>Single Class</h3>
+          <p class="price-tag">Drop-in access</p>
+        </div>
+
+        <div class="price-value">€25</div>
+
+        <ul class="price-list">
+          <li>Any class type</li>
+          <li>Valid for 30 days</li>
+          <li>No commitment</li>
+        </ul>
+
+        <a href="#booking" class="price-button">Book a class</a>
+      </div>
+
+      <!-- PACK -->
+      <div class="price-card featured">
+        <div class="badge">Best Value</div>
+
+        <div class="price-header">
+          <h3>5 Class Pack</h3>
+          <p class="price-tag">For consistent practice</p>
+        </div>
+
+        <div class="price-value">€110</div>
+
+        <ul class="price-list">
+          <li>5 classes included</li>
+          <li>Valid for 2 months</li>
+          <li>All class types included</li>
+        </ul>
+
+        <a href="#booking" class="price-button">Start pack</a>
+      </div>
+
+      <!-- MEMBERSHIP -->
+      <div class="price-card">
+        <div class="price-header">
+          <h3>Monthly Membership</h3>
+          <p class="price-tag">Unlimited flow</p>
+        </div>
+
+        <div class="price-value">€149</div>
+
+        <ul class="price-list">
+          <li>Unlimited classes</li>
+          <li>Priority booking</li>
+          <li>Member perks</li>
+        </ul>
+
+        <a href="#booking" class="price-button">Join membership</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section id="booking" class="section fade-in">
+  <div class="container center flow-lg">
+
+    <h2 class="section-title">Start your journey</h2>
 <div id="ribbon-schedule"></div>
 <script
   async
@@ -134,6 +262,8 @@ Dressed in control. Lit by intention. This is your Friday night, redefined.</p>
   locale="en"
   src="https://momence.com/plugin/host-schedule/host-schedule.js"
 ></script>
+</div>
+</section>
 
 
 <section id="contact" class="section section-alt fade-in">
@@ -158,7 +288,7 @@ Dressed in control. Lit by intention. This is your Friday night, redefined.</p>
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.12279912065!2d-1.8836686732940675!3d52.47691226466752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bc81c9be6e05%3A0x47be66cadae47640!2s48-52%20Floodgate%20St%2C%20Deritend%2C%20Birmingham%20B5%205SL%2C%20UK!5e0!3m2!1sen!2sro!4v1780350872562!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </div>
-  </div>
+
 </section>
 
 <div id="momence-plugin-reviews"></div>
@@ -202,7 +332,7 @@ document.querySelectorAll(".fade-in").forEach(el => obs.observe(el));
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  const carousel = document.querySelector(".pricing-grid");
+  const carousel = document.querySelector(".classes-grid");
   const nextBtn = document.getElementById("nextBtn");
   const prevBtn = document.getElementById("prevBtn");
 
@@ -216,7 +346,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const scrollAmount = () => {
-    const card = carousel.querySelector(".pricing-card");
+    const card = carousel.querySelector(".classes-card");
     const gap = 32; // 2rem
     return card.offsetWidth + gap;
   };
@@ -235,6 +365,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+});
+</script>
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  navMenu.classList.toggle("open");
+});
+
+// close menu when clicking a link
+document.querySelectorAll(".nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    menuToggle.classList.remove("active");
+    navMenu.classList.remove("open");
+  });
 });
 </script>
 </body>
