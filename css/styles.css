@@ -10,6 +10,9 @@
   --font-heading:"Cormorant Garamond",serif;
  --font-body:"Inter",sans-serif;
   --font-accent:"Montserrat",sans-serif;
+
+   --header-height: 80px;
+  --announcement-height: 40px;
 }
 
 /* =========================
@@ -21,6 +24,7 @@
 html,body{
   margin:0;
   padding:0;
+ 
   font-family:var(--font-body);
   background:radial-gradient(circle at top,#F6F4F0,#F3F1ED);
   color:var(--text);
@@ -62,21 +66,36 @@ p{margin:0}
 ========================= */
 
 .header{
-  position:sticky;
+  position:fixed;
   top:0;
+  left:0;
+  width:100%;
   z-index:1000;
+
   background:rgba(246,244,240,.85);
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
 }
 
+
 .header-inner{
   max-width:1200px;
   margin:auto;
+
   padding:1.2rem 3rem;
   display:flex;
   justify-content:space-between;
   align-items:center;
+}
+
+@media (max-width:768px){
+  .header-inner{
+    padding:1rem 1.5rem;
+  }
+
+  body{
+    padding-top:70px;
+  }
 }
 
 .brand{
@@ -194,15 +213,16 @@ p{margin:0}
 ========================= */
 
 .contact-grid{
-  display:grid;
-  gap:3rem;
-  max-width:var(--container);
-  margin:auto;
+  display: grid;
+  gap: 3rem;
+  max-width: var(--container);
+  margin: auto;
 }
 
 @media(min-width:768px){
   .contact-grid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns: 1fr 1.4fr;
+    align-items: stretch;
   }
 }
 
@@ -221,9 +241,10 @@ p{margin:0}
 }
 
 .map-wrapper{
-  height:320px;
-  border-radius:12px;
-  overflow:hidden;
+  height: 380px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 iframe{
@@ -448,11 +469,15 @@ background:rgba(255,255,255,.9);
 
 
 .announcement-bar{
+  position:relative;
+  top:70px; /* must match header height */
+  left:0;
+  width:100%;
+  z-index:999;
+
   background:rgba(107,95,86,.08);
   border-bottom:1px solid var(--border);
   overflow:hidden;
-  position:relative;
-  white-space:nowrap;
 }
 
 /* fade edges = luxury feel */
@@ -492,6 +517,7 @@ background:rgba(255,255,255,.9);
   text-transform:uppercase;
   color:var(--muted);
   white-space:nowrap;
+  padding: 0.8rem 2rem;
 }
 
 /* smooth infinite loop */
