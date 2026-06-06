@@ -1471,3 +1471,31 @@ background:rgba(255,255,255,.9);
     transform:rotate(-45deg) translateY(-6px);
   }
 }
+
+
+/* Fix Momence consent checkbox on mobile */
+@media (max-width:768px){
+
+  #momence-plugin-lead-form label{
+    display:flex !important;
+    align-items:flex-start !important;
+    gap:12px !important;
+    width:100% !important;
+    max-width:100% !important;
+    white-space:normal !important;
+  }
+
+  #momence-plugin-lead-form input[type="checkbox"]{
+    flex-shrink:0;
+    margin-top:4px;
+  }
+
+  #momence-plugin-lead-form label span,
+  #momence-plugin-lead-form label div,
+  #momence-plugin-lead-form p{
+    width:auto !important;
+    max-width:none !important;
+    overflow-wrap:anywhere;
+  }
+
+}
