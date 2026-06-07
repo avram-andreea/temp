@@ -106,7 +106,7 @@ p{margin:0}
   font-size:1.1rem;
 }
 
-.brand img{height:32px}
+.brand img{height:36px}
 
 .nav{
   display:flex;
@@ -753,4 +753,28 @@ background:rgba(255,255,255,.9);
   border:none;
   font-size:1.2rem;
   cursor:pointer;
+}
+
+/* FORCE CENTER EVERYTHING INSIDE MOMENCE FORM */
+#momence-plugin-lead-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* center text like consent */
+#momence-plugin-lead-form * {
+  text-align: center;
+}
+
+/* ensure submit button doesn't stay full-left layout */
+#momence-plugin-lead-form button {
+  margin: 1rem auto 0 auto;
+  display: block;
+}
+
+#momence-plugin-lead-form form {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
 }
