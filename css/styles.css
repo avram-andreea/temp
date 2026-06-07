@@ -754,23 +754,20 @@ background:rgba(255,255,255,.9);
   font-size:1.2rem;
   cursor:pointer;
 }
-/* HARD RESET THE FORM LAYOUT CONTEXT */
+
+#momence-plugin-lead-form,
 #momence-plugin-lead-form form {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  text-align: center !important;
 }
 
-/* CONSENT TEXT ALWAYS CENTERED */
-#momence-plugin-lead-form label,
-#momence-plugin-lead-form p {
-  text-align: center !important;
-  width: 100%;
+/* FORCE EVERY DIRECT CHILD TO NOT OVERRIDE ALIGNMENT */
+#momence-plugin-lead-form * {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-/* BUTTON ALWAYS CENTERED CONSISTENTLY */
-#momence-plugin-lead-form button {
-  align-self: center !important;
-  margin: 1.2rem auto 0 auto !important;
+#momence-plugin-lead-form {
+  text-align: center !important;
 }
