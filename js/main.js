@@ -1,8 +1,12 @@
 
+
 const obs = new IntersectionObserver(entries =>
   entries.forEach(e => e.isIntersecting && e.target.classList.add("visible"))
 );
 document.querySelectorAll(".fade-in").forEach(el => obs.observe(el));
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
   const carousel = document.querySelector(".classes-grid");
@@ -40,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
@@ -55,3 +60,5 @@ document.querySelectorAll(".nav a").forEach(link => {
     navMenu.classList.remove("open");
   });
 });
+
+
