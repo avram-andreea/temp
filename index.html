@@ -27,6 +27,11 @@
       <span></span>
     </div>
     <nav class="nav" id="navMenu">
+      <a href="#about">About</a>
+      <a href="#classes">Classes</a>
+      <a href="#pricing">Pricing</a>  
+      <a href="#faq">FAQ</a>
+      <a href="#booking">Book now</a>
       <a href="#contact">Contact</a>    
     </nav>
 
@@ -57,84 +62,258 @@
 
 <section class="section hero fade-in">
  <div class="container center flow-lg hero-motion">
+ </br></br>
   <img src="images/logo.png" class="hero-logo" alt="logo">
-  <h1 class="title">stay close. stay grippy.</h1>
-  <p class="subtitle">Join our mailing list to stay up to date with all things grip. 
-No spam. No noise. Just the essentials.</p>
+  <h1 class="title">Move with intention.</h1>
+  <p class="subtitle">At grip., we believe in rewarding our most dedicated movers with a little something extra. </br>Whether they're dropping in occasionally or looking to make us their second home, we’ve got options that fit their lifestyle.</p>
 
- <div class="lead-form-wrap">
-  <div id="momence-plugin-lead-form"></div>
+<div class="hero-offer">
 
-  <script
-    async
-    type="module"
-    id="momence-plugin-lead-form-src"
-    host_id="259434"
-    fields="firstName,lastName,email,phoneNumber"
-    token="Q0X61NPm8n"
-    country_code="gb"
-    data_collect_consent="required"
-    data-field-def='{"firstName":{"type":"text","label":"First name","required":true},"lastName":{"type":"text","label":"Last name","required":true},"email":{"type":"email","label":"Email","required":true},"phoneNumber":{"type":"phone-number","label":"Phone number","required":true}}'
-    data-redirect-after-submit-to="grip-wellness.com"
-    data-on-success-msg="Thanks! You're on the list."
-    src="https://momence.com/plugin/lead-form/lead-form.js"
-  ></script>
+  <div class="offer-kicker">New Client Introduction</div>
+
+  <div class="offer-title">
+    Begin your practice with guidance
+  </div>
+
+  <div class="offer-details">
+    4 Mega sessions - £55<br>
+    valid for first-time clients only
+  </div>
+
+  <a class="text-link" href="#pricing">
+    Explore membership →
+  </a>
+  
+
 </div>
-<style>
-:root {
-  --momenceColorBackground: #f6f4f0;
-  --momenceColorPrimary: 107, 95, 86;
-  --momenceColorBlack: 0, 0, 0;
-}
 
-@media (max-width: 768px){
+</div>
+</section>
 
-  /* keep whole form tidy */
-  .lead-form-wrap{
-    padding: 1.5rem 1.2rem;
-  }
+<section id="about" class="section section-alt fade-in">
+  <div class="container center flow-lg">
 
-  /* force all inputs to behave consistently */
-  #momence-plugin-lead-form input,
-  #momence-plugin-lead-form select{
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box;
-    font-size: 16px !important; /* prevents iOS zoom */
-  }
+    <h2 class="section-title">About</h2>
 
-  /* specifically target phone field container */
-  #momence-plugin-lead-form [data-field="phoneNumber"],
-  #momence-plugin-lead-form input[type="tel"]{
-    width: 100% !important;
-  }
+    <p class="subtitle">
+      Movement should feel intentional. Strength should feel elegant.
+      And consistency should feel sustainable, not punishing.
+    </p>
 
-  /* tighten spacing between fields */
-  #momence-plugin-lead-form > div{
-    margin-bottom: 0.75rem !important;
-  }
+    <div class="philosophy-grid">
 
-  /* optional: make labels cleaner */
-  #momence-plugin-lead-form label{
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-  }
-}
+      <div class="philosophy-card">
+        <h3>Precision</h3>
+        <p>Every movement has a purpose. Nothing is random.</p>
+      </div>
 
-/* luxury wrapper */
-.lead-form-wrap{
-  max-width: 520px;
-  margin: 3rem auto;
-  padding: 2.5rem 2rem;
+      <div class="philosophy-card">
+        <h3>Control</h3>
+        <p>Strength comes from awareness, not speed.</p>
+      </div>
 
-  background: rgba(255,255,255,.7);
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: 18px;
+      <div class="philosophy-card">
+        <h3>Presence</h3>
+        <p>You leave better than you arrived. Mentally and physically.</p>
+      </div>
 
-  backdrop-filter: blur(12px);
-  box-shadow: 0 20px 50px rgba(0,0,0,.06);
-}
-</style>
+    </div>
+
+  </div>
+</section>
+
+<section id="classes" class="section fade-in">
+  <div class="container center flow-lg">
+
+    <h2 class="section-title">Classes</h2>
+
+    <h2 class="section-title">Three Signature Class Formats</h2>
+    <p class="subtitle">
+<p>All available across 2 difficulty levels (I & II) to suit your ability and progression.</p>
+
+<ul>
+  <li><strong>grip.</strong> – Full-body strength and flexibility</li>
+  <li><strong>glutes.</strong> – Lower-body focus with sculpting emphasis</li>
+  <li><strong>glow.</strong> – HIIT session targeting full body, more intense, intermediate and above</li>
+  <li><strong>grip.AfterDark</strong> – High-energy sessions with club-style lighting and playlists</li>
+</ul>
+    </p>
+
+    <!-- NAV OUTSIDE GRID VISUALLY -->
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="prevBtn">←</button>
+      <button class="carousel-btn" id="nextBtn">→</button>
+    </div>
+
+
+    <div class="classes-grid">
+
+
+      <div class="classes-card">
+        <h3>Megaformer</h3>
+        <p class="tagline"> • grip.  • glutes. • glow. • grip.AfterDark • </p>
+        <p class="desc">A full-body, low-impact strength and endurance class performed on a resistance-based reformer machine designed to challenge control, stability, and muscular endurance. The vibe is immersive and energising: slow shakes, deep burns, dim lighting, curated playlists, and that “I’m stronger than I thought” feeling creeping in halfway through class. Benefits include improved core strength, posture, flexibility, balance, muscular tone, and joint-friendly conditioning, while also helping build long, lean muscle definition and body awareness.</p>
+      </div>
+
+      <div class="classes-card featured">
+        <div class="badge">Most Popular</div>
+        <h3>Mat Pilates</h3>
+        <p class="tagline">• grip.  • glutes. • glow. • grip.AfterDark •</p>
+        <p class="desc">A floor-based Pilates class focused on controlled movement, alignment, breathwork, and core activation using bodyweight and small equipment. The atmosphere feels grounding, intentional, and quietly powerful, like your nervous system finally unclenching its jaw. Regular practice can improve posture, mobility, flexibility, deep core strength, coordination, and mind-body connection, while supporting injury prevention and everyday movement quality.
+</p>
+      </div>
+
+      <div class="classes-card">
+        <h3>Yoga</h3>
+        <p class="tagline">• vinyasa • hatha • yin • </p>
+        <p class="desc">A movement and breath-led practice combining flowing sequences, stretches, balance work, and mindfulness to support both physical and mental wellbeing. The vibe can range from candlelit calm to powerful and sweaty depending on the style, but always leaves the room feeling softer around the edges. Yoga helps improve flexibility, mobility, balance, stress management, circulation, recovery, and mental clarity, while encouraging presence and nervous system regulation.</p>
+      </div>
+
+      <div class="classes-card">
+        <h3>HiiT</h3>
+        <p class="tagline">• glow. •</p>
+        <p class="desc">A fast-paced workout built around short bursts of intense exercise followed by brief recovery periods, designed to maximise energy output and efficiency. The atmosphere is electric and motivating, somewhere between a nightclub and a comeback montage, with high energy, strong coaching, and a team-driven push. HIIT can improve cardiovascular fitness, stamina, athletic performance, calorie burn, and overall conditioning in a shorter amount of time, while helping build resilience and confidence.</p>
+      </div>
+
+
+      <div class="classes-card">
+        <h3>grip.pods</h3>
+        <p class="tagline">1:1 coaching</p>
+        <p class="desc">A first-of-its-kind in the UK, private, on-demand fitness and Pilates sessions delivered through AI-powered mirrors, guiding clients through fully personalised classes and workouts. Book your Pod, choose your focus, and flow with your virtual instructor. </br>
+There are currently a range of 4-week programmes composed of 3-4 workouts in each week. These are each led by a world-class athletes and personal trainers who teach their unique style and technique. Each workout is powered by ReflectAI™ which gives you live feedback, rep-counting and hyper-personalised form correction as you workout in real-time.
+There are also a range of 30 minute and 45 minute one-off high intensity classes if you want to just jump straight into a workout which cover HiiT, core, cardio and conditioning.
+</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section id="pricing" class="section section-alt fade-in">
+  <div class="container center flow-lg">
+
+    <h2 class="section-title">Pricing</h2>
+    <p class="subtitle">Flexible options for every practice journey.</p>
+
+    <div class="pricing-tables">
+
+      <!-- SINGLE CLASS -->
+      <div class="price-card">
+        <div class="price-header">
+          <h3>grip.guest</h3>
+          <p class="price-tag">Drop-in access</p>
+        </div>
+
+        <div class="price-value">£20</div>
+
+        <ul class="price-list">
+          <li>Any class type</li>
+          <li>Valid for 30 days</li>
+          <li>No commitment</li>
+        </ul>
+
+        <a href="#booking" class="price-button">Book a class</a>
+      </div>
+
+      <!-- PACK -->
+      <div class="price-card featured">
+        <div class="badge">Best Value</div>
+
+        <div class="price-header">
+          <h3>grip.silver</h3>
+          <p class="price-tag">5 classes pod booking</p>
+        </div>
+
+        <div class="price-value">£90</div>
+
+        <ul class="price-list">
+          <li>5 classes pod booking</li>
+          <li>Valid for 2 months</li>
+          <li>All class types included</li>
+        </ul>
+
+        <a href="#booking" class="price-button">Start pack</a>
+      </div>
+
+      <!-- MEMBERSHIP -->
+      <div class="price-card">
+        <div class="price-header">
+          <h3>grip.gold</h3>
+          <p class="price-tag">Unlimited flow</p>
+        </div>
+
+        <div class="price-value">£175</div>
+
+        <ul class="price-list">
+          <li>10 classes + 1 pod bookings</li>
+          <li>tbu</li>
+          <li>tbu</li>
+        </ul>
+
+        <a href="#booking" class="price-button">Join membership</a>
+      </div>
+
+      <!-- grip platinum -->
+      <div class="price-card">
+        <div class="price-header">
+          <h3>grip.platinum</h3>
+          <p class="price-tag">Unlimited flow</p>
+        </div>
+
+        <div class="price-value">£240</div>
+
+        <ul class="price-list">
+          <li>15 classes + 2 pod bookings</li>
+          <li>tbu</li>
+          <li>tbu</li>
+        </ul>
+
+        <a href="#booking" class="price-button">Join membership</a>
+      </div>
+
+            <!-- grip.noire -->
+      <div class="price-card">
+        <div class="price-header">
+          <h3>grip.noire</h3>
+          <p class="price-tag">Unlimited</p>
+        </div>
+
+        <div class="price-value">£300</div>
+
+        <ul class="price-list">
+          <li>10 classes + 1 pod bookings</li>
+          <li>tbu</li>
+          <li>tbu</li>
+        </ul>
+
+        <a href="#booking" class="price-button">Join membership</a>
+      </div>
+
+
+    </div>
+
+  </div>
+</section>
+
+<section id="booking" class="section fade-in">
+  <div class="container center flow-lg">
+
+    <h2 class="section-title">Start your journey</h2>
+<div id="ribbon-schedule"></div>
+<script
+  async
+  type="module"
+  host_id="259434"
+  teacher_ids="[]"
+  location_ids="[241194]"
+  tag_ids="[]"
+  lite_mode="true"
+  default_filter="today"
+  locale="en"
+  src="https://momence.com/plugin/host-schedule/host-schedule.js"
+></script>
 </div>
 </section>
 
@@ -152,6 +331,8 @@ No spam. No noise. Just the essentials.</p>
 
       <div class="socials">
         <a href="https://www.instagram.com/grip.wellness/" target="_blank" class="ig"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="fb"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="yt"><i class="fa-brands fa-youtube"></i></a>
       </div>
     </div>
 
@@ -162,6 +343,34 @@ No spam. No noise. Just the essentials.</p>
 
 </section>
 
+<div id="momence-plugin-reviews"></div>
+<script
+    async
+    type="module"
+    host_id="259434"
+    is_profile_picture_enabled="true"
+    is_text_only_enabled="true"
+    layout="grid"
+    signature="c59dd880e929442510f6d1920aad07a06d33ea6b1e4a410a39f875e1be657b1b"
+    src="https://momence.com/plugin/reviews/reviews.js">
+</script>
+
+<style>
+    :root {
+        --momenceReviewColorBackground: #f6f4f0;
+        --momenceBorder: 1px solid rgba(0, 0, 0, 0.08);
+        --momenceBorderRadius: 12px;
+        --momenceBoxShadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+    }
+</style>
+
+<style>
+:root {
+  --momenceColorBackground: #f6f4f0;
+  --momenceColorPrimary: 140, 117, 106;
+  --momenceColorBlack: 0, 0, 0;
+}
+</style>
 
 <footer class="footer">© 2026 Pilates Studio</footer>
 
