@@ -106,7 +106,7 @@ p{margin:0}
   font-size:1.1rem;
 }
 
-.brand img{height:36px}
+.brand img{height:32px}
 
 .nav{
   display:flex;
@@ -467,19 +467,20 @@ background:rgba(255,255,255,.9);
   }
 }
 
-.announcement-bar{
-  position: relative !important;
-  top: 0 !important;
 
-  width: 100%;
-  z-index: 1;
+.announcement-bar{
+  position:relative;
+  top:70px; /* must match header height */
+  left:0;
+  width:100%;
+  z-index:999;
 
   background:rgba(107,95,86,.08);
   border-bottom:1px solid var(--border);
   overflow:hidden;
 }
 
-/* fade edges */
+/* fade edges = luxury feel */
 .announcement-bar::before,
 .announcement-bar::after{
   content:"";
@@ -501,7 +502,7 @@ background:rgba(255,255,255,.9);
   background:linear-gradient(to left, #F6F4F0, transparent);
 }
 
-/* track */
+/* KEY FIX */
 .announcement-track{
   display:flex;
   width:max-content;
@@ -509,13 +510,14 @@ background:rgba(255,255,255,.9);
 }
 
 .announcement-text{
-  padding:0.8rem 2rem;
+  padding:0.9rem 2rem;
   font-family:var(--font-accent);
   font-size:.7rem;
   letter-spacing:.15em;
   text-transform:uppercase;
   color:var(--muted);
   white-space:nowrap;
+  padding: 0.8rem 2rem;
 }
 
 /* smooth infinite loop */
@@ -713,61 +715,4 @@ background:rgba(255,255,255,.9);
   .menu-toggle.active span:nth-child(2){
     transform:rotate(-45deg) translateY(-6px);
   }
-}
-
-.modal-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.4);
-  backdrop-filter: blur(6px);
-
-  display:none;
-  justify-content:center;
-  align-items:center;
-
-  z-index:2000;
-}
-
-.modal-overlay.active{
-  display:flex;
-}
-
-.modal-content{
-  width:90%;
-  max-width:520px;
-
-  background:#F6F4F0;
-  border-radius:18px;
-  padding:2rem;
-
-  position:relative;
-  box-shadow:0 30px 80px rgba(0,0,0,.2);
-}
-
-.modal-close{
-  position:absolute;
-  top:12px;
-  right:14px;
-
-  background:none;
-  border:none;
-  font-size:1.2rem;
-  cursor:pointer;
-}
-
-#momence-plugin-lead-form,
-#momence-plugin-lead-form form {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
-
-/* FORCE EVERY DIRECT CHILD TO NOT OVERRIDE ALIGNMENT */
-#momence-plugin-lead-form * {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-#momence-plugin-lead-form {
-  text-align: center !important;
 }
