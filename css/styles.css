@@ -755,19 +755,10 @@ background:rgba(255,255,255,.9);
   cursor:pointer;
 }
 
-#momence-plugin-lead-form,
-#momence-plugin-lead-form form {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
+.momence-lead_form-base_container {
+  background: none !important;
 }
 
-/* FORCE EVERY DIRECT CHILD TO NOT OVERRIDE ALIGNMENT */
-#momence-plugin-lead-form * {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-#momence-plugin-lead-form {
-  text-align: center !important;
-}
+.momence-lead_form-submit_btn { 
+  margin: 0 auto !important;
+} 
