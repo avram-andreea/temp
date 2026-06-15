@@ -154,11 +154,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ---- Newsletter popup (first visit) ---- */
+  /* ---- Newsletter popup (every page load) ---- */
   const popup = document.getElementById("newsletterPopup");
   const popupClose = document.getElementById("popupClose");
   const popupForm = document.getElementById("popupForm");
-  const POPUP_KEY = "grip-newsletter-seen";
 
   const openPopup = () => {
     if (!popup) return;
@@ -172,10 +171,9 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.classList.remove("is-open");
     popup.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
-    localStorage.setItem(POPUP_KEY, "true");
   };
 
-  if (popup && !localStorage.getItem(POPUP_KEY)) {
+  if (popup) {
     setTimeout(openPopup, 800);
   }
 

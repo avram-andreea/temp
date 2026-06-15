@@ -2173,7 +2173,7 @@ img { max-width: 100%; display: block; }
 
 .footer-brand {
   display: block;
-  font-family: var(--font-title);
+  font-family: var(--font-heading);
   font-size: 1.4rem;
   color: var(--text);
   margin-bottom: 0.4rem;
