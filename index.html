@@ -3,157 +3,676 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Grip Wellness</title>
+<title>grip. — Wellness Studio, Digbeth Birmingham</title>
+<meta name="description" content="Megaformer, Reformat, Yoga & HIIT in Digbeth, Birmingham. Founding grip.noire memberships now available." />
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
 <link rel="stylesheet" href="css/styles.css" />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
+<!-- Scrolling banner — above header -->
+<div class="announcement-bar">
+  <div class="announcement-track">
+    <div class="announcement-text">founding grip.noire now available &nbsp;|&nbsp; limited quantity &nbsp;|&nbsp; <a href="https://momence.com/m/809120" class="announcement-link" target="_blank" rel="noopener noreferrer">purchase here</a> &nbsp;|&nbsp;</div>
+    <div class="announcement-text">founding grip.noire now available &nbsp;|&nbsp; limited quantity &nbsp;|&nbsp; <a href="https://momence.com/m/809120" class="announcement-link" target="_blank" rel="noopener noreferrer">purchase here</a> &nbsp;|&nbsp;</div>
+    <div class="announcement-text">founding grip.noire now available &nbsp;|&nbsp; limited quantity &nbsp;|&nbsp; <a href="https://momence.com/m/809120" class="announcement-link" target="_blank" rel="noopener noreferrer">purchase here</a> &nbsp;|&nbsp;</div>
+    <div class="announcement-text">founding grip.noire now available &nbsp;|&nbsp; limited quantity &nbsp;|&nbsp; <a href="https://momence.com/m/809120" class="announcement-link" target="_blank" rel="noopener noreferrer">purchase here</a> &nbsp;|&nbsp;</div>
+  </div>
+</div>
 
-
-<header class="header">
+<header class="header" id="header">
   <div class="header-inner">
+    <a href="#home" class="brand">
+      <img src="images/grip_logo.png" alt="grip. logo">
+    </a>
 
-    <div class="brand">
-      <img src="images/logo_small.png" alt="logo">
-      <div class="brand-name">Grip Wellness</div>
-    </div>
-
-    <div class="menu-toggle" id="menuToggle">
+    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
       <span></span>
       <span></span>
     </div>
+
     <nav class="nav" id="navMenu">
-      <a href="#contact">Contact</a>    
+      <a href="#home">Home</a>
+      <a href="book.html">Book Now</a>
+      <a href="#grip-noire">grip.noire</a>
+      <a href="#sessions">Sessions</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+      <a href="https://www.instagram.com/grip.wellness?igsh=MWc2NDYxZTNkN2t3dA%3D%3D&utm_source=qr" class="nav-instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+      </a>
     </nav>
-
   </div>
 </header>
 
-<div class="announcement-bar">
+<!-- HOME HERO -->
+<section id="home" class="section intro-hero fade-in">
+  <div class="container intro-hero-inner">
+    <div class="intro-offers-logo">
+      <img src="images/grip_logo.png" alt="grip. logo">
+    </div>
+    <p class="intro-hero-tagline">Your new wellness space.<br>In the heart of Digbeth, Birmingham.</p>
+    <div class="intro-hero-actions">
+      <a href="#intro-offers" class="btn btn-filled">Introductory offers</a>
+      <a href="#grip-noire" class="btn btn-filled">Memberships</a>
+      <a href="book.html" class="btn btn-filled">Book your first class</a>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO OFFERS -->
+<section id="intro-offers" class="section intro-offers fade-in">
+  <div class="container intro-offers-inner">
+    <header class="intro-offers-header center">
+      <h2 class="section-title">Introductory offers</h2>
+      <div class="intro-offers-divider" aria-hidden="true"></div>
+      <p class="intro-offers-lead">No pressure. No big commitment. Just you, the studio, and a few sessions to get into the rhythm. Our intro offers are made for first-timers who want to try the movement, feel the space, and decide where they fit.<br><span class="intro-offers-note">*First time clients only.</span></p>
+    </header>
+
+    <div class="intro-offers-grid">
+      <article class="intro-box">
+        <span class="intro-box__label">Introduction</span>
+        <h3 class="intro-box__title">Megaformer</h3>
+        <p class="intro-box__price">
+          <span class="intro-box__count">4</span>
+          <span class="intro-box__for">for</span>
+          <span class="intro-box__amount">£60</span>
+        </p>
+        <p class="intro-box__note">*30 day expiry</p>
+        <a href="https://momence.com/m/809161" class="btn btn-filled intro-box__btn" target="_blank" rel="noopener noreferrer">Buy now</a>
+      </article>
+      <article class="intro-box">
+        <span class="intro-box__label">Introduction</span>
+        <h3 class="intro-box__title">Studio</h3>
+        <p class="intro-box__price">
+          <span class="intro-box__count">4</span>
+          <span class="intro-box__for">for</span>
+          <span class="intro-box__amount">£45</span>
+        </p>
+        <p class="intro-box__note">*30 day expiry</p>
+        <a href="https://momence.com/m/809162" class="btn btn-filled intro-box__btn" target="_blank" rel="noopener noreferrer">Buy now</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT: What is grip + the .grip method -->
+<section id="about" class="about-section fade-in">
+  <div class="about-block about-block--grip">
+    <div class="about-row">
+      <div class="about-grip-head">
+        <h2 class="about-heading">What is grip.?</h2>
+        <div class="about-rule-line about-rule-line--grip" aria-hidden="true"></div>
+      </div>
+      <div class="about-intro">
+        <p>grip. is where strength slows down. A movement studio built for deep shakes, sharper minds, and bodies that want more than a workout.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="about-divider-fill" d="M0,52 C240,12 480,12 720,62 S1200,102 1440,42 L1440,150 L0,150 Z"/>
+      <path class="about-divider-wave" d="M0,52 C240,12 480,12 720,62 S1200,102 1440,42"/>
+    </svg>
+  </div>
+
+  <div class="about-block about-block--method" id="grip-method">
+    <div class="grip-method-inner">
+      <p class="grip-method-lead">Our method is simple: move slower, feel deeper, leave stronger.</p>
+
+      <div class="grip-method-stack">
+        <article class="grip-method-row">
+          <div class="grip-method-row-head">
+            <span class="grip-method-num">01</span>
+            <h3 class="grip-method-title">CONTROL</h3>
+          </div>
+          <div class="grip-method-row-copy">
+            <p class="grip-method-copy">Slow movement. Deep activation. No wasted reps.</p>
+          </div>
+        </article>
+        <article class="grip-method-row">
+          <div class="grip-method-row-head">
+            <span class="grip-method-num">02</span>
+            <h3 class="grip-method-title">INTENSITY</h3>
+          </div>
+          <div class="grip-method-row-copy">
+            <p class="grip-method-copy">Low-impact does not mean low effort.</p>
+          </div>
+        </article>
+        <article class="grip-method-row">
+          <div class="grip-method-row-head">
+            <span class="grip-method-num">03</span>
+            <h3 class="grip-method-title">FLOW</h3>
+          </div>
+          <div class="grip-method-row-copy">
+            <p class="grip-method-copy">Classes that move with rhythm, structure and purpose.</p>
+          </div>
+        </article>
+        <article class="grip-method-row">
+          <div class="grip-method-row-head">
+            <span class="grip-method-num">04</span>
+            <h3 class="grip-method-title">RESET</h3>
+          </div>
+          <div class="grip-method-row-copy">
+            <p class="grip-method-copy">Strength work with space to breathe.</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="grip-method-link">
+        <a href="#sessions" class="session-link">Explore our sessions ↓</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SESSIONS -->
+<section id="sessions" class="section sessions-section fade-in">
+  <div class="container sessions-inner">
+    <header class="sessions-header center">
+      <h2 class="section-title">Sessions</h2>
+      <div class="sessions-divider" aria-hidden="true"></div>
+      <p class="sessions-lead">Low-impact. High-intention. Built for strength, control and that quiet little shake.</p>
+    </header>
+
+    <div class="carousel-wrap">
+      <button class="carousel-btn carousel-btn--side" id="prevBtn" aria-label="Previous session">←</button>
+
+      <div class="classes-grid classes-grid--loop" id="classesCarousel">
+        <article class="classes-card">
+          <div class="session-media">
+            <span class="session-num">01</span>
+            <img src="images/megaformer.jfif" alt="Megaformer session" onerror="this.style.display='none'; this.parentElement.classList.add('session-media--empty')">
+          </div>
+          <div class="session-body">
+            <h3 class="session-title">Megaformer</h3>
+            <p class="tagline">grip. · glutes. · glow. · afterdark</p>
+            <p class="desc">A full-body, low-impact strength and endurance session on the Megaformer. Expect slow shakes, deep burns, sharp playlists and that "I'm stronger than I thought" moment halfway through.</p>
+            <a href="#booking-megaformer" class="session-link">Explore session →</a>
+          </div>
+        </article>
+
+        <article class="classes-card classes-card--featured">
+          <div class="session-media">
+            <span class="session-num">02</span>
+            <span class="session-badge">Most popular</span>
+            <img src="images/reformat.jfif" alt="Reformat session" onerror="this.style.display='none'; this.parentElement.classList.add('session-media--empty')">
+          </div>
+          <div class="session-body">
+            <h3 class="session-title">Reformat</h3>
+            <p class="tagline">grip. · glutes. · glow. · afterdark</p>
+            <p class="desc">A floor-based Pilates class focused on controlled movement, alignment, breathwork, and core activation using bodyweight and small equipment. Grounding, intentional, and quietly powerful.</p>
+            <a href="#booking-reformat" class="session-link">Explore session →</a>
+          </div>
+        </article>
+
+        <article class="classes-card">
+          <div class="session-media">
+            <span class="session-num">04</span>
+            <img src="images/hitt.jfif" alt="HIIT session" onerror="this.style.display='none'; this.parentElement.classList.add('session-media--empty')">
+          </div>
+          <div class="session-body">
+            <h3 class="session-title">HIIT</h3>
+            <p class="tagline">glow.</p>
+            <p class="desc">Short bursts of intense exercise followed by brief recovery, designed to maximise energy output. Electric and motivating — somewhere between a nightclub and a comeback montage.</p>
+            <a href="#booking-hiit" class="session-link">Explore session →</a>
+          </div>
+        </article>
+
+        <article class="classes-card">
+          <div class="session-media">
+            <span class="session-num">03</span>
+            <img src="images/yoga.jfif" alt="Yoga session" onerror="this.style.display='none'; this.parentElement.classList.add('session-media--empty')">
+          </div>
+          <div class="session-body">
+            <h3 class="session-title">Yoga</h3>
+            <p class="tagline">vinyasa · hatha · yin</p>
+            <p class="desc">A movement and breath-led practice combining flowing sequences, stretches, balance work, and mindfulness to support both physical and mental wellbeing.</p>
+            <a href="#booking-yoga" class="session-link">Explore session →</a>
+          </div>
+        </article>
+      </div>
+
+      <button class="carousel-btn carousel-btn--side" id="nextBtn" aria-label="Next session">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- OUR FORMATS -->
+<section id="our-formats" class="section our-formats-section fade-in">
+  <div class="container formats-inner">
+    <header class="formats-header center">
+      <h2 class="section-title">Our formats</h2>
+      <div class="formats-divider" aria-hidden="true"></div>
+      <p class="formats-lead">From slow control to full-body fire, find the format that fits your mood.</p>
+    </header>
+
+    <div class="formats-grid">
+      <article class="format-card">
+        <h3 class="format-name">grip.</h3>
+        <p class="format-tags">Full-body · strength · control</p>
+        <p class="format-copy">Low-impact, high-intention movement designed to build strength, endurance and deep muscular control.</p>
+      </article>
+      <article class="format-card">
+        <h3 class="format-name">glow.</h3>
+        <p class="format-tags">Flow · tone · reset</p>
+        <p class="format-copy">Rhythmic movement to lift your energy, lengthen the body and leave you feeling lighter, brighter and reset.</p>
+      </article>
+      <article class="format-card">
+        <h3 class="format-name">glutes.</h3>
+        <p class="format-tags">Lower-body · sculpt · burn</p>
+        <p class="format-copy">Targeted lower-body work designed to sculpt, strengthen and light up the glutes with controlled intensity.</p>
+      </article>
+      <article class="format-card format-card--afterdark">
+        <h3 class="format-name">afterdark.</h3>
+        <p class="format-tags">After-hours · rhythm · intensity</p>
+        <p class="format-copy">High-intensity reformer under low light and deep beats - your Friday night, redefined.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDING MEMBERSHIP BANNER -->
+<div class="announcement-bar announcement-bar--inline">
   <div class="announcement-track">
-
-    <div class="announcement-text">
-      Coming soon: Opening 29th June • New classes • Join the waitlist •
-    </div>
-
-    <div class="announcement-text">
-      Coming soon: Opening 29th June • New classes • Join the waitlist •
-    </div>
-
-    <div class="announcement-text">
-      Coming soon: Opening 29th June • New classes • Join the waitlist •
-    </div>
-
-    <div class="announcement-text">
-      Coming soon: Opening 29th June • New classes • Join the waitlist •
-    </div>
-
+    <div class="announcement-text">founding grip.noire now available &nbsp;|&nbsp; limited quantity &nbsp;|&nbsp; <a href="https://momence.com/m/809120" class="announcement-link" target="_blank" rel="noopener noreferrer">purchase here</a> &nbsp;|&nbsp;</div>
+    <div class="announcement-text">founding grip.noire now available &nbsp;|&nbsp; limited quantity &nbsp;|&nbsp; <a href="https://momence.com/m/809120" class="announcement-link" target="_blank" rel="noopener noreferrer">purchase here</a> &nbsp;|&nbsp;</div>
+    <div class="announcement-text">founding grip.noire now available &nbsp;|&nbsp; limited quantity &nbsp;|&nbsp; <a href="https://momence.com/m/809120" class="announcement-link" target="_blank" rel="noopener noreferrer">purchase here</a> &nbsp;|&nbsp;</div>
+    <div class="announcement-text">founding grip.noire now available &nbsp;|&nbsp; limited quantity &nbsp;|&nbsp; <a href="https://momence.com/m/809120" class="announcement-link" target="_blank" rel="noopener noreferrer">purchase here</a> &nbsp;|&nbsp;</div>
   </div>
 </div>
 
-<section class="section hero fade-in">
- <div class="container center flow-lg hero-motion">
-  <img src="images/logo.png" class="hero-logo" alt="logo">
-  <h1 class="title">stay close. stay grippy.</h1>
-  <p class="subtitle">Join our mailing list to stay up to date with all things grip. 
-No spam. No noise. Just the essentials.</p>
+<section id="book-intro" class="section book-intro-section fade-in">
+  <div class="intro-offers-split-inner">
+    <div class="intro-offers-split-row">
+      <div class="intro-offers-split-cards">
+        <div class="intro-offers-grid">
+          <article class="intro-box">
+            <span class="intro-box__label">Introduction</span>
+            <h3 class="intro-box__title">Megaformer</h3>
+            <p class="intro-box__price">
+              <span class="intro-box__count">4</span>
+              <span class="intro-box__for">for</span>
+              <span class="intro-box__amount">£60</span>
+            </p>
+            <p class="intro-box__note">*30 day expiry</p>
+            <a href="https://momence.com/m/809161" class="btn btn-filled intro-box__btn" target="_blank" rel="noopener noreferrer">Buy now</a>
+          </article>
+          <article class="intro-box">
+            <span class="intro-box__label">Introduction</span>
+            <h3 class="intro-box__title">Studio</h3>
+            <p class="intro-box__price">
+              <span class="intro-box__count">4</span>
+              <span class="intro-box__for">for</span>
+              <span class="intro-box__amount">£45</span>
+            </p>
+            <p class="intro-box__note">*30 day expiry</p>
+            <a href="https://momence.com/m/809162" class="btn btn-filled intro-box__btn" target="_blank" rel="noopener noreferrer">Buy now</a>
+          </article>
+        </div>
+      </div>
 
- <div class="lead-form-wrap">
-  <div id="momence-plugin-lead-form"></div>
-
-  <script
-    async
-    type="module"
-    id="momence-plugin-lead-form-src"
-    host_id="259434"
-    fields="firstName,lastName,email,phoneNumber"
-    token="Q0X61NPm8n"
-    country_code="gb"
-    data_collect_consent="required"
-    data-field-def='{"firstName":{"type":"text","label":"First name","required":true},"lastName":{"type":"text","label":"Last name","required":true},"email":{"type":"email","label":"Email","required":true},"phoneNumber":{"type":"phone-number","label":"Phone number","required":true}}'
-    data-redirect-after-submit-to="grip-wellness.com"
-    data-on-success-msg="Thanks! You're on the list."
-    src="https://momence.com/plugin/lead-form/lead-form.js"
-  ></script>
-</div>
-<style>
-:root {
-  --momenceColorBackground: #f6f4f0;
-  --momenceColorPrimary: 107, 95, 86;
-  --momenceColorBlack: 0, 0, 0;
-
-}
-@media (max-width: 768px){
-
-  /* keep whole form tidy */
-  .lead-form-wrap{
-    padding: 1.5rem 1.2rem;
-  }
-
-  /* specifically target phone field container */
-  #momence-plugin-lead-form [data-field="phoneNumber"],
-  #momence-plugin-lead-form input[type="tel"]{
-    width: 100% !important;
-  }
-
-  /* optional: make labels cleaner */
-  #momence-plugin-lead-form label{
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-  }
-}
-
-
-/* luxury wrapper */
-.lead-form-wrap{
-  max-width: 520px;
-  margin: 3rem auto;
-  padding: 2.5rem 2rem;
-
-  background: rgba(255,255,255,.7);
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: 18px;
-
-  backdrop-filter: blur(12px);
-  box-shadow: 0 20px 50px rgba(0,0,0,.06);
-}
-</style>
-</div>
+      <div class="intro-offers-split-head">
+        <h2 class="intro-offers-split-heading">Introductory offers</h2>
+        <div class="intro-offers-split-rule" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<div class="book-cta">
+  <a href="book.html" class="btn btn-filled">Book your first class</a>
+</div>
 
-<section id="contact" class="section section-alt fade-in">
-  <div class="contact-grid">
+<!-- THE STUDIO -->
+<section id="the-studio" class="section the-studio-section fade-in split-reveal">
+  <div class="container split-section">
+    <div class="split-content">
+      <h2 class="section-title split-title">The studio</h2>
+      <div class="split-body">
+        <p>Meet grip. an urban wellness studio with industrial bones and a soft, raw finish.</p>
+        <p>The grip. studio is designed as an urban sanctuary for intentional movement. Raw textures, exposed brick, soft lighting, earthy tones and architectural details come together to create a space that feels warm, grounded and quietly luxurious.</p>
+      </div>
+    </div>
+    <div class="split-media">
+      <img src="images/grip_studio.jpeg" alt="grip. studio interior" onerror="this.style.display='none'; this.parentElement.classList.add('split-media--empty')">
+    </div>
+  </div>
+</section>
 
-    <div class="flow">
-      <h2 class="section-title">Contact</h2>
-      <p class="subtitle">Get in touch anytime.</p>
+<!-- GRIP.POD -->
+<section id="grip-pod" class="section section-sand fade-in split-reveal">
+  <div class="container split-section split-section--reverse">
+    <div class="split-media">
+      <img src="images/grip_pod.jfif" alt="grip.pod" onerror="this.style.display='none'; this.parentElement.classList.add('split-media--empty')">
+    </div>
+    <div class="split-content">
+      <h2 class="section-title split-title">The grip.pod</h2>
+      <div class="split-body">
+        <p>Step inside the grip.pod for on-demand strength, HIIT, core, cardio and conditioning sessions. ReflectAI™ supports your form with live feedback, rep counting and personalised coaching cues, so you can train solo without feeling unguided.</p>
+        <p>30 and 45 minute sessions available.</p>
+      </div>
+      <a href="#booking-pod" class="btn btn-filled">Book here</a>
+    </div>
+  </div>
+</section>
 
-      <a class="email" href="mailto:support@grip-wellness.com">
-        support@grip-wellness.com
-      </a>
+<!-- GRIP.AFTERDARK -->
+<section id="afterdark" class="section split-section-dark fade-in split-reveal">
+  <div class="container split-section">
+    <div class="split-content">
+      <h2 class="section-title split-title">Introducing grip.AfterDark</h2>
+      <div class="split-body">
+        <p>grip.afterdark is an after-hours reformer class designed to channel the energy of a night out—without compromising your workout.</p>
+        <p>Set to deep, rhythmic beats and low, ambient lighting, this high-intensity session blends the precision of classical Pilates with the dynamic pulse of a Friday night.</p>
+        <p>Expect sculpting sequences, elevated tempo, and an immersive atmosphere that moves with you.</p>
+        <p>Whether you're trading cocktails for core work or just want to kick off your weekend feeling powerful, grip.afterdark is your invitation to flow, burn, and glow.</p>
+        <p>Dressed in control. Lit by intention. This is your Friday night, redefined.</p>
+      </div>
+    </div>
+    <div class="split-media">
+      <img src="images/grip_afterdark.jfif" alt="grip.AfterDark session" onerror="this.style.display='none'; this.parentElement.classList.add('split-media--empty')">
+    </div>
+  </div>
+</section>
 
-      <div class="socials">
-        <a href="https://www.instagram.com/grip.wellness/" target="_blank" class="ig"><i class="fa-brands fa-instagram"></i></a>
+<!-- EMAIL ALERTS / SOCIALS -->
+<section id="alerts" class="section alerts-section fade-in">
+  <div class="container alerts-layout">
+    <div class="alerts-grippy-wrap">
+      <div class="alerts-grippy-block">
+        <h2 class="alerts-grippy">stay close.<span class="alerts-grippy-accent">stay grippy.</span></h2>
       </div>
     </div>
 
-    <div class="map-wrapper">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.12279912065!2d-1.8836686732940675!3d52.47691226466752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bc81c9be6e05%3A0x47be66cadae47640!2s48-52%20Floodgate%20St%2C%20Deritend%2C%20Birmingham%20B5%205SL%2C%20UK!5e0!3m2!1sen!2sro!4v1780350872562!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-</div>
+    <div class="alerts-panel">
+      <a href="https://www.instagram.com/grip.wellness?igsh=MWc2NDYxZTNkN2t3dA%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="alerts-instagram">
+        <i class="fa-brands fa-instagram"></i>
+        @grip.wellness
+      </a>
 
+      <form class="alerts-form" id="crm-email-widget">
+        <div class="alerts-form-grid">
+          <div class="field">
+            <label for="alertName">Name</label>
+            <input type="text" id="alertName" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="alertBirthday">Birthday</label>
+            <input type="text" id="alertBirthday" name="birthday" placeholder="mm/dd/yyyy" autocomplete="bday">
+          </div>
+          <div class="field field--full">
+            <label for="alertEmail">Email</label>
+            <input type="email" id="alertEmail" name="email" required autocomplete="email">
+          </div>
+        </div>
+        <label class="alerts-consent">
+          <input type="checkbox" name="consent" required>
+          <span>I agree to receive updates from grip. and understand I can unsubscribe at any time.</span>
+        </label>
+        <button type="submit" class="alerts-submit">
+          <i class="fa-regular fa-bell"></i>
+          Get on the list
+        </button>
+      </form>
+    </div>
+  </div>
 </section>
 
+<!-- PRICING -->
+<section id="pricing" class="section fade-in">
+  <div class="container flow-lg">
+    <div class="center">
+      <h2 class="section-title">Passes</h2>
+      <p class="subtitle">Drop in or commit — every journey starts with a single class.</p>
+    </div>
 
-<footer class="footer">© 2026 Pilates Studio</footer>
+    <div class="passes-wrap">
+      <div class="passes-table">
+        <div class="passes-header">
+          <div class="passes-label-col"></div>
+          <div class="passes-col">
+            <span class="passes-col-title">Mega</span>
+            <span class="passes-col-note">Megaformer classes</span>
+          </div>
+          <div class="passes-col">
+            <span class="passes-col-title">Studio</span>
+            <span class="passes-col-note">Studio classes</span>
+          </div>
+        </div>
 
+        <div class="passes-row">
+          <div class="passes-label">Single</div>
+          <div class="passes-cell" data-label="Mega"><a href="https://momence.com/m/809165" class="pass-btn pass-btn--outline" target="_blank" rel="noopener noreferrer">Buy for £25</a></div>
+          <div class="passes-cell" data-label="Studio"><a href="https://momence.com/m/809166" class="pass-btn pass-btn--filled" target="_blank" rel="noopener noreferrer">Buy for £18</a></div>
+        </div>
 
+        <div class="passes-row">
+          <div class="passes-label">
+            grip.silver
+            <span class="passes-label-sessions">5x sessions</span>
+          </div>
+          <div class="passes-cell" data-label="Mega"><a href="https://momence.com/m/809169" class="pass-btn pass-btn--outline" target="_blank" rel="noopener noreferrer">Buy for £90</a></div>
+          <div class="passes-cell" data-label="Studio"><a href="https://momence.com/m/809170" class="pass-btn pass-btn--filled" target="_blank" rel="noopener noreferrer">Buy for £75</a></div>
+        </div>
+
+        <div class="passes-row">
+          <div class="passes-label">
+            grip.gold
+            <span class="passes-label-sessions">10x sessions</span>
+          </div>
+          <div class="passes-cell" data-label="Mega"><a href="https://momence.com/m/809172" class="pass-btn pass-btn--outline" target="_blank" rel="noopener noreferrer">Buy for £175</a></div>
+          <div class="passes-cell" data-label="Studio"><a href="https://momence.com/m/809171" class="pass-btn pass-btn--filled" target="_blank" rel="noopener noreferrer">Buy for £130</a></div>
+        </div>
+
+        <div class="passes-row">
+          <div class="passes-label">
+            grip.platinum
+            <span class="passes-label-sessions">15x sessions</span>
+          </div>
+          <div class="passes-cell" data-label="Mega"><a href="https://momence.com/m/809174" class="pass-btn pass-btn--outline" target="_blank" rel="noopener noreferrer">Buy for £240</a></div>
+          <div class="passes-cell" data-label="Studio"><a href="https://momence.com/m/809173" class="pass-btn pass-btn--filled" target="_blank" rel="noopener noreferrer">Buy for £180</a></div>
+        </div>
+      </div>
+      <p class="passes-expiry">*60 day expiry</p>
+    </div>
+  </div>
+</section>
+
+<!-- GRIP.NOIRE / FOUNDING -->
+<section id="grip-noire" class="section section-sand fade-in">
+  <div class="container center flow-lg">
+    <h2 class="section-title">grip.noire</h2>
+    <p class="subtitle">Founding membership - limited quantity. Lock in launch pricing before we open.</p>
+
+    <div class="founding-grid founding-grid--duo">
+      <article class="founding-card founding-card--noire">
+        <h3 class="founding-name">Founding grip.noire</h3>
+        <p class="founding-tag">Unlimited access · limited quantity</p>
+        <div class="founding-price">£240<span>/mo</span></div>
+        <ul>
+          <li>Unlimited classes | Megaformer | Studio</li>
+          <li>grip. goody bag</li>
+          <li>21 day advance booking</li>
+          <li><strong>same price, for life</strong></li>
+        </ul>
+        <a href="https://momence.com/m/809120" class="btn btn-filled btn-block" target="_blank" rel="noopener noreferrer">Purchase here</a>
+      </article>
+
+      <article class="founding-card founding-card--dark">
+        <h3 class="founding-name">grip.noire</h3>
+        <p class="founding-tag">Unlimited access</p>
+        <div class="founding-price">£300<span>/mo</span></div>
+        <ul>
+          <li>Unlimited classes | Megaformer | Studio</li>
+          <li>grip. goody bag</li>
+          <li>21 day advance booking</li>
+        </ul>
+        <a href="https://momence.com/m/809145" class="btn btn-filled btn-block" target="_blank" rel="noopener noreferrer">Purchase here</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING (CRM) — commented out
+<section id="booking" class="section fade-in">
+  <div class="container center flow-lg">
+    <h2 class="section-title">Book a class</h2>
+    <div id="ribbon-schedule"></div>
+    <script
+      async
+      type="module"
+      host_id="259434"
+      teacher_ids="[]"
+      location_ids="[241194]"
+      tag_ids="[]"
+      lite_mode="true"
+      default_filter="today"
+      locale="en"
+      src="https://momence.com/plugin/host-schedule/host-schedule.js"
+    ></script>
+    <div id="booking-megaformer" class="booking-anchor" data-session="megaformer"></div>
+    <div id="booking-reformat" class="booking-anchor" data-session="reformat"></div>
+    <div id="booking-yoga" class="booking-anchor" data-session="yoga"></div>
+    <div id="booking-hiit" class="booking-anchor" data-session="hiit"></div>
+    <div id="booking-pod" class="booking-anchor" data-session="pod"></div>
+  </div>
+</section>
+-->
+
+<!-- Session scroll anchors (kept for Explore / Book here links) -->
+<div id="booking" class="booking-anchors-hidden" aria-hidden="true">
+  <div id="booking-megaformer" class="booking-anchor" data-session="megaformer"></div>
+  <div id="booking-reformat" class="booking-anchor" data-session="reformat"></div>
+  <div id="booking-yoga" class="booking-anchor" data-session="yoga"></div>
+  <div id="booking-hiit" class="booking-anchor" data-session="hiit"></div>
+  <div id="booking-pod" class="booking-anchor" data-session="pod"></div>
+</div>
+
+<!-- VISIT -->
+<section id="visit" class="find-us fade-in">
+  <div class="find-us-grid">
+    <div class="find-us-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.12279912065!2d-1.8836686732940675!3d52.47691226466752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bc81c9be6e05%3A0x47be66cadae47640!2s48-52%20Floodgate%20St%2C%20Deritend%2C%20Birmingham%20B5%205SL%2C%20UK!5e0!3m2!1sen!2suk!4v1780350872562!5m2!1sen!2suk"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="grip. location map">
+      </iframe>
+    </div>
+
+    <div class="find-us-content find-us-content--right">
+      <h2 class="find-us-title">Visit</h2>
+
+      <dl class="find-us-details">
+        <div>
+          <dt>Address</dt>
+          <dd>48–52 Floodgate St, Deritend, Birmingham B5 5SL</dd>
+        </div>
+        <div>
+          <dt>Train</dt>
+          <dd>Moor Street Station — 8 min walk<br>New Street Station — 15 min walk</dd>
+        </div>
+        <div>
+          <dt>Bus</dt>
+          <dd>Over 30 buses stop close to the studio. <a href="https://journeyplanner.tfwm.org.uk/?reload=true" target="_blank" rel="noopener noreferrer">Find your ideal route</a>.</dd>
+        </div>
+        <div>
+          <dt>Parking</dt>
+          <dd>Fazeley Street car park is a 2 minute walk from the studio. North Yard car park and Trinity Street car park are a short walk from the studio.<em>*Floodgate Street free after 6pm Monday to Saturday. Subject to availability / local restrictions.</em></dd>
+        </div>
+        <div>
+          <dt>Hours</dt>
+          <dd>Mon–Fri 06:30–20:30 · Sat–Sun 08:30–12:30</dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd><a href="mailto:hello@grip-wellness.com">hello@grip-wellness.com</a></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+:root {
+  --momenceReviewColorBackground: #fffefc;
+  --momenceBorder: 1px solid #c8c0b5;
+  --momenceBorderRadius: 0;
+  --momenceBoxShadow: none;
+  --momenceColorBackground: #fffefc;
+  --momenceColorPrimary: 71, 65, 63;
+  --momenceColorBlack: 0, 0, 0;
+}
+</style>
+
+<!-- NEWSLETTER POPUP -->
+<div class="popup-overlay" id="newsletterPopup" aria-hidden="true">
+  <div class="popup-modal" role="dialog" aria-labelledby="popupGrippy" aria-modal="true">
+    <button class="popup-close" id="popupClose" aria-label="Close">&times;</button>
+
+    <h2 class="popup-grippy" id="popupGrippy">Stay close.<br>Stay grippy.</h2>
+    <p class="popup-tagline">No spam, just the good stuff, first.</p>
+
+    <form class="popup-form" id="popupForm">
+      <div class="popup-form-grid">
+        <div class="field">
+          <label for="popupFirst">First name</label>
+          <input type="text" id="popupFirst" name="first_name" required autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="popupLast">Last name</label>
+          <input type="text" id="popupLast" name="last_name" required autocomplete="family-name">
+        </div>
+        <div class="field">
+          <label for="popupEmail">Email</label>
+          <input type="email" id="popupEmail" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="popupPhone">Phone number</label>
+          <input type="tel" id="popupPhone" name="phone" autocomplete="tel">
+        </div>
+      </div>
+
+      <label class="popup-consent">
+        <input type="checkbox" id="popupConsent" name="consent" required>
+        <span>I agree to receive updates from grip. and understand I can unsubscribe at any time.</span>
+      </label>
+
+      <button type="submit" class="popup-submit">
+        <i class="fa-regular fa-bell"></i>
+        Get Email Alerts
+      </button>
+    </form>
+  </div>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+<footer class="footer">
+  <span class="footer-brand">grip.</span>
+  <p>© 2026 Grip Wellness · Digbeth, Birmingham</p>
+</footer>
+
+<script
+  async
+  type="module"
+  host-id="259434"
+  token="Q0X61NPm8n"
+  position="bottom-right"
+  src="https://momence.com/plugin/webchat/webchat.js"
+></script>
 <script src="js/main.js"></script>
-
 </body>
 </html>
