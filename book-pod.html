@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Book a class — grip. Wellness Studio</title>
-<meta name="description" content="Book Megaformer, Studio, Yoga and HIIT classes at grip. in Digbeth, Birmingham." />
+<title>Book the grip.pod — grip. Wellness Studio</title>
+<meta name="description" content="Book on-demand strength, HIIT, core and conditioning sessions in the grip.pod at grip. in Digbeth, Birmingham." />
 
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
@@ -40,7 +40,7 @@
 
     <nav class="nav" id="navMenu">
       <a href="index.html#home">Home</a>
-      <a href="book.html" aria-current="page">Book</a>
+      <a href="book.html">Book</a>
       <a href="index.html#grip-noire">grip.noire</a>
       <a href="index.html#sessions">Sessions</a>
       <a href="index.html#pricing">Pricing</a>
@@ -54,29 +54,33 @@
 
 <main class="section booking-page">
   <div class="container flow-lg">
-    <h1 class="section-title center">Book a class</h1>
-    <div id="ribbon-schedule"></div>
-    <script
-      async
-      type="module"
-      host_id="259434"
-      teacher_ids="[]"
-      location_ids="[]"
-      tag_ids="[]"
-      default_filter="today"
-      locale="en"
-      src="https://momence.com/plugin/host-schedule/host-schedule.js"
-    ></script>
+    <h1 class="section-title center">Book the grip.pod</h1>
+    <iframe
+      id="iframe_appointments_259434"
+      src="https://momence.com/appointments/259434?boardId=209471"
+      style="width:100%; border:0px;"
+      allowfullscreen="true"
+      webkitallowfullscreen="true"
+      mozallowfullscreen="true"
+      scrolling="no"
+      title="Book the grip.pod at grip.">
+    </iframe>
+
+    <script>
+      window.addEventListener("message", function (e) {
+        const height = +e.data?.height;
+        const type = e.data?.type;
+        const iframe = document.querySelector("#iframe_appointments_259434");
+
+        if (!type || !type.match("iframe_appointments_259434_resize") || isNaN(height) || !iframe) {
+          return;
+        }
+
+        iframe.height = height + "px";
+      }, false);
+    </script>
   </div>
 </main>
-
-<style>
-:root {
-  --momenceColorBackground: #FFFEFC;
-  --momenceColorPrimary: 71, 65, 63;
-  --momenceColorBlack: 0, 0, 0;
-}
-</style>
 
 <button class="back-to-top" id="backToTop" aria-label="Back to top">
   <i class="fa-solid fa-chevron-up"></i>

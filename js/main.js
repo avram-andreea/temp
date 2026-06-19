@@ -154,16 +154,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ---- Newsletter popup (every page load) ---- */
+  /* ---- Newsletter popup (first visit per day / each new visit) ---- */
   const popup = document.getElementById("newsletterPopup");
   const popupClose = document.getElementById("popupClose");
   const popupForm = document.getElementById("popupForm");
+  const POPUP_SESSION_KEY = "grip-newsletter-seen";
+  const POPUP_DAY_KEY = "grip-newsletter-last-seen";
+
+  const markPopupSeen = () => {
+    const today = new Date().toDateString();
+    sessionStorage.setItem(POPUP_SESSION_KEY, "true");
+    localStorage.setItem(POPUP_DAY_KEY, today);
+  };
+
+  const shouldShowPopup = () => {
+    const today = new Date().toDateString();
+    const seenThisSession = sessionStorage.getItem(POPUP_SESSION_KEY);
+    const seenToday = localStorage.getItem(POPUP_DAY_KEY) === today;
+    return !seenThisSession || !seenToday;
+  };
 
   const openPopup = () => {
     if (!popup) return;
     popup.classList.add("is-open");
     popup.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    markPopupSeen();
   };
 
   const closePopup = () => {
@@ -171,9 +187,10 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.classList.remove("is-open");
     popup.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    markPopupSeen();
   };
 
-  if (popup) {
+  if (popup && shouldShowPopup()) {
     setTimeout(openPopup, 800);
   }
 
