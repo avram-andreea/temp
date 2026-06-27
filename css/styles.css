@@ -730,6 +730,15 @@ img { max-width: 100%; display: block; }
 
 .popup-close:hover { opacity: 1; }
 
+.popup-opening {
+  font-family: var(--font-title);
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin: 0 0 0.85rem;
+}
+
 .popup-grippy {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 5vw, 2.6rem);
