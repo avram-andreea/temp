@@ -831,7 +831,7 @@ img { max-width: 100%; display: block; }
   width: 100%;
   max-width: 540px;
   background: var(--soft-white);
-  border-radius: 16px;
+  border: 1px solid rgba(71, 65, 63, 0.08);
   padding: clamp(1.85rem, 3.5vw, 2.75rem);
   box-shadow: 0 28px 60px rgba(0, 0, 0, 0.32);
   overflow: hidden;
@@ -864,6 +864,15 @@ img { max-width: 100%; display: block; }
   text-align: left;
 }
 
+#launch #momence-plugin-lead-form input,
+#launch #momence-plugin-lead-form select,
+#launch #momence-plugin-lead-form button,
+#launch #momence-plugin-lead-form [class*="input"],
+#launch #momence-plugin-lead-form [class*="phone"],
+#launch #momence-plugin-lead-form [class*="select"] {
+  border-radius: 0 !important;
+}
+
 #launch #momence-plugin-lead-form button[type="submit"] {
   display: block !important;
   width: 100% !important;
@@ -873,7 +882,7 @@ img { max-width: 100%; display: block; }
   font-size: clamp(1rem, 2vw, 1.15rem) !important;
   letter-spacing: 0.08em;
   font-weight: 600;
-  border-radius: 10px !important;
+  border-radius: 0 !important;
 }
 
 .popup-opening {
