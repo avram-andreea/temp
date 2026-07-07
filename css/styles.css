@@ -1714,6 +1714,18 @@ img { max-width: 100%; display: block; }
   background: var(--sand-light);
 }
 
+.the-studio-section .split-section {
+  grid-template-columns: 1fr;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.the-studio-section .split-content,
+.the-studio-section .split-title,
+.the-studio-section .split-body {
+  text-align: center;
+}
+
 /* =========================
    SPLIT SECTIONS (Pod / AfterDark)
 ========================= */

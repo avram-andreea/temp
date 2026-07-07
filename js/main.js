@@ -167,7 +167,18 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem(POPUP_DAY_KEY, today);
   };
 
+  const isDirectSectionAccess = () => {
+    const hash = window.location.hash;
+    if (!hash || hash === "#") return false;
+    try {
+      return !!document.querySelector(hash);
+    } catch {
+      return false;
+    }
+  };
+
   const shouldShowPopup = () => {
+    if (isDirectSectionAccess()) return false;
     const today = new Date().toDateString();
     const seenThisSession = sessionStorage.getItem(POPUP_SESSION_KEY);
     const seenToday = localStorage.getItem(POPUP_DAY_KEY) === today;
