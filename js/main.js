@@ -114,25 +114,105 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* ---- Mobile menu ---- */
+  /* ---- Mobile menu + nav dropdowns ---- */
   const menuToggle = document.getElementById("menuToggle");
   const navMenu = document.getElementById("navMenu");
 
   if (menuToggle && navMenu) {
+    const setMenuOpen = (open) => {
+      menuToggle.classList.toggle("active", open);
+      navMenu.classList.toggle("open", open);
+      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.style.overflow = open ? "hidden" : "";
+    };
+
     menuToggle.addEventListener("click", () => {
-      menuToggle.classList.toggle("active");
-      navMenu.classList.toggle("open");
-      document.body.style.overflow = navMenu.classList.contains("open") ? "hidden" : "";
+      setMenuOpen(!navMenu.classList.contains("open"));
     });
 
     navMenu.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        menuToggle.classList.remove("active");
-        navMenu.classList.remove("open");
-        document.body.style.overflow = "";
+      link.addEventListener("click", () => setMenuOpen(false));
+    });
+
+    navMenu.querySelectorAll(".nav-dropdown-toggle").forEach((toggle) => {
+      const item = toggle.closest(".nav-item");
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        const willOpen = !item.classList.contains("is-open");
+        navMenu.querySelectorAll(".nav-item.is-open").forEach((openItem) => {
+          if (openItem !== item) {
+            openItem.classList.remove("is-open");
+            openItem.querySelector(".nav-dropdown-toggle")?.setAttribute("aria-expanded", "false");
+          }
+        });
+        item.classList.toggle("is-open", willOpen);
+        toggle.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!navMenu.contains(e.target) && e.target !== menuToggle) {
+        navMenu.querySelectorAll(".nav-item.is-open").forEach((item) => {
+          item.classList.remove("is-open");
+          item.querySelector(".nav-dropdown-toggle")?.setAttribute("aria-expanded", "false");
+        });
+      }
+    });
+  }
+
+  /* ---- Pricing tabs ---- */
+  const priceTabs = document.querySelectorAll("[data-price-tab]");
+  if (priceTabs.length) {
+    priceTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const key = tab.getAttribute("data-price-tab");
+        priceTabs.forEach((t) => {
+          const selected = t === tab;
+          t.classList.toggle("is-active", selected);
+          t.setAttribute("aria-selected", selected ? "true" : "false");
+        });
+        document.querySelectorAll(".price-panel").forEach((panel) => {
+          const match = panel.id === `price-panel-${key}`;
+          panel.classList.toggle("is-active", match);
+          panel.hidden = !match;
+        });
       });
     });
   }
+
+  /* ---- Schedule filter (Today / Tomorrow) ---- */
+  document.querySelectorAll("[data-schedule-filter]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("[data-schedule-filter]").forEach((el) => {
+        const active = el === btn;
+        el.classList.toggle("is-active", active);
+        el.setAttribute("aria-selected", active ? "true" : "false");
+      });
+      const filter = btn.getAttribute("data-schedule-filter");
+      const embed = document.getElementById("hp-schedule-embed");
+      if (embed && filter) {
+        embed.setAttribute("default_filter", filter);
+      }
+    });
+  });
+
+  /* ---- Copyright year ---- */
+  const yearEl = document.getElementById("copyrightYear");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  /* ---- Final CTA newsletter trigger ---- */
+  document.getElementById("openNewsletter")?.addEventListener("click", () => {
+    const popup = document.getElementById("newsletterPopup");
+    if (!popup) return;
+    popup.classList.add("is-open");
+    popup.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  });
+
+  document.getElementById("finalEmailForm")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    /* Replace with Momence / CRM API when ready */
+  });
 
   /* ---- Header scroll shadow ---- */
   const header = document.getElementById("header");
