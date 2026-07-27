@@ -4101,9 +4101,14 @@ a.reviews-rating:hover {
 }
 
 .yoga-expand__book {
-  margin-top: 1.5rem;
   display: flex;
-  justify-content: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.5rem auto 0;
+  justify-content: center;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
 }
 
 @media (max-width: 768px) {
