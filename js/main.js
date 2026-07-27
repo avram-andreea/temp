@@ -241,43 +241,96 @@ document.addEventListener("DOMContentLoaded", () => {
       return true;
     };
 
+    const whenMomenceReady = (fn, attempts = 24) => {
+      const tick = () => {
+        if (fn()) return;
+        if (attempts-- <= 0) return;
+        window.setTimeout(tick, 150);
+      };
+      window.setTimeout(tick, 100);
+    };
+
+    const clickShowAll = () =>
+      clickMomenceControl("Show all") ||
+      clickMomenceControl("SHOW ALL") ||
+      clickMomenceControl("Upcoming");
+
     /* Hard reset back to default upcoming / all sessions (avoids sticky Today chip) */
-    const remountScheduleUpcoming = () => {
+    const SCHEDULE_EMBED = {
+      host_id: "259434",
+      teacher_ids: "[]",
+      location_ids: "[]",
+      tag_ids: "[]",
+      lite_mode: "true",
+      default_filter: "upcoming",
+      locale: "en",
+      src: "https://momence.com/plugin/host-schedule/host-schedule.js"
+    };
+
+    const remountScheduleUpcoming = ({ selectShowAll = false } = {}) => {
       const ribbon = document.getElementById("ribbon-schedule");
+      if (!ribbon) return false;
+
       const oldScript = document.getElementById("hp-schedule-embed");
-      if (!ribbon || !oldScript) return false;
+      const hostId =
+        (oldScript && (oldScript.getAttribute("host_id") || oldScript.getAttribute("host-id"))) ||
+        SCHEDULE_EMBED.host_id;
 
-      const hostId = oldScript.getAttribute("host_id") || oldScript.getAttribute("host-id") || "259434";
-      if (!hostId || hostId === "NaN") return false;
-
-      const next = document.createElement("script");
-      next.async = true;
-      next.type = "module";
-      next.id = "hp-schedule-embed";
-      next.setAttribute("host_id", hostId);
-      next.setAttribute("teacher_ids", oldScript.getAttribute("teacher_ids") || "[]");
-      next.setAttribute("location_ids", oldScript.getAttribute("location_ids") || "[]");
-      next.setAttribute("tag_ids", oldScript.getAttribute("tag_ids") || "[]");
-      next.setAttribute("lite_mode", oldScript.getAttribute("lite_mode") || "true");
-      next.setAttribute("default_filter", "upcoming");
-      next.setAttribute("locale", oldScript.getAttribute("locale") || "en");
-
-      const baseSrc = (oldScript.getAttribute("src") || "https://momence.com/plugin/host-schedule/host-schedule.js")
-        .split("?")[0];
-      next.src = `${baseSrc}?v=${Date.now()}`;
-
+      /* Clear previous Momence mount (plugin inserts #momence-plugin-host-schedule beside the script) */
+      document.getElementById("momence-plugin-host-schedule")?.remove();
       ribbon.innerHTML = "";
-      [...schedulePreview.querySelectorAll(":scope > *:not(#ribbon-schedule):not(#hp-schedule-embed)")]
+      [...schedulePreview.querySelectorAll(":scope > *:not(#ribbon-schedule)")]
         .forEach((node) => node.remove());
-      oldScript.remove();
-      schedulePreview.appendChild(next);
+
+      /*
+        Momence reads config from: script[host_id][src$="host-schedule.js"]
+        A cache-bust ?v= on that same script breaks the selector (host becomes NaN).
+        Keep an inert attribute bearer that still ends in host-schedule.js, then
+        import a cache-busted module URL so the widget actually remounts.
+      */
+      const config = document.createElement("script");
+      config.id = "hp-schedule-embed";
+      config.type = "text/plain";
+      config.setAttribute("host_id", hostId);
+      config.setAttribute("teacher_ids", (oldScript && oldScript.getAttribute("teacher_ids")) || SCHEDULE_EMBED.teacher_ids);
+      config.setAttribute("location_ids", (oldScript && oldScript.getAttribute("location_ids")) || SCHEDULE_EMBED.location_ids);
+      config.setAttribute("tag_ids", (oldScript && oldScript.getAttribute("tag_ids")) || SCHEDULE_EMBED.tag_ids);
+      config.setAttribute("lite_mode", (oldScript && oldScript.getAttribute("lite_mode")) || SCHEDULE_EMBED.lite_mode);
+      config.setAttribute("default_filter", SCHEDULE_EMBED.default_filter);
+      config.setAttribute("locale", (oldScript && oldScript.getAttribute("locale")) || SCHEDULE_EMBED.locale);
+      config.setAttribute("src", SCHEDULE_EMBED.src);
+      schedulePreview.appendChild(config);
+
+      const afterMount = () => {
+        if (selectShowAll) whenMomenceReady(clickShowAll);
+      };
+
+      import(`${SCHEDULE_EMBED.src}?v=${Date.now()}`)
+        .then(afterMount)
+        .catch(() => {
+          /* Fallback: classic module tag without query (may no-op if already evaluated) */
+          const next = document.createElement("script");
+          next.async = true;
+          next.type = "module";
+          next.setAttribute("host_id", hostId);
+          next.setAttribute("teacher_ids", config.getAttribute("teacher_ids"));
+          next.setAttribute("location_ids", config.getAttribute("location_ids"));
+          next.setAttribute("tag_ids", config.getAttribute("tag_ids"));
+          next.setAttribute("lite_mode", config.getAttribute("lite_mode"));
+          next.setAttribute("default_filter", "upcoming");
+          next.setAttribute("locale", config.getAttribute("locale"));
+          next.src = SCHEDULE_EMBED.src;
+          schedulePreview.appendChild(next);
+          afterMount();
+        });
+
       return true;
     };
 
     const applyScheduleFilter = (key) => {
       if (key === "all") {
-        // Always remount - clicking Momence "Upcoming" after "Today" is unreliable / sticky
-        remountScheduleUpcoming();
+        // Remount, then select Momence "Show all" so it mirrors the Today chip behaviour
+        remountScheduleUpcoming({ selectShowAll: true });
         return;
       }
       if (key === "today") {
@@ -293,7 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // If coming from a day filter, reset first so tag filter applies to full upcoming list
         if (activeScheduleFilter === "today" || activeScheduleFilter === "tomorrow") {
           remountScheduleUpcoming();
-          window.setTimeout(() => clickMomenceControl("MEGAFORMER"), 400);
+          whenMomenceReady(() => clickMomenceControl("MEGAFORMER"));
           return;
         }
         clickMomenceControl("MEGAFORMER");
@@ -302,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (key === "studio") {
         if (activeScheduleFilter === "today" || activeScheduleFilter === "tomorrow") {
           remountScheduleUpcoming();
-          window.setTimeout(() => clickMomenceControl("STUDIO"), 400);
+          whenMomenceReady(() => clickMomenceControl("STUDIO"));
           return;
         }
         clickMomenceControl("STUDIO");
@@ -321,6 +374,9 @@ document.addEventListener("DOMContentLoaded", () => {
         activeScheduleFilter = key || "all";
       });
     });
+
+    /* Initial load: All is active, so mark Momence "Show all" once the widget paints */
+    whenMomenceReady(clickShowAll);
   }
 
   /* ---- Studio gallery vertical wave scroll ---- */

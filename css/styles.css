@@ -24,6 +24,7 @@
 
   --font-title: "Bebas Neue", sans-serif;
   --font-heading: "Giaza", Georgia, serif;
+  --letter-heading: -0.067em; /* Giaza tracking -67 */
   --font-body: "Inter Tight", sans-serif;
 
   --header-height: 88px;
@@ -58,7 +59,7 @@ body {
 }
 
 h1 { font-family: var(--font-title); margin: 0; font-weight: 400; letter-spacing: 0.04em; }
-h2, h3 { font-family: var(--font-heading); margin: 0; font-weight: 400; }
+h2, h3 { font-family: var(--font-heading); margin: 0; font-weight: 400; letter-spacing: var(--letter-heading); }
 p { margin: 0; line-height: 1.65; }
 a { color: inherit; }
 
@@ -766,6 +767,7 @@ img { max-width: 100%; display: block; }
 
 .launch-date {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: clamp(3.2rem, 11vw, 5.5rem);
   line-height: 1;
   color: var(--soft-white);
@@ -774,6 +776,7 @@ img { max-width: 100%; display: block; }
 
 .launch-time {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: clamp(1.8rem, 6vw, 2.8rem);
   line-height: 1.1;
   color: var(--soft-white);
@@ -819,10 +822,11 @@ img { max-width: 100%; display: block; }
 
 .launch-emphasis {
   font-family: var(--font-heading) !important;
+  letter-spacing: var(--letter-heading) !important;
   font-size: clamp(1.25rem, 2.6vw, 1.6rem) !important;
   font-weight: 400 !important;
   line-height: 1.3 !important;
-  letter-spacing: 0 !important;
+
   color: var(--sand) !important;
   margin-top: 0.6rem !important;
 }
@@ -901,6 +905,7 @@ img { max-width: 100%; display: block; }
 
 .popup-grippy {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: clamp(2rem, 5vw, 2.6rem);
   font-weight: 400;
   line-height: 1.15;
@@ -1231,6 +1236,7 @@ img { max-width: 100%; display: block; }
 
 .founding-card h3 {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: 1.5rem;
 }
 
@@ -1502,6 +1508,7 @@ img { max-width: 100%; display: block; }
 
 .session-title {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: clamp(1.5rem, 2.2vw, 1.85rem);
   color: #000;
   margin: 0 0 0.45rem;
@@ -1700,8 +1707,9 @@ img { max-width: 100%; display: block; }
 
 .format-name {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: clamp(1.75rem, 2.6vw, 2.35rem);
-  letter-spacing: 0.01em;
+
   text-transform: lowercase;
   color: var(--heading-color);
   margin: 0 0 0.85rem;
@@ -1908,6 +1916,7 @@ img { max-width: 100%; display: block; }
 
 .founding-name {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: 1.6rem;
 }
 
@@ -2094,6 +2103,7 @@ img { max-width: 100%; display: block; }
 
 .alerts-grippy {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: clamp(2.2rem, 4.4vw, 5rem);
   line-height: 1.05;
   color: var(--heading-color);
@@ -2324,12 +2334,18 @@ img { max-width: 100%; display: block; }
 .find-us-map {
   position: relative;
   min-height: 360px;
+  width: 100%;
+  /* Absolute iframe needs a definite box; % height alone collapses on mobile */
+  align-self: stretch;
 }
 
 .find-us-map iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
+  display: block;
   filter: grayscale(30%) contrast(1.05) brightness(0.95);
   mix-blend-mode: luminosity;
   opacity: 0.85;
@@ -2517,6 +2533,7 @@ img { max-width: 100%; display: block; }
 .footer-brand {
   display: block;
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: 1.4rem;
   color: var(--text);
   margin-bottom: 0.4rem;
@@ -2736,7 +2753,17 @@ img { max-width: 100%; display: block; }
   .split-title { text-align: center; }
 
   .find-us-grid { grid-template-columns: 1fr; }
-  .find-us-map { min-height: 300px; order: -1; }
+  .find-us-map {
+    order: -1;
+    height: clamp(260px, 55vw, 360px);
+    min-height: 260px;
+  }
+  .find-us-map iframe {
+    /* Keep the map readable on brown in single-column layout */
+    mix-blend-mode: normal;
+    opacity: 1;
+    filter: grayscale(15%) contrast(1.05);
+  }
   .find-us-content--right { text-align: left; align-items: flex-start; }
 
   .alerts-layout {
@@ -3177,6 +3204,7 @@ img { max-width: 100%; display: block; }
 
 .mood-tile__name {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   margin-bottom: 0.4rem;
 }
@@ -3426,15 +3454,15 @@ a.reviews-rating:hover {
 }
 
 .studio-wave__col--up {
-  animation: studio-wave-up 32s linear infinite;
+  animation: studio-wave-up 60s linear infinite;
 }
 
 .studio-wave__col--down {
-  animation: studio-wave-down 40s linear infinite;
+  animation: studio-wave-down 75s linear infinite;
 }
 
 .studio-wave__col--up-slow {
-  animation: studio-wave-up 48s linear infinite;
+  animation: studio-wave-up 90s linear infinite;
 }
 
 .studio-gallery--wave:hover .studio-wave__col {
@@ -3839,6 +3867,13 @@ a.reviews-rating:hover {
 
 .session-page-hero .container { max-width: var(--container); margin: 0 auto; }
 
+.session-page-hero .container.session-page-hero-inner,
+.session-page-hero-inner {
+  max-width: 42rem;
+  margin-inline: auto;
+  text-align: left;
+}
+
 .session-page-kicker {
   font-family: var(--font-title);
   letter-spacing: 0.14em;
@@ -3863,14 +3898,11 @@ a.reviews-rating:hover {
   margin-bottom: 1.5rem;
 }
 
-.session-page-hero-inner {
-  max-width: 42rem;
-}
-
 .session-page-tagline {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: clamp(1.25rem, 2.5vw, 1.55rem);
-  letter-spacing: 0.02em;
+
   color: var(--brown);
   margin: 0 0 1.25rem;
 }
@@ -3878,12 +3910,14 @@ a.reviews-rating:hover {
 .session-page-intro {
   display: grid;
   gap: 1rem;
-  margin-bottom: 1.75rem;
+  margin: 0 auto 1.75rem;
+  max-width: 40rem;
+  width: 100%;
 }
 
 .session-page-intro p {
   margin: 0;
-  max-width: 40rem;
+  max-width: none;
 }
 
 .session-page-meta {
@@ -3907,8 +3941,19 @@ a.reviews-rating:hover {
   font-size: 0.98rem;
 }
 
-.session-page-body {
+.session-page-hero .hp-cta-row {
+  justify-content: flex-start;
+}
+
+.session-page-body,
+.section .container.session-page-body {
   max-width: 42rem;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.session-page-body .section-title {
+  text-align: left;
 }
 
 .session-page-body p {
@@ -3918,6 +3963,9 @@ a.reviews-rating:hover {
 .session-page-body ul {
   margin: 0 0 1rem;
   padding-left: 1.15rem;
+  list-style-position: outside;
+  display: block;
+  text-align: left;
 }
 
 .session-page-body li {
@@ -3949,6 +3997,8 @@ a.reviews-rating:hover {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
   align-items: start;
+  max-width: 56rem;
+  margin-inline: auto;
 }
 
 .yoga-hub-card {
@@ -3958,6 +4008,8 @@ a.reviews-rating:hover {
   display: grid;
   gap: 0.75rem;
   align-content: start;
+  text-align: left;
+  justify-items: start;
 }
 
 .yoga-hub-card__title {
@@ -3971,6 +4023,7 @@ a.reviews-rating:hover {
 
 .yoga-hub-card__tagline {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: 1.15rem;
   color: var(--brown);
   margin: 0;
@@ -4031,14 +4084,26 @@ a.reviews-rating:hover {
   padding-top: 1.5rem;
   border-top: 1px solid var(--border);
   max-width: none;
+  text-align: left;
 }
 
 .yoga-expand__body .session-page-meta {
   margin: 1.25rem 0 0;
+  justify-items: start;
+}
+
+.yoga-expand__body ul {
+  margin: 0 0 1rem;
+  padding-left: 1.15rem;
+  list-style-position: outside;
+  display: block;
+  text-align: left;
 }
 
 .yoga-expand__book {
   margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
 }
 
 @media (max-width: 768px) {
@@ -4066,6 +4131,7 @@ a.reviews-rating:hover {
 
 .legal-page h2 {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   margin: 2rem 0 0.75rem;
   color: var(--heading-color);
 }
@@ -4454,6 +4520,7 @@ body.no-announcement .header {
 
 .moods-strip__name {
   font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
   font-size: clamp(1.6rem, 2.6vw, 2.15rem);
   font-weight: 400;
   line-height: 1;
