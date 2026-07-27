@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Introductory offers — grip. Digbeth</title>
+<title>Introductory offers - grip. Digbeth</title>
 <meta name="description" content="New to grip.? Start with Mega Intro 4 for £60 or Studio Intro 4 for £45. First-time clients only." />
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
@@ -30,14 +30,36 @@
     <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
       <span></span>
       <span></span>
+      <span></span>
     </button>
 
     <nav class="nav" id="navMenu" aria-label="Primary">
       <a href="index_new.html#home" class="nav-link">Home</a>
-      <a href="index_new.html#sessions" class="nav-link">Sessions</a>
-      <a href="new-here.html" class="nav-link">New here?</a>
+      <div class="nav-item has-dropdown">
+        <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Sessions</button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-dropdown-inner">
+            <a href="sessions/megaformer.html" role="menuitem">Megaformer</a>
+            <a href="sessions/reformat.html" role="menuitem">Reformat</a>
+            <a href="sessions/yoga.html" role="menuitem">Yoga</a>
+            <a href="sessions/hiit.html" role="menuitem">HIIT</a>
+            <a href="sessions/grip-pod.html" role="menuitem">grip.pod</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item has-dropdown">
+        <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">New here?</button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-dropdown-inner">
+            <a href="intro-offers.html" role="menuitem" aria-current="page">Intro offers</a>
+            <a href="new-here.html" role="menuitem">Your first visit</a>
+            <a href="index_new.html#first-class" role="menuitem">What to expect</a>
+          </div>
+        </div>
+      </div>
       <a href="book.html" class="nav-link">Schedule</a>
       <a href="index_new.html#pricing" class="nav-link">Pricing</a>
+      <a href="index_new.html#the-studio" class="nav-link">The studio</a>
       <a href="book.html" class="btn btn-filled nav-cta">Book a class</a>
     </nav>
   </div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>grip. — Wellness Studio, Digbeth Birmingham</title>
+<title>grip. - Wellness Studio, Digbeth Birmingham</title>
 <meta name="description" content="Megaformer, Reformat, Yoga & HIIT in Digbeth, Birmingham. Move slower. Feel deeper. Leave stronger." />
 
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -36,9 +36,11 @@
     <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
       <span></span>
       <span></span>
+      <span></span>
     </button>
 
     <nav class="nav" id="navMenu" aria-label="Primary">
+      <a href="#home" class="nav-link">Home</a>
       <div class="nav-item has-dropdown">
         <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Sessions</button>
         <div class="nav-dropdown" role="menu">
@@ -47,6 +49,7 @@
             <a href="sessions/reformat.html" role="menuitem">Reformat</a>
             <a href="sessions/yoga.html" role="menuitem">Yoga</a>
             <a href="sessions/hiit.html" role="menuitem">HIIT</a>
+            <a href="sessions/grip-pod.html" role="menuitem">grip.pod</a>
           </div>
         </div>
       </div>
@@ -90,7 +93,7 @@
   <div class="hp-hero-overlay"></div>
   <div class="container hp-hero-inner">
     <h1 class="hp-hero-title">Move slower.<br>Feel deeper.<br>Leave stronger.</h1>
-    <p class="hp-hero-lead">Megaformer, Pilates, yoga, HIIT and intelligent solo training in the heart of Digbeth.</p>
+    <p class="hp-hero-lead">Megaformer, Pilates, Yoga, HIIT and intelligent solo training in the heart of Digbeth.</p>
     <div class="hp-hero-actions">
       <a href="book.html" class="btn btn-filled">Book your first class</a>
       <a href="intro-offers.html" class="btn btn-light">Explore introductory offers</a>
@@ -171,7 +174,7 @@
         </div>
         <div class="move-card__body">
           <h3 class="move-card__title">Yoga</h3>
-          <p class="move-card__desc">Somatic Hatha Flow and Restorative Yin — slow, mindful practices to leave you calmer and more connected.</p>
+          <p class="move-card__desc">Somatic Hatha Flow and Restorative Yin - slow, mindful practices to leave you calmer and more connected.</p>
           <a href="sessions/yoga.html" class="btn btn-ghost">Explore Yoga</a>
         </div>
       </article>
@@ -182,7 +185,7 @@
         </div>
         <div class="move-card__body">
           <h3 class="move-card__title">HIIT</h3>
-          <p class="move-card__desc">Short bursts of intense work with brief recovery — electric, motivating and high-output.</p>
+          <p class="move-card__desc">Move hard. Recover stronger. Functional strength, explosive movement and conditioning - scalable for every ability.</p>
           <a href="sessions/hiit.html" class="btn btn-ghost">Explore HIIT</a>
         </div>
       </article>
@@ -205,15 +208,15 @@
         <p class="format-tags">Full-body · strength · control</p>
         <p class="format-copy">Low-impact, high-intention movement designed to build strength, endurance and deep muscular control.</p>
       </article>
-      <article class="format-card format-card--glow">
-        <h3 class="format-name">glow.</h3>
-        <p class="format-tags">Flow · tone · reset</p>
-        <p class="format-copy">Rhythmic movement to lift your energy, lengthen the body and leave you feeling lighter, brighter and reset.</p>
-      </article>
       <article class="format-card format-card--glutes">
         <h3 class="format-name">glutes.</h3>
         <p class="format-tags">Lower-body · sculpt · burn</p>
         <p class="format-copy">Targeted lower-body work designed to sculpt, strengthen and light up the glutes with controlled intensity.</p>
+      </article>
+      <article class="format-card format-card--glow">
+        <h3 class="format-name">glow.</h3>
+        <p class="format-tags">Flow · tone · reset</p>
+        <p class="format-copy">Rhythmic movement to lift your energy, lengthen the body and leave you feeling lighter, brighter and reset.</p>
       </article>
       <article class="format-card format-card--afterdark">
         <h3 class="format-name">afterdark.</h3>
@@ -225,14 +228,15 @@
 </section>
 
 <!-- HP-07 · Live schedule preview -->
-<section id="schedule" class="section section-sand fade-in">
+<section id="schedule" class="section fade-in">
   <div class="container flow-lg">
     <header class="center">
       <h2 class="section-title">Your next grip.</h2>
     </header>
 
     <div class="schedule-filters" role="tablist" aria-label="Schedule filters">
-      <button type="button" class="schedule-filter is-active" data-schedule-filter="today" role="tab" aria-selected="true">Today</button>
+      <button type="button" class="schedule-filter is-active" data-schedule-filter="all" role="tab" aria-selected="true">All</button>
+      <button type="button" class="schedule-filter" data-schedule-filter="today" role="tab" aria-selected="false">Today</button>
       <button type="button" class="schedule-filter" data-schedule-filter="tomorrow" role="tab" aria-selected="false">Tomorrow</button>
       <button type="button" class="schedule-filter" data-schedule-filter="megaformer" role="tab" aria-selected="false">Megaformer</button>
       <button type="button" class="schedule-filter" data-schedule-filter="studio" role="tab" aria-selected="false">Studio</button>
@@ -249,7 +253,7 @@
         location_ids="[]"
         tag_ids="[]"
         lite_mode="true"
-        default_filter="today"
+        default_filter="upcoming"
         locale="en"
         src="https://momence.com/plugin/host-schedule/host-schedule.js"
       ></script>
@@ -288,7 +292,7 @@
       host_id="259434"
       is_profile_picture_enabled="true"
       is_text_only_enabled="true"
-      layout="grid"
+      layout="list"
       signature="c59dd880e929442510f6d1920aad07a06d33ea6b1e4a410a39f875e1be657b1b"
       src="https://momence.com/plugin/reviews/reviews.js">
     </script>
@@ -323,7 +327,13 @@
         <span class="first-step__icon" aria-hidden="true"><i class="fa-solid fa-person-walking"></i></span>
         <span class="first-step__num">03</span>
         <h3 class="first-step__title">Move your way</h3>
-        <p class="first-step__copy">Every class includes low-impact options and modifications. Beginner-friendly doesn’t mean easy — it means supported.</p>
+        <p class="first-step__copy">Every class includes low-impact options and modifications. Beginner-friendly doesn’t mean easy - it means supported.</p>
+      </li>
+      <li class="first-step">
+        <span class="first-step__icon" aria-hidden="true"><i class="fa-solid fa-couch"></i></span>
+        <span class="first-step__num">04</span>
+        <h3 class="first-step__title">Stay for a little. Stay for a while</h3>
+        <p class="first-step__copy">Take time to reset before you continue with your day, rebalanced, refocused, ready.</p>
       </li>
     </ol>
 
@@ -339,26 +349,18 @@
   <div class="container studio-story">
     <div class="studio-story__copy">
       <h2 class="section-title">Industrial bones. Soft landing.</h2>
-      <p>A raw, considered movement space built inside Digbeth’s industrial landscape — exposed brick, soft light, earthy tones and architectural detail that feels warm, grounded and quietly luxurious.</p>
+      <p>A raw, considered movement space built inside Digbeth’s industrial landscape - exposed brick, soft light, earthy tones and architectural detail that feels warm, grounded and quietly luxurious.</p>
       <p>grip. is designed as an urban sanctuary for intentional movement: somewhere strength slows down, and you leave sharper than you arrived.</p>
     </div>
     <div
-      class="studio-gallery studio-gallery--slideshow"
+      class="studio-gallery studio-gallery--wave"
       id="studioGallery"
-      aria-label="Studio gallery slideshow"
-      data-interval="4500">
-      <figure class="studio-gallery__lead">
-        <img data-studio-slot="0" src="images/studio/studio-06-reception.png" alt="grip. reception desk">
-      </figure>
-      <figure class="studio-gallery__tile">
-        <img data-studio-slot="1" src="images/studio/studio-05-window.png" alt="Studio window seating with grip. branding">
-      </figure>
-      <figure class="studio-gallery__tile">
-        <img data-studio-slot="2" src="images/studio/studio-03-megaformer.png" alt="Megaformer studio floor">
-      </figure>
-      <figure class="studio-gallery__tile">
-        <img data-studio-slot="3" src="images/studio/studio-01-lounge.png" alt="Studio lounge seating">
-      </figure>
+      aria-label="Studio gallery">
+      <div class="studio-wave" aria-hidden="true">
+        <div class="studio-wave__col" data-wave-col="0"></div>
+        <div class="studio-wave__col" data-wave-col="1"></div>
+        <div class="studio-wave__col" data-wave-col="2"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -368,17 +370,17 @@
   <div class="container pod-layout">
     <div class="pod-copy">
       <h2 class="section-title">Train solo. Not unsupported.</h2>
-      <p>Private sessions with AI-guided form feedback, rep counting and personalised cues — so you can train alone without guessing.</p>
+      <p>Private sessions with AI-guided form feedback, rep counting and personalised cues - so you can train alone without guessing.</p>
       <ul class="pod-steps" aria-label="How grip.pod works">
-        <li><strong>01 Book</strong> — Choose a 40 or 60-minute pod slot.</li>
-        <li><strong>02 Train</strong> — Follow guided strength, HIIT, core or conditioning.</li>
-        <li><strong>03 Adjust</strong> — ReflectAI™ cues form, reps and pacing in real time.</li>
+        <li><strong>01 Book</strong> - Choose a 40 or 60-minute pod slot.</li>
+        <li><strong>02 Train</strong> - Follow guided strength, HIIT, core or conditioning.</li>
+        <li><strong>03 Adjust</strong> - ReflectAI™ cues form, reps and pacing in real time.</li>
       </ul>
       <div class="pod-pricing" data-pod-pricing>
         <p><span data-field="single-label">40 mins</span> <strong data-field="single-price">£16</strong></p>
         <p><span data-field="pack-label">60 mins</span> <strong data-field="pack-price">£22</strong></p>
       </div>
-      <a href="book-pod.html" class="btn btn-filled">Book grip.pod</a>
+      <a href="sessions/grip-pod.html#booking" class="btn btn-filled">Book grip.pod</a>
     </div>
     <div class="pod-media">
       <figure class="pod-image">
@@ -393,7 +395,7 @@
   <div class="container noire-layout">
     <div class="noire-copy">
       <h2 class="section-title">Make it a habit. Make it noire.</h2>
-      <p class="noire-lead" data-field="membership-lead">Unlimited Megaformer and Studio access for members who want grip. as a weekly rhythm — not a one-off.</p>
+      <p class="noire-lead" data-field="membership-lead">Unlimited Megaformer and Studio access for members who want grip. as a weekly rhythm - not a one-off.</p>
       <ul class="noire-benefits" data-field="membership-benefits">
         <li>Unlimited Megaformer + Studio classes</li>
         <li>21-day advance booking window</li>
@@ -406,15 +408,18 @@
     <aside class="noire-card" data-membership="noire">
       <p class="noire-card__label">grip.noire</p>
       <p class="noire-card__price"><span data-field="price">£300</span><span data-field="cadence"> / month</span></p>
-      <div class="noire-value" data-field="value-comparison">
-        <p class="noire-value__title">Value at a glance</p>
-        <ul>
-          <li>2× / week ≈ £38 per class</li>
-          <li>3× / week ≈ £25 per class</li>
-          <li>4× / week ≈ £19 per class</li>
+      <div class="noire-value" data-field="membership-looks-like">
+        <p class="noire-value__title">Membership looks like</p>
+        <ul class="noire-value__lines">
+          <li>Morning regulars.</li>
+          <li>Names you know.</li>
+          <li>Classes you never miss.</li>
+          <li>Coffee after sessions.</li>
+          <li>Events worth staying for.</li>
         </ul>
+        <p class="noire-value__close">More than unlimited classes.</p>
       </div>
-      <a href="https://momence.com/m/809120" class="text-link" target="_blank" rel="noopener noreferrer">Explore founding grip.noire — £240 — limited quantity available</a>
+      <a href="https://momence.com/m/809120" class="text-link" target="_blank" rel="noopener noreferrer">Explore founding grip.noire - £240 - limited availability</a>
     </aside>
   </div>
 </section>
@@ -505,12 +510,13 @@
         </article>
         <article class="founding-card founding-card--dark">
           <h3 class="founding-name">founding grip.noire</h3>
-          <p class="founding-tag">Limited quantity available</p>
+          <p class="founding-tag">Limited availability</p>
           <div class="founding-price">£240<span>/mo</span></div>
           <ul>
             <li>Unlimited Megaformer + Studio</li>
             <li>21 day advance booking</li>
             <li>Member goody bag</li>
+            <li><strong>same price, for life</strong></li>
           </ul>
           <a href="https://momence.com/m/809120" class="btn btn-filled btn-block" target="_blank" rel="noopener noreferrer">Explore founding grip.noire</a>
         </article>
@@ -542,7 +548,7 @@
         </div>
         <div>
           <dt>Train</dt>
-          <dd>Moor Street Station — 8 min walk<br>New Street Station — 15 min walk</dd>
+          <dd>Moor Street Station - 8 min walk<br>New Street Station - 15 min walk</dd>
         </div>
         <div>
           <dt>Bus</dt>
@@ -554,7 +560,7 @@
         </div>
         <div>
           <dt>Hours</dt>
-          <dd>Mon–Fri 06:30–20:30 · Sat–Sun 08:30–12:30</dd>
+          <dd>Mon-Fri 06:30-20:30 · Sat-Sun 08:30-12:30</dd>
         </div>
         <div>
           <dt>Email</dt>
@@ -608,7 +614,7 @@
         <li><a href="sessions/reformat.html">Reformat</a></li>
         <li><a href="sessions/yoga.html">Yoga</a></li>
         <li><a href="sessions/hiit.html">HIIT</a></li>
-        <li><a href="book-pod.html">grip.pod</a></li>
+        <li><a href="sessions/grip-pod.html">grip.pod</a></li>
       </ul>
     </div>
 
@@ -659,7 +665,7 @@
   <div class="popup-modal" role="dialog" aria-labelledby="popupGrippy" aria-modal="true">
     <button class="popup-close" id="popupClose" aria-label="Close">&times;</button>
     <h2 class="popup-grippy" id="popupGrippy">Stay close.<br>Stay grippy.</h2>
-    <p class="popup-tagline">No spam, just the good stuff, first.</p>
+    <p class="popup-tagline">First access. Occasional emails. Always worth opening.</p>
     <form class="popup-form" id="popupForm">
       <div class="popup-form-grid">
         <div class="field">

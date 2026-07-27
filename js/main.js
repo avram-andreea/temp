@@ -126,7 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = open ? "hidden" : "";
     };
 
-    menuToggle.addEventListener("click", () => {
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
       setMenuOpen(!navMenu.classList.contains("open"));
     });
 
@@ -209,6 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const schedulePreview = document.getElementById("schedulePreview");
   if (schedulePreview) {
     const norm = (value) => value.replace(/\s+/g, " ").trim().toUpperCase();
+    let activeScheduleFilter = "all";
 
     const clickMomenceControl = (label) => {
       if (!label) return false;
@@ -239,38 +241,89 @@ document.addEventListener("DOMContentLoaded", () => {
       return true;
     };
 
+    /* Hard reset back to default upcoming / all sessions (avoids sticky Today chip) */
+    const remountScheduleUpcoming = () => {
+      const ribbon = document.getElementById("ribbon-schedule");
+      const oldScript = document.getElementById("hp-schedule-embed");
+      if (!ribbon || !oldScript) return false;
+
+      const hostId = oldScript.getAttribute("host_id") || oldScript.getAttribute("host-id") || "259434";
+      if (!hostId || hostId === "NaN") return false;
+
+      const next = document.createElement("script");
+      next.async = true;
+      next.type = "module";
+      next.id = "hp-schedule-embed";
+      next.setAttribute("host_id", hostId);
+      next.setAttribute("teacher_ids", oldScript.getAttribute("teacher_ids") || "[]");
+      next.setAttribute("location_ids", oldScript.getAttribute("location_ids") || "[]");
+      next.setAttribute("tag_ids", oldScript.getAttribute("tag_ids") || "[]");
+      next.setAttribute("lite_mode", oldScript.getAttribute("lite_mode") || "true");
+      next.setAttribute("default_filter", "upcoming");
+      next.setAttribute("locale", oldScript.getAttribute("locale") || "en");
+
+      const baseSrc = (oldScript.getAttribute("src") || "https://momence.com/plugin/host-schedule/host-schedule.js")
+        .split("?")[0];
+      next.src = `${baseSrc}?v=${Date.now()}`;
+
+      ribbon.innerHTML = "";
+      [...schedulePreview.querySelectorAll(":scope > *:not(#ribbon-schedule):not(#hp-schedule-embed)")]
+        .forEach((node) => node.remove());
+      oldScript.remove();
+      schedulePreview.appendChild(next);
+      return true;
+    };
+
     const applyScheduleFilter = (key) => {
+      if (key === "all") {
+        // Always remount - clicking Momence "Upcoming" after "Today" is unreliable / sticky
+        remountScheduleUpcoming();
+        return;
+      }
       if (key === "today") {
         if (!clickMomenceControl("Today")) selectDayOffset(0);
         return;
       }
       if (key === "tomorrow") {
-        // Momence often has no Tomorrow chip — pick tomorrow on the date strip
+        // Momence often has no Tomorrow chip - pick tomorrow on the date strip
         if (!clickMomenceControl("Tomorrow")) selectDayOffset(1);
         return;
       }
       if (key === "megaformer") {
+        // If coming from a day filter, reset first so tag filter applies to full upcoming list
+        if (activeScheduleFilter === "today" || activeScheduleFilter === "tomorrow") {
+          remountScheduleUpcoming();
+          window.setTimeout(() => clickMomenceControl("MEGAFORMER"), 400);
+          return;
+        }
         clickMomenceControl("MEGAFORMER");
         return;
       }
       if (key === "studio") {
+        if (activeScheduleFilter === "today" || activeScheduleFilter === "tomorrow") {
+          remountScheduleUpcoming();
+          window.setTimeout(() => clickMomenceControl("STUDIO"), 400);
+          return;
+        }
         clickMomenceControl("STUDIO");
       }
     };
 
     document.querySelectorAll("[data-schedule-filter]").forEach((btn) => {
       btn.addEventListener("click", () => {
+        const key = btn.getAttribute("data-schedule-filter");
         document.querySelectorAll("[data-schedule-filter]").forEach((el) => {
           const active = el === btn;
           el.classList.toggle("is-active", active);
           el.setAttribute("aria-selected", active ? "true" : "false");
         });
-        applyScheduleFilter(btn.getAttribute("data-schedule-filter"));
+        applyScheduleFilter(key);
+        activeScheduleFilter = key || "all";
       });
     });
   }
 
-  /* ---- Studio gallery collage slideshow ---- */
+  /* ---- Studio gallery vertical wave scroll ---- */
   const studioGallery = document.getElementById("studioGallery");
   if (studioGallery) {
     const studioImages = [
@@ -281,33 +334,33 @@ document.addEventListener("DOMContentLoaded", () => {
       { src: "images/studio/studio-02-mirrors.png", alt: "Studio mirrors and mat room" },
       { src: "images/studio/studio-04-coffee.png", alt: "Studio coffee and wellness station" }
     ];
-    const slots = [...studioGallery.querySelectorAll("[data-studio-slot]")];
-    const intervalMs = Number(studioGallery.dataset.interval) || 4500;
-    let startIndex = 0;
+    const cols = [...studioGallery.querySelectorAll("[data-wave-col]")];
+    const motionClasses = ["studio-wave__col--up", "studio-wave__col--down", "studio-wave__col--up-slow"];
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const renderStudioSlides = () => {
-      slots.forEach((img, slotIndex) => {
-        const item = studioImages[(startIndex + slotIndex) % studioImages.length];
-        img.classList.add("is-fading");
-        window.setTimeout(() => {
-          img.src = item.src;
-          img.alt = item.alt;
-          img.classList.remove("is-fading");
-        }, 220);
-      });
-      startIndex = (startIndex + 1) % studioImages.length;
+    const buildFigure = (item) => {
+      const figure = document.createElement("figure");
+      const img = document.createElement("img");
+      img.src = item.src;
+      img.alt = item.alt;
+      img.loading = "lazy";
+      figure.appendChild(img);
+      return figure;
     };
 
-    // Preload remaining images
-    studioImages.forEach((item) => {
-      const preload = new Image();
-      preload.src = item.src;
+    cols.forEach((col, colIndex) => {
+      const offset = colIndex;
+      const sequence = [
+        ...studioImages.slice(offset),
+        ...studioImages.slice(0, offset)
+      ];
+      /* Duplicate the strip so the vertical loop can scroll seamlessly */
+      const loopItems = prefersReducedMotion ? sequence.slice(0, 2) : [...sequence, ...sequence];
+      col.replaceChildren(...loopItems.map(buildFigure));
+      if (!prefersReducedMotion) {
+        col.classList.add(motionClasses[colIndex] || motionClasses[0]);
+      }
     });
-
-    if (!prefersReducedMotion && slots.length) {
-      window.setInterval(renderStudioSlides, intervalMs);
-    }
   }
 
   /* ---- Copyright year ---- */
