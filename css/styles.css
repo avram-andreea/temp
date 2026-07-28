@@ -261,16 +261,29 @@ img { max-width: 100%; display: block; }
 
 .nav a:hover { opacity: 0.65; }
 
-.nav-instagram {
+.nav-instagram,
+.nav-social {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 1.15rem;
   line-height: 1;
   padding: 0.15rem;
+  color: var(--brown);
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
-.nav-instagram:hover { opacity: 0.65; }
+.nav-instagram:hover,
+.nav-social:hover { opacity: 0.65; }
+
+.nav-socials {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-left: 0.35rem;
+}
 
 /* =========================
    ANNOUNCEMENT BAR
@@ -2825,7 +2838,13 @@ img { max-width: 100%; display: block; }
 
   .nav a { font-size: 0.85rem; letter-spacing: 0.16em; }
 
-  .nav-instagram { font-size: 1.35rem; }
+  .nav-instagram,
+  .nav-social { font-size: 1.35rem; }
+
+  .nav-socials {
+    margin-left: 0;
+    gap: 1rem;
+  }
 
   .intro-hero-actions {
     flex-direction: column;
@@ -3917,9 +3936,16 @@ a.reviews-rating:hover {
   color: var(--brown);
 }
 
+.site-footer-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
 .site-footer-social a {
   font-size: 1.25rem;
   text-decoration: none;
+  color: var(--brown);
 }
 
 /* Session detail pages */
@@ -4263,13 +4289,20 @@ a.reviews-rating:hover {
   .nav > .nav-item,
   .nav > .nav-item.has-dropdown,
   .nav > .nav-link,
-  .nav > .nav-cta {
+  .nav > .nav-cta,
+  .nav > .nav-socials {
     align-self: center;
     width: min(260px, 85vw);
     max-width: 260px;
     margin-left: 0;
     margin-right: 0;
     box-sizing: border-box;
+  }
+
+  .nav > .nav-socials {
+    width: auto;
+    max-width: none;
+    justify-content: center;
   }
 
   .nav-item,
