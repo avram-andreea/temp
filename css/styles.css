@@ -523,7 +523,7 @@ img { max-width: 100%; display: block; }
 
 .intro-offers {
   padding: clamp(1.5rem, 3vw, 2.25rem) 1.5rem clamp(2.5rem, 5vw, 4rem);
-  background: var(--soft-white);
+  background: var(--sand-light);
   scroll-margin-top: calc(var(--header-height) + var(--announcement-height) + 1rem);
 }
 
@@ -1324,8 +1324,7 @@ img { max-width: 100%; display: block; }
 
 .sessions-section {
   padding: clamp(2rem, 4vw, 3rem) 1.5rem clamp(2.5rem, 5vw, 3.5rem);
-  background: var(--soft-white);
-  border-bottom: 1px solid rgba(71, 65, 63, 0.1);
+  background: var(--sand-light);
 }
 
 .sessions-inner {
@@ -3083,6 +3082,27 @@ img { max-width: 100%; display: block; }
   gap: 0.85rem;
 }
 
+@media (max-width: 768px) {
+  .hp-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 22rem;
+    margin-inline: auto;
+  }
+
+  .hp-hero-actions .btn {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 3.1rem;
+    padding: 0.95rem 1.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
 .hp-cta-row {
   display: flex;
   flex-wrap: wrap;
@@ -3172,6 +3192,16 @@ img { max-width: 100%; display: block; }
   width: 100%;
   align-self: stretch;
   font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.move-card__body .btn:hover {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 /* Moods */
@@ -3215,6 +3245,15 @@ img { max-width: 100%; display: block; }
 }
 
 /* Schedule preview */
+#schedule {
+  background: var(--brown);
+  color: var(--soft-white);
+}
+
+#schedule .section-title {
+  color: var(--soft-white);
+}
+
 .schedule-filters {
   display: flex;
   flex-wrap: wrap;
@@ -3242,6 +3281,30 @@ img { max-width: 100%; display: block; }
   background: var(--brown);
   border-color: var(--brown);
   color: #fff;
+}
+
+#schedule .schedule-filter {
+  color: var(--soft-white);
+  border-color: rgba(255, 254, 252, 0.4);
+}
+
+#schedule .schedule-filter:hover,
+#schedule .schedule-filter.is-active {
+  background: var(--soft-white);
+  border-color: var(--soft-white);
+  color: var(--brown);
+}
+
+#schedule .btn-filled {
+  background: var(--soft-white);
+  color: var(--brown);
+  border-color: var(--soft-white);
+}
+
+#schedule .btn-filled:hover {
+  background: var(--sand);
+  border-color: var(--sand);
+  color: var(--brown);
 }
 
 .schedule-preview,
