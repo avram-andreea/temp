@@ -28,7 +28,7 @@
   --font-body: "Inter Tight", sans-serif;
 
   --header-height: 88px;
-  --announcement-height: 36px;
+  --announcement-height: 45px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -215,7 +215,7 @@ img { max-width: 100%; display: block; }
 .header-inner {
   max-width: var(--container);
   margin: auto;
-  padding: 0.9rem 1.5rem;
+  padding: 1rem 1.5rem;
   min-height: var(--header-height);
   display: flex;
   justify-content: space-between;
@@ -227,7 +227,8 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
   align-items: center;
   text-decoration: none;
-  padding: 0.1rem 0;
+  padding: 0;
+  line-height: 0;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
@@ -236,7 +237,7 @@ img { max-width: 100%; display: block; }
 }
 
 .brand img {
-  height: clamp(42px, 6vw, 70px);
+  height: clamp(40px, 5vw, 56px);
   width: auto;
   display: block;
 }
@@ -245,7 +246,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   gap: clamp(1rem, 2.5vw, 2rem);
   align-items: center;
-  align-self: stretch;
+  align-self: center;
 }
 
 .nav a {
@@ -294,10 +295,13 @@ img { max-width: 100%; display: block; }
   top: 0;
   left: 0;
   width: 100%;
+  height: var(--announcement-height);
   z-index: 1001;
   background: var(--sand);
   border-bottom: 1px solid var(--border);
   overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .announcement-bar--inline {
@@ -421,13 +425,14 @@ img { max-width: 100%; display: block; }
 }
 
 .announcement-text {
-  padding: 0.75rem 2rem;
+  padding: 0 2rem;
   font-family: var(--font-title);
   font-size: 0.95rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #000000;
   white-space: nowrap;
+  line-height: 1;
 }
 
 .announcement-link {
@@ -2921,7 +2926,7 @@ img { max-width: 100%; display: block; }
 }
 
 .nav-item.has-dropdown {
-  align-self: stretch;
+  align-self: center;
 }
 
 .nav-link,
@@ -2941,7 +2946,7 @@ img { max-width: 100%; display: block; }
 }
 
 .nav-item.has-dropdown .nav-dropdown-toggle {
-  height: 100%;
+  height: auto;
   display: inline-flex;
   align-items: center;
 }
