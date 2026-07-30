@@ -262,6 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
       location_ids: "[]",
       tag_ids: "[]",
       lite_mode: "true",
+      hide_drop_in_price: "true",
       default_filter: "upcoming",
       locale: "en",
       src: "https://momence.com/plugin/host-schedule/host-schedule.js"
@@ -296,6 +297,10 @@ document.addEventListener("DOMContentLoaded", () => {
       config.setAttribute("location_ids", (oldScript && oldScript.getAttribute("location_ids")) || SCHEDULE_EMBED.location_ids);
       config.setAttribute("tag_ids", (oldScript && oldScript.getAttribute("tag_ids")) || SCHEDULE_EMBED.tag_ids);
       config.setAttribute("lite_mode", (oldScript && oldScript.getAttribute("lite_mode")) || SCHEDULE_EMBED.lite_mode);
+      config.setAttribute(
+        "hide_drop_in_price",
+        (oldScript && oldScript.getAttribute("hide_drop_in_price")) || SCHEDULE_EMBED.hide_drop_in_price
+      );
       config.setAttribute("default_filter", SCHEDULE_EMBED.default_filter);
       config.setAttribute("locale", (oldScript && oldScript.getAttribute("locale")) || SCHEDULE_EMBED.locale);
       config.setAttribute("src", SCHEDULE_EMBED.src);
@@ -317,6 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
           next.setAttribute("location_ids", config.getAttribute("location_ids"));
           next.setAttribute("tag_ids", config.getAttribute("tag_ids"));
           next.setAttribute("lite_mode", config.getAttribute("lite_mode"));
+          next.setAttribute("hide_drop_in_price", config.getAttribute("hide_drop_in_price"));
           next.setAttribute("default_filter", "upcoming");
           next.setAttribute("locale", config.getAttribute("locale"));
           next.src = SCHEDULE_EMBED.src;
