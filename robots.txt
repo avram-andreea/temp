@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Non-canonical / legacy pages
+Disallow: /index_old.html
+Disallow: /index_archive.html
+Disallow: /book-pod.html
+Disallow: /fonts/
+
+Sitemap: https://www.grip-wellness.com/sitemap.xml
