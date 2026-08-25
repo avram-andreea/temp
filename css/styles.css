@@ -4700,7 +4700,7 @@ body.no-announcement .header {
 .go-found {
   font-family: var(--font-heading);
   letter-spacing: var(--letter-heading);
-  font-size: clamp(2.1rem, 5vw, 2.75rem);
+  font-size: clamp(2.1rem, 5vw, 3.25rem);
   line-height: 1.1;
   margin: 0 0 0.75rem;
   color: var(--soft-white);
