@@ -126,15 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = open ? "hidden" : "";
     };
 
-    menuToggle.addEventListener("click", (e) => {
-      e.stopPropagation();
-      setMenuOpen(!navMenu.classList.contains("open"));
-    });
-
-    navMenu.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => setMenuOpen(false));
-    });
-
     const isMobileNav = () => window.matchMedia("(max-width: 768px)").matches;
 
     const closeNavDropdowns = (except = null) => {
@@ -146,6 +137,58 @@ document.addEventListener("DOMContentLoaded", () => {
         if (toggle && document.activeElement === toggle) toggle.blur();
       });
     };
+
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setMenuOpen(!navMenu.classList.contains("open"));
+    });
+
+    navMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href") || "";
+        const hash = href.startsWith("#") && href.length > 1 ? href : "";
+        const samePageHash =
+          hash ||
+          (href.includes("#") && !href.startsWith("http")
+            ? `#${href.split("#")[1] || ""}`
+            : "");
+        const target =
+          samePageHash && samePageHash !== "#"
+            ? document.querySelector(samePageHash)
+            : null;
+
+        setMenuOpen(false);
+        closeNavDropdowns();
+
+        /* Wait for menu close + body unlock, then scroll with measured header offset */
+        if (target && (isMobileNav() || hash)) {
+          e.preventDefault();
+          const scrollToTarget = () => {
+            const announcement = document.querySelector(".announcement-bar");
+            const headerEl = document.getElementById("header");
+            const offset =
+              (announcement && getComputedStyle(announcement).display !== "none"
+                ? announcement.offsetHeight
+                : 0) +
+              (headerEl ? headerEl.offsetHeight : 0) +
+              12;
+            const top = Math.max(
+              0,
+              target.getBoundingClientRect().top + window.scrollY - offset
+            );
+            window.scrollTo({ top, behavior: "smooth" });
+            if (samePageHash) {
+              history.pushState(null, "", samePageHash);
+            }
+          };
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              window.setTimeout(scrollToTarget, isMobileNav() ? 80 : 0);
+            });
+          });
+        }
+      });
+    });
 
     navMenu.querySelectorAll(".nav-item.has-dropdown").forEach((item) => {
       const toggle = item.querySelector(".nav-dropdown-toggle");
