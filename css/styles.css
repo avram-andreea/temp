@@ -2904,7 +2904,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================
-   HOMEPAGE FLOW (HP-01�16)
+   HOMEPAGE FLOW (HP-01?16)
 ========================= */
 
 .visually-hidden {
@@ -4663,4 +4663,146 @@ body.no-announcement .header {
   .moods-strip__panel {
     aspect-ratio: 16 / 10;
   }
+}
+
+/* =========================
+   /go ? POP-UP PRIZE LANDING
+========================= */
+
+.page-go .header {
+  top: 0;
+}
+
+.go-hero {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem;
+  background:
+    radial-gradient(90% 70% at 50% 0%, rgba(211, 204, 193, 0.22), transparent 55%),
+    var(--sand-light);
+}
+
+.go-hero-inner {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.go-panel {
+  background: var(--brown);
+  color: var(--soft-white);
+  padding: clamp(2rem, 4vw, 2.75rem) clamp(1.5rem, 3vw, 2.25rem);
+  text-align: center;
+}
+
+.go-found {
+  font-family: var(--font-heading);
+  letter-spacing: var(--letter-heading);
+  font-size: clamp(2.1rem, 5vw, 2.75rem);
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+  color: var(--soft-white);
+}
+
+.go-place {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.55;
+  color: rgba(255, 254, 252, 0.82);
+  margin: 0 0 1.35rem;
+}
+
+.go-headline {
+  font-family: var(--font-title);
+  font-size: clamp(1.35rem, 3.2vw, 1.7rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin: 0 0 0.7rem;
+  font-weight: 400;
+}
+
+.go-tagline {
+  font-family: var(--font-title);
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--soft-white);
+  margin: 0 0 1.6rem;
+  line-height: 1.45;
+}
+
+.go-lead-form {
+  text-align: left;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 0.25rem;
+  background: var(--soft-white);
+  padding: 1.15rem 1rem 1.25rem;
+}
+
+.go-lead-form #momence-plugin-lead-form {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  color: var(--text);
+}
+
+.go-lead-form #momence-plugin-lead-form input,
+.go-lead-form #momence-plugin-lead-form select,
+.go-lead-form #momence-plugin-lead-form button,
+.go-lead-form #momence-plugin-lead-form [class*="input"],
+.go-lead-form #momence-plugin-lead-form [class*="phone"],
+.go-lead-form #momence-plugin-lead-form [class*="select"],
+.go-lead-form #momence-plugin-lead-form textarea {
+  border-radius: 0 !important;
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+
+.go-lead-form #momence-plugin-lead-form button[type="submit"],
+.go-lead-form #momence-plugin-lead-form button,
+.go-lead-form .momence-lead_form-submit_btn {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.75rem !important;
+  padding: 0.95rem 1.4rem !important;
+  font-family: var(--font-title) !important;
+  font-size: 0 !important; /* hide Momence default "Submit" */
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  font-weight: 500 !important;
+  background: var(--brown) !important;
+  color: var(--soft-white) !important;
+  border: 1px solid var(--brown) !important;
+  cursor: pointer;
+  line-height: 1.2 !important;
+}
+
+.go-lead-form #momence-plugin-lead-form button[type="submit"]::after,
+.go-lead-form #momence-plugin-lead-form button::after,
+.go-lead-form .momence-lead_form-submit_btn::after {
+  content: "claim my prize";
+  font-family: var(--font-title);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--soft-white);
+}
+
+.go-lead-form #momence-plugin-lead-form button[type="submit"]:hover,
+.go-lead-form #momence-plugin-lead-form button:hover,
+.go-lead-form .momence-lead_form-submit_btn:hover {
+  background: var(--accent-dark, #3a3533) !important;
+  border-color: var(--accent-dark, #3a3533) !important;
+  color: var(--soft-white) !important;
+}
+
+.page-go #intro-offers {
+  scroll-margin-top: calc(var(--header-height) + 1rem);
 }
