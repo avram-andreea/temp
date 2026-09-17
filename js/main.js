@@ -575,4 +575,82 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Replace with your Momence / CRM API when ready */
   });
 
+  /* ---- Mobile reviews: force Momence embed into a one-card horizontal carousel ---- */
+  const reviewsRoot = document.getElementById("momence-plugin-reviews");
+  if (reviewsRoot) {
+    const isMobileReviews = () => window.matchMedia("(max-width: 768px)").matches;
+
+    const findReviewsList = (root) => {
+      let best = null;
+      let bestCount = 0;
+      root.querySelectorAll("div").forEach((el) => {
+        const kids = [...el.children].filter((n) => n.nodeType === 1);
+        if (kids.length < 2) return;
+        /* Review lists have multiple card children; each card has nested content */
+        const cardLike = kids.filter((k) => k.querySelectorAll("*").length >= 3).length;
+        if (cardLike < 2 || cardLike < kids.length) return;
+        if (kids.length > bestCount) {
+          best = el;
+          bestCount = kids.length;
+        }
+      });
+      return best;
+    };
+
+    const applyReviewsCarousel = () => {
+      const list = findReviewsList(reviewsRoot);
+      if (!list) return false;
+
+      if (!isMobileReviews()) {
+        list.style.removeProperty("display");
+        list.style.removeProperty("flex-direction");
+        list.style.removeProperty("flex-wrap");
+        list.style.removeProperty("width");
+        list.style.removeProperty("max-width");
+        list.style.removeProperty("gap");
+        [...list.children].forEach((card) => {
+          card.style.removeProperty("flex");
+          card.style.removeProperty("width");
+          card.style.removeProperty("min-width");
+          card.style.removeProperty("max-width");
+          card.style.removeProperty("scroll-snap-align");
+        });
+        return true;
+      }
+
+      reviewsRoot.style.setProperty("overflow-x", "auto", "important");
+      reviewsRoot.style.setProperty("overflow-y", "hidden", "important");
+      reviewsRoot.style.setProperty("scroll-snap-type", "x mandatory");
+
+      list.style.setProperty("display", "flex", "important");
+      list.style.setProperty("flex-direction", "row", "important");
+      list.style.setProperty("flex-wrap", "nowrap", "important");
+      list.style.setProperty("gap", "0", "important");
+      list.style.setProperty("width", "max-content", "important");
+      list.style.setProperty("max-width", "none", "important");
+
+      [...list.children].forEach((card) => {
+        card.style.setProperty("flex", "0 0 100vw", "important");
+        card.style.setProperty("width", "100vw", "important");
+        card.style.setProperty("min-width", "100vw", "important");
+        card.style.setProperty("max-width", "100vw", "important");
+        card.style.setProperty("scroll-snap-align", "start");
+        card.style.setProperty("scroll-snap-stop", "always");
+        card.style.setProperty("box-sizing", "border-box", "important");
+      });
+      return true;
+    };
+
+    const reviewsObs = new MutationObserver(() => {
+      if (applyReviewsCarousel()) {
+        /* Keep observing briefly in case Momence re-renders */
+      }
+    });
+    reviewsObs.observe(reviewsRoot, { childList: true, subtree: true });
+    applyReviewsCarousel();
+    window.setTimeout(applyReviewsCarousel, 800);
+    window.setTimeout(applyReviewsCarousel, 2000);
+    window.addEventListener("resize", applyReviewsCarousel);
+  }
+
 });
