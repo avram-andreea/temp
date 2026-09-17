@@ -687,10 +687,14 @@ img { max-width: 100%; display: block; }
   margin: 0;
 }
 
+.intro-box__note + .intro-box__note {
+  margin-top: 0.35rem;
+}
+
 .intro-box__btn {
   margin-top: 1.75rem;
   width: 100%;
-  max-width: 200px;
+  max-width: 260px;
 }
 
 /* =========================
@@ -2087,6 +2091,25 @@ img { max-width: 100%; display: block; }
   background: var(--accent-dark);
   border-color: var(--accent-dark);
   transform: translateY(-2px);
+}
+
+.pass-btn--info {
+  cursor: default;
+  pointer-events: none;
+}
+
+.pass-btn--info:hover {
+  transform: none;
+}
+
+.pass-btn--outline.pass-btn--info:hover {
+  background: transparent;
+  color: var(--text);
+}
+
+.pass-btn--filled.pass-btn--info:hover {
+  background: var(--brown);
+  border-color: var(--brown);
 }
 
 /* =========================
