@@ -106,8 +106,8 @@
     <h1 class="hp-hero-title">Move slower.<br>Feel deeper.<br>Leave stronger.</h1>
     <p class="hp-hero-lead">Megaformer, Pilates, Yoga, HIIT and intelligent solo training in the heart of Digbeth.</p>
     <div class="hp-hero-actions">
-      <a href="book.html" class="btn btn-filled">Book your first class</a>
-      <a href="intro-offers.html" class="btn btn-light">Explore introductory offers</a>
+      <a href="book.html" class="btn btn-filled">View Classes</a>
+      <a href="intro-offers.html" class="btn btn-light">New Here?</a>
     </div>
   </div>
 </section>
@@ -129,26 +129,67 @@
         <p class="intro-box__price">
           <span class="intro-box__amount" data-field="price">£60</span>
         </p>
+        <p class="intro-box__note">£15 per class</p>
         <p class="intro-box__note"><span data-field="eligibility">First-time clients only</span> · <span data-field="expiry">30-day expiry</span></p>
-        <a href="https://momence.com/m/809161" class="btn btn-filled intro-box__btn" data-field="cta" target="_blank" rel="noopener noreferrer">Buy Mega Intro</a>
+        <a href="https://momence.com/m/809161" class="btn btn-filled intro-box__btn" data-field="cta" target="_blank" rel="noopener noreferrer">View Megaformer sessions</a>
       </article>
 
       <article class="intro-box" data-offer="studio-intro">
         <span class="intro-box__label" data-field="name">Studio Intro</span>
         <h3 class="intro-box__title">
-          <span data-field="quantity">4</span> Studio sessions
+          <span data-field="quantity">4</span> ReforMAT, Yoga and Hiit sessions
         </h3>
         <p class="intro-box__price">
           <span class="intro-box__amount" data-field="price">£45</span>
         </p>
+        <p class="intro-box__note">£11.25 per class</p>
         <p class="intro-box__note"><span data-field="eligibility">First-time clients only</span> · <span data-field="expiry">30-day expiry</span></p>
-        <a href="https://momence.com/m/809162" class="btn btn-filled intro-box__btn" data-field="cta" target="_blank" rel="noopener noreferrer">Buy Studio Intro</a>
+        <a href="https://momence.com/m/809162" class="btn btn-filled intro-box__btn" data-field="cta" target="_blank" rel="noopener noreferrer">View Studio sessions</a>
       </article>
     </div>
   </div>
 </section>
 
-<!-- HP-05 · Movement selector -->
+<!-- HP-05 · Live schedule preview -->
+<section id="schedule" class="section fade-in">
+  <div class="container flow-lg">
+    <header class="center">
+      <h2 class="section-title">Your next grip.</h2>
+    </header>
+
+    <div class="schedule-filters" role="tablist" aria-label="Schedule filters">
+      <button type="button" class="schedule-filter is-active" data-schedule-filter="all" role="tab" aria-selected="true">All</button>
+      <button type="button" class="schedule-filter" data-schedule-filter="today" role="tab" aria-selected="false">Today</button>
+      <button type="button" class="schedule-filter" data-schedule-filter="tomorrow" role="tab" aria-selected="false">Tomorrow</button>
+      <button type="button" class="schedule-filter" data-schedule-filter="megaformer" role="tab" aria-selected="false">Megaformer</button>
+      <button type="button" class="schedule-filter" data-schedule-filter="studio" role="tab" aria-selected="false">Studio</button>
+    </div>
+
+    <div class="schedule-preview" id="schedulePreview">
+      <div id="ribbon-schedule"></div>
+      <script
+        async
+        type="module"
+        id="hp-schedule-embed"
+        host_id="259434"
+        teacher_ids="[]"
+        location_ids="[]"
+        tag_ids="[]"
+        lite_mode="true"
+        hide_drop_in_price="true"
+        default_filter="upcoming"
+        locale="en"
+        src="https://momence.com/plugin/host-schedule/host-schedule.js"
+      ></script>
+    </div>
+
+    <p class="center" style="margin-top: 1.5rem;">
+      <a href="book.html" class="btn btn-filled">Open full schedule</a>
+    </p>
+  </div>
+</section>
+
+<!-- HP-06 · Movement selector -->
 <section id="sessions" class="section sessions-section fade-in">
   <div class="container sessions-inner">
     <header class="sessions-header center">
@@ -204,13 +245,13 @@
   </div>
 </section>
 
-<!-- HP-06 · Grip formats -->
+<!-- HP-07 · Grip formats -->
 <section id="formats" class="section our-formats-section fade-in">
   <div class="container formats-inner">
     <header class="formats-header center">
       <h2 class="section-title">One studio. Four moods.</h2>
       <div class="formats-divider" aria-hidden="true"></div>
-      <p class="formats-lead">From slow control to full-body fire, find the format that fits your mood.</p>
+      <p class="formats-lead">Our ReforMAT and Megaformer classes come in four formats, from slow control to full-body fire, find the format that fits your mood:</p>
     </header>
 
     <div class="formats-grid">
@@ -235,45 +276,6 @@
         <p class="format-copy">High-intensity Megaformer under low light and deep beats - your Friday night, redefined.</p>
       </article>
     </div>
-  </div>
-</section>
-
-<!-- HP-07 · Live schedule preview -->
-<section id="schedule" class="section fade-in">
-  <div class="container flow-lg">
-    <header class="center">
-      <h2 class="section-title">Your next grip.</h2>
-    </header>
-
-    <div class="schedule-filters" role="tablist" aria-label="Schedule filters">
-      <button type="button" class="schedule-filter is-active" data-schedule-filter="all" role="tab" aria-selected="true">All</button>
-      <button type="button" class="schedule-filter" data-schedule-filter="today" role="tab" aria-selected="false">Today</button>
-      <button type="button" class="schedule-filter" data-schedule-filter="tomorrow" role="tab" aria-selected="false">Tomorrow</button>
-      <button type="button" class="schedule-filter" data-schedule-filter="megaformer" role="tab" aria-selected="false">Megaformer</button>
-      <button type="button" class="schedule-filter" data-schedule-filter="studio" role="tab" aria-selected="false">Studio</button>
-    </div>
-
-    <div class="schedule-preview" id="schedulePreview">
-      <div id="ribbon-schedule"></div>
-      <script
-        async
-        type="module"
-        id="hp-schedule-embed"
-        host_id="259434"
-        teacher_ids="[]"
-        location_ids="[]"
-        tag_ids="[]"
-        lite_mode="true"
-        hide_drop_in_price="true"
-        default_filter="upcoming"
-        locale="en"
-        src="https://momence.com/plugin/host-schedule/host-schedule.js"
-      ></script>
-    </div>
-
-    <p class="center" style="margin-top: 1.5rem;">
-      <a href="book.html" class="btn btn-filled">Open full schedule</a>
-    </p>
   </div>
 </section>
 
@@ -333,7 +335,7 @@
         <span class="first-step__icon" aria-hidden="true"><i class="fa-solid fa-socks"></i></span>
         <span class="first-step__num">02</span>
         <h3 class="first-step__title">Get grippy</h3>
-        <p class="first-step__copy">Grip socks are included with intro offers. Bring water, wear movement-friendly kit, and leave valuables in the lockers.</p>
+        <p class="first-step__copy">Bring water, wear movement-friendly kit, and leave valuables in the lockers. Grip socks are required for Megaformer.</p>
       </li>
       <li class="first-step">
         <span class="first-step__icon" aria-hidden="true"><i class="fa-solid fa-person-walking"></i></span>
@@ -436,7 +438,27 @@
   </div>
 </section>
 
-<!-- HP-13 · Pricing comparison -->
+<!-- HP-13 · Final conversion panel -->
+<section id="final-cta" class="final-cta fade-in">
+  <div class="container final-cta-inner">
+    <h2 class="section-title">Your first shake starts here.</h2>
+    <p class="final-cta-offers">
+      <a href="https://momence.com/m/809161" target="_blank" rel="noopener noreferrer">Mega: 4 for £60</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://momence.com/m/809162" target="_blank" rel="noopener noreferrer">Studio: 4 for £45</a>
+    </p>
+    <a href="intro-offers.html" class="btn btn-filled">Choose your intro offer</a>
+    <p class="final-cta-secondary">Not ready yet? <button type="button" class="text-link" id="openNewsletter">Stay close.</button></p>
+
+    <form class="final-cta-form" id="finalEmailForm" aria-label="Newsletter signup">
+      <label class="visually-hidden" for="finalEmail">Email address</label>
+      <input type="email" id="finalEmail" name="email" placeholder="Email address" required autocomplete="email">
+      <button type="submit" class="btn btn-dark">Join our newsletter</button>
+    </form>
+  </div>
+</section>
+
+<!-- HP-14 · Pricing comparison -->
 <section id="pricing" class="section fade-in">
   <div class="container flow-lg">
     <header class="center">
@@ -483,9 +505,9 @@
             </div>
           </div>
           <div class="passes-row">
-            <div class="passes-label">Single <span class="passes-label-sessions">1 session</span></div>
-            <div class="passes-cell" data-label="Mega"><a href="https://momence.com/m/809165" class="pass-btn pass-btn--outline" target="_blank" rel="noopener noreferrer">£25 · £25/class</a></div>
-            <div class="passes-cell" data-label="Studio"><a href="https://momence.com/m/809166" class="pass-btn pass-btn--filled" target="_blank" rel="noopener noreferrer">£18 · £18/class</a></div>
+            <div class="passes-label">drop in <span class="passes-label-sessions">1 session</span></div>
+            <div class="passes-cell" data-label="Mega"><span class="pass-btn pass-btn--outline pass-btn--info">£25 · £25/class</span></div>
+            <div class="passes-cell" data-label="Studio"><span class="pass-btn pass-btn--filled pass-btn--info">£18 · £18/class</span></div>
           </div>
           <div class="passes-row">
             <div class="passes-label">grip.silver <span class="passes-label-sessions">5 sessions</span></div>
@@ -537,7 +559,7 @@
   </div>
 </section>
 
-<!-- HP-14 · Location and visit -->
+<!-- HP-15 · Location and visit -->
 <section id="visit" class="find-us fade-in">
   <div class="find-us-grid">
     <div class="find-us-map">
@@ -585,26 +607,6 @@
         <a href="new-here.html#visit-details" class="btn btn-ghost">Visit details</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- HP-15 · Final conversion panel -->
-<section id="final-cta" class="final-cta fade-in">
-  <div class="container final-cta-inner">
-    <h2 class="section-title">Your first shake starts here.</h2>
-    <p class="final-cta-offers">
-      <a href="https://momence.com/m/809161" target="_blank" rel="noopener noreferrer">Mega: 4 for £60</a>
-      <span aria-hidden="true">·</span>
-      <a href="https://momence.com/m/809162" target="_blank" rel="noopener noreferrer">Studio: 4 for £45</a>
-    </p>
-    <a href="intro-offers.html" class="btn btn-filled">Choose your intro offer</a>
-    <p class="final-cta-secondary">Not ready yet? <button type="button" class="text-link" id="openNewsletter">Stay close.</button></p>
-
-    <form class="final-cta-form" id="finalEmailForm" aria-label="Newsletter signup">
-      <label class="visually-hidden" for="finalEmail">Email address</label>
-      <input type="email" id="finalEmail" name="email" placeholder="Email address" required autocomplete="email">
-      <button type="submit" class="btn btn-dark">Join our newsletter</button>
-    </form>
   </div>
 </section>
 
