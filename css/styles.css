@@ -2703,6 +2703,13 @@ img { max-width: 100%; display: block; }
   transform: translateY(0);
 }
 
+/* Session pages: keep above-the-fold + booking visible without waiting for scroll */
+.session-page-hero.fade-in,
+#booking.fade-in {
+  opacity: 1;
+  transform: none;
+}
+
 /* Split sections - staggered slide + image reveal */
 .fade-in.split-reveal {
   opacity: 1;
