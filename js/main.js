@@ -1,10 +1,32 @@
+const revealFadeIns = () => {
+  document.querySelectorAll(".fade-in:not(.visible)").forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    /* Reveal if any part is in (or just about to enter) the viewport */
+    if (rect.top < vh + 80 && rect.bottom > -40) {
+      el.classList.add("visible");
+    }
+  });
+};
+
 const obs = new IntersectionObserver(
-  entries => entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add("visible");
-  }),
-  { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+  (entries) =>
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        obs.unobserve(e.target);
+      }
+    }),
+  { threshold: 0.01, rootMargin: "80px 0px 80px 0px" }
 );
-document.querySelectorAll(".fade-in").forEach(el => obs.observe(el));
+document.querySelectorAll(".fade-in").forEach((el) => obs.observe(el));
+revealFadeIns();
+window.addEventListener("load", revealFadeIns);
+window.addEventListener("hashchange", () => {
+  window.setTimeout(revealFadeIns, 50);
+  window.setTimeout(revealFadeIns, 300);
+});
+window.addEventListener("scroll", revealFadeIns, { passive: true });
 
 document.addEventListener("DOMContentLoaded", () => {
 
