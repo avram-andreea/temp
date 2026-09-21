@@ -8,6 +8,51 @@ document.querySelectorAll(".fade-in").forEach(el => obs.observe(el));
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* ---- Shared mobile snap carousels (sessions / formats / reviews) ---- */
+  const bindSnapCarousel = (scroller, prevBtn, nextBtn, stepEl) => {
+    if (!scroller || !prevBtn || !nextBtn) return null;
+
+    const cardStep = () => {
+      if (typeof stepEl === "function") return stepEl();
+      const card = typeof stepEl === "string"
+        ? scroller.querySelector(stepEl)
+        : stepEl;
+      return card ? card.getBoundingClientRect().width : scroller.clientWidth;
+    };
+
+    const syncArrows = () => {
+      const maxScroll = Math.max(0, scroller.scrollWidth - scroller.clientWidth);
+      prevBtn.disabled = scroller.scrollLeft <= 4;
+      nextBtn.disabled = scroller.scrollLeft >= maxScroll - 4;
+    };
+
+    const scrollByDir = (dir) => {
+      scroller.scrollBy({ left: dir * cardStep(), behavior: "smooth" });
+      window.setTimeout(syncArrows, 320);
+    };
+
+    prevBtn.addEventListener("click", () => scrollByDir(-1));
+    nextBtn.addEventListener("click", () => scrollByDir(1));
+    scroller.addEventListener("scroll", syncArrows, { passive: true });
+    window.addEventListener("resize", syncArrows, { passive: true });
+    syncArrows();
+    return { syncArrows, scrollByDir };
+  };
+
+  bindSnapCarousel(
+    document.getElementById("moveCarousel"),
+    document.getElementById("movePrevBtn"),
+    document.getElementById("moveNextBtn"),
+    ".move-card"
+  );
+
+  bindSnapCarousel(
+    document.getElementById("formatsCarousel"),
+    document.getElementById("formatsPrevBtn"),
+    document.getElementById("formatsNextBtn"),
+    ".format-card"
+  );
+
   /* ---- Carousel (continuous loop) ---- */
   const carousel = document.getElementById("classesCarousel");
   const nextBtn = document.getElementById("nextBtn");
@@ -160,30 +205,61 @@ document.addEventListener("DOMContentLoaded", () => {
         setMenuOpen(false);
         closeNavDropdowns();
 
-        /* Wait for menu close + body unlock, then scroll with measured header offset */
+        /* Wait for menu close + body unlock, then scroll with measured header offset.
+           Re-correct as Momence embeds / images above the target finish loading. */
         if (target && (isMobileNav() || hash)) {
           e.preventDefault();
-          const scrollToTarget = () => {
+
+          const headerOffset = () => {
             const announcement = document.querySelector(".announcement-bar");
             const headerEl = document.getElementById("header");
-            const offset =
+            return (
               (announcement && getComputedStyle(announcement).display !== "none"
                 ? announcement.offsetHeight
                 : 0) +
               (headerEl ? headerEl.offsetHeight : 0) +
-              12;
-            const top = Math.max(
-              0,
-              target.getBoundingClientRect().top + window.scrollY - offset
+              12
             );
-            window.scrollTo({ top, behavior: "smooth" });
-            if (samePageHash) {
-              history.pushState(null, "", samePageHash);
-            }
           };
+
+          const measureTop = () =>
+            Math.max(
+              0,
+              target.getBoundingClientRect().top + window.scrollY - headerOffset()
+            );
+
+          const scrollToTarget = (behavior = "smooth") => {
+            window.scrollTo({ top: measureTop(), behavior });
+          };
+
+          const settleScroll = () => {
+            let tries = 0;
+            const maxTries = 16;
+            const tick = () => {
+              const desired = measureTop();
+              if (Math.abs(desired - window.scrollY) > 6) {
+                window.scrollTo({
+                  top: desired,
+                  behavior: tries < 2 ? "smooth" : "auto"
+                });
+              }
+              tries += 1;
+              if (tries < maxTries) {
+                window.setTimeout(tick, tries < 4 ? 120 : 220);
+              }
+            };
+            window.setTimeout(tick, 150);
+          };
+
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-              window.setTimeout(scrollToTarget, isMobileNav() ? 80 : 0);
+              window.setTimeout(() => {
+                scrollToTarget("smooth");
+                settleScroll();
+                if (samePageHash) {
+                  history.pushState(null, "", samePageHash);
+                }
+              }, isMobileNav() ? 100 : 0);
             });
           });
         }
@@ -253,7 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const schedulePreview = document.getElementById("schedulePreview");
   if (schedulePreview) {
     const norm = (value) => value.replace(/\s+/g, " ").trim().toUpperCase();
-    let activeScheduleFilter = "all";
+    let activeScheduleFilter = "today";
 
     const clickMomenceControl = (label) => {
       if (!label) return false;
@@ -424,8 +500,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    /* Initial load: All is active, so mark Momence "Show all" once the widget paints */
-    whenMomenceReady(clickShowAll);
+    /* Initial load: Today is active — click Momence Today / today's date once the widget paints */
+    whenMomenceReady(() => {
+      if (clickMomenceControl("Today")) return true;
+      return selectDayOffset(0);
+    });
   }
 
   /* ---- Studio gallery vertical wave scroll ---- */
@@ -486,12 +565,20 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Replace with Momence / CRM API when ready */
   });
 
-  /* ---- Header scroll shadow ---- */
+  /* ---- Header scroll shadow + mobile compact bar ---- */
   const header = document.getElementById("header");
   if (header) {
-    window.addEventListener("scroll", () => {
-      header.classList.toggle("scrolled", window.scrollY > 20);
-    }, { passive: true });
+    const syncHeaderCompact = () => {
+      const compact = window.scrollY > 24;
+      header.classList.toggle("scrolled", compact);
+      document.body.classList.toggle(
+        "header-compact",
+        compact && window.matchMedia("(max-width: 768px)").matches
+      );
+    };
+    window.addEventListener("scroll", syncHeaderCompact, { passive: true });
+    window.addEventListener("resize", syncHeaderCompact, { passive: true });
+    syncHeaderCompact();
   }
 
   /* ---- Back to top ---- */
@@ -577,6 +664,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ---- Mobile reviews: force Momence embed into a one-card horizontal carousel ---- */
   const reviewsRoot = document.getElementById("momence-plugin-reviews");
+  const reviewsPrevBtn = document.getElementById("reviewsPrevBtn");
+  const reviewsNextBtn = document.getElementById("reviewsNextBtn");
+  let reviewsCarouselApi = null;
+
   if (reviewsRoot) {
     const isMobileReviews = () => window.matchMedia("(max-width: 768px)").matches;
 
@@ -586,7 +677,6 @@ document.addEventListener("DOMContentLoaded", () => {
       root.querySelectorAll("div").forEach((el) => {
         const kids = [...el.children].filter((n) => n.nodeType === 1);
         if (kids.length < 2) return;
-        /* Review lists have multiple card children; each card has nested content */
         const cardLike = kids.filter((k) => k.querySelectorAll("*").length >= 3).length;
         if (cardLike < 2 || cardLike < kids.length) return;
         if (kids.length > bestCount) {
@@ -614,13 +704,32 @@ document.addEventListener("DOMContentLoaded", () => {
           card.style.removeProperty("min-width");
           card.style.removeProperty("max-width");
           card.style.removeProperty("scroll-snap-align");
+          card.style.removeProperty("background");
+          card.style.removeProperty("border");
         });
         return true;
       }
 
+      const cardWidth = Math.round(reviewsRoot.clientWidth) || Math.round(window.innerWidth);
+      reviewsRoot.style.setProperty("--reviews-card-width", `${cardWidth}px`);
       reviewsRoot.style.setProperty("overflow-x", "auto", "important");
       reviewsRoot.style.setProperty("overflow-y", "hidden", "important");
       reviewsRoot.style.setProperty("scroll-snap-type", "x mandatory");
+      reviewsRoot.style.setProperty("scroll-behavior", "smooth");
+      reviewsRoot.style.setProperty("background", "transparent", "important");
+
+      /* Flatten Momence outer shells so they don't paint a narrower white panel */
+      let node = list.parentElement;
+      while (node && node !== reviewsRoot) {
+        node.style.setProperty("width", "100%", "important");
+        node.style.setProperty("max-width", "100%", "important");
+        node.style.setProperty("min-width", "0", "important");
+        node.style.setProperty("background", "transparent", "important");
+        node.style.setProperty("box-shadow", "none", "important");
+        node.style.setProperty("padding", "0", "important");
+        node.style.setProperty("margin", "0", "important");
+        node = node.parentElement;
+      }
 
       list.style.setProperty("display", "flex", "important");
       list.style.setProperty("flex-direction", "row", "important");
@@ -628,23 +737,37 @@ document.addEventListener("DOMContentLoaded", () => {
       list.style.setProperty("gap", "0", "important");
       list.style.setProperty("width", "max-content", "important");
       list.style.setProperty("max-width", "none", "important");
+      list.style.setProperty("background", "transparent", "important");
+      list.style.setProperty("padding", "0", "important");
+      list.style.setProperty("margin", "0", "important");
 
       [...list.children].forEach((card) => {
-        card.style.setProperty("flex", "0 0 100vw", "important");
-        card.style.setProperty("width", "100vw", "important");
-        card.style.setProperty("min-width", "100vw", "important");
-        card.style.setProperty("max-width", "100vw", "important");
+        card.style.setProperty("flex", `0 0 ${cardWidth}px`, "important");
+        card.style.setProperty("width", `${cardWidth}px`, "important");
+        card.style.setProperty("min-width", `${cardWidth}px`, "important");
+        card.style.setProperty("max-width", `${cardWidth}px`, "important");
         card.style.setProperty("scroll-snap-align", "start");
         card.style.setProperty("scroll-snap-stop", "always");
         card.style.setProperty("box-sizing", "border-box", "important");
+        card.style.setProperty("background", "#fffefc", "important");
+        card.style.setProperty("overflow", "hidden", "important");
       });
+
+      if (!reviewsCarouselApi) {
+        reviewsCarouselApi = bindSnapCarousel(
+          reviewsRoot,
+          reviewsPrevBtn,
+          reviewsNextBtn,
+          () => reviewsRoot.clientWidth || window.innerWidth
+        );
+      } else {
+        reviewsCarouselApi.syncArrows();
+      }
       return true;
     };
 
     const reviewsObs = new MutationObserver(() => {
-      if (applyReviewsCarousel()) {
-        /* Keep observing briefly in case Momence re-renders */
-      }
+      applyReviewsCarousel();
     });
     reviewsObs.observe(reviewsRoot, { childList: true, subtree: true });
     applyReviewsCarousel();

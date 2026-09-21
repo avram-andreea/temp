@@ -158,8 +158,8 @@
     </header>
 
     <div class="schedule-filters" role="tablist" aria-label="Schedule filters">
-      <button type="button" class="schedule-filter is-active" data-schedule-filter="all" role="tab" aria-selected="true">All</button>
-      <button type="button" class="schedule-filter" data-schedule-filter="today" role="tab" aria-selected="false">Today</button>
+      <button type="button" class="schedule-filter" data-schedule-filter="all" role="tab" aria-selected="false">All</button>
+      <button type="button" class="schedule-filter is-active" data-schedule-filter="today" role="tab" aria-selected="true">Today</button>
       <button type="button" class="schedule-filter" data-schedule-filter="tomorrow" role="tab" aria-selected="false">Tomorrow</button>
       <button type="button" class="schedule-filter" data-schedule-filter="megaformer" role="tab" aria-selected="false">Megaformer</button>
       <button type="button" class="schedule-filter" data-schedule-filter="studio" role="tab" aria-selected="false">Studio</button>
@@ -177,7 +177,7 @@
         tag_ids="[]"
         lite_mode="true"
         hide_drop_in_price="true"
-        default_filter="upcoming"
+        default_filter="today"
         locale="en"
         src="https://momence.com/plugin/host-schedule/host-schedule.js"
       ></script>
@@ -194,7 +194,6 @@
   <div class="container start-path-inner">
     <header class="start-path-header center">
       <h2 class="section-title">Not sure where to start?</h2>
-      <div class="start-path-divider" aria-hidden="true"></div>
     </header>
 
     <div class="start-path-grid">
@@ -225,7 +224,11 @@
       <div class="sessions-divider" aria-hidden="true"></div>
     </header>
 
-    <div class="move-grid">
+    <div class="hp-carousel move-carousel">
+      <button type="button" class="hp-carousel__btn" id="movePrevBtn" aria-label="Previous session">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <div class="move-grid" id="moveCarousel">
       <article class="move-card">
         <div class="move-card__media">
           <img src="images/megaformer.jfif" alt="Megaformer class" onerror="this.style.display='none'">
@@ -269,6 +272,10 @@
           <a href="sessions/hiit.html" class="btn btn-ghost">Explore HIIT</a>
         </div>
       </article>
+      </div>
+      <button type="button" class="hp-carousel__btn" id="moveNextBtn" aria-label="Next session">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 </section>
@@ -282,7 +289,11 @@
       <p class="formats-lead">Our ReforMAT and Megaformer classes come in four formats, from slow control to full-body fire, find the format that fits your mood:</p>
     </header>
 
-    <div class="formats-grid">
+    <div class="hp-carousel formats-carousel">
+      <button type="button" class="hp-carousel__btn" id="formatsPrevBtn" aria-label="Previous format">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <div class="formats-grid" id="formatsCarousel">
       <article class="format-card format-card--grip">
         <h3 class="format-name">grip.</h3>
         <p class="format-tags">Full-body · strength · control</p>
@@ -303,6 +314,10 @@
         <p class="format-tags">After-hours · rhythm · intensity</p>
         <p class="format-copy">High-intensity under low light and deep beats - your Friday night, redefined.</p>
       </article>
+      </div>
+      <button type="button" class="hp-carousel__btn" id="formatsNextBtn" aria-label="Next format">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 </section>
@@ -327,7 +342,15 @@
     </header>
 
     <!-- Live Momence reviews (Marketing → Reviews → Embed). Google listing linked above. -->
-    <div id="momence-plugin-reviews" class="reviews-embed"></div>
+    <div class="hp-carousel reviews-carousel">
+      <button type="button" class="hp-carousel__btn" id="reviewsPrevBtn" aria-label="Previous review">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <div id="momence-plugin-reviews" class="reviews-embed"></div>
+      <button type="button" class="hp-carousel__btn" id="reviewsNextBtn" aria-label="Next review">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
     <script
       async
       type="module"
