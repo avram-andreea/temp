@@ -22,11 +22,173 @@ const obs = new IntersectionObserver(
 document.querySelectorAll(".fade-in").forEach((el) => obs.observe(el));
 revealFadeIns();
 window.addEventListener("load", revealFadeIns);
-window.addEventListener("hashchange", () => {
-  window.setTimeout(revealFadeIns, 50);
-  window.setTimeout(revealFadeIns, 300);
-});
 window.addEventListener("scroll", revealFadeIns, { passive: true });
+
+/* ---- Reliable in-page hash scrolling (nav / footer / direct URLs) ---- */
+let hashScrollToken = 0;
+
+const getFixedChromeOffset = () => {
+  const announcement = document.querySelector(".announcement-bar");
+  const headerEl = document.getElementById("header");
+  const annH =
+    announcement && getComputedStyle(announcement).display !== "none"
+      ? announcement.offsetHeight
+      : 0;
+  const headerH = headerEl ? headerEl.offsetHeight : 0;
+  return annH + headerH + 12;
+};
+
+const snapRevealFadeInsThrough = (target) => {
+  if (!target) return;
+  document.querySelectorAll(".fade-in").forEach((el) => {
+    const isAfter =
+      el !== target &&
+      !!(target.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING);
+    if (isAfter) return;
+    /* Skip transition so translateY(20px) cannot skew getBoundingClientRect */
+    const prev = el.style.transition;
+    el.style.transition = "none";
+    el.classList.add("visible");
+    void el.offsetWidth;
+    el.style.transition = prev;
+  });
+};
+
+const scrollToHashTarget = (hash, { behavior = "smooth", updateHistory = false } = {}) => {
+  if (!hash || hash === "#") return false;
+  let target = null;
+  try {
+    target = document.querySelector(hash);
+  } catch {
+    return false;
+  }
+  if (!target) return false;
+
+  const token = ++hashScrollToken;
+  snapRevealFadeInsThrough(target);
+
+  const measureTop = () =>
+    Math.max(0, target.getBoundingClientRect().top + window.scrollY - getFixedChromeOffset());
+
+  const jump = (mode) => {
+    if (token !== hashScrollToken) return;
+    window.scrollTo({ top: measureTop(), behavior: mode });
+  };
+
+  /* Instant first correction after layout paint, then keep settling as embeds load */
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      jump(behavior);
+    });
+  });
+
+  let tries = 0;
+  const maxTries = 32;
+  const settle = () => {
+    if (token !== hashScrollToken) return;
+    const desired = measureTop();
+    if (Math.abs(desired - window.scrollY) > 4) {
+      jump(tries < 3 ? "smooth" : "auto");
+    }
+    tries += 1;
+    if (tries < maxTries) {
+      window.setTimeout(settle, tries < 8 ? 100 : 280);
+    }
+  };
+  window.setTimeout(settle, 60);
+
+  /* Recheck when page / embed height changes (Momence schedule / reviews / images) */
+  if (typeof ResizeObserver !== "undefined") {
+    const ro = new ResizeObserver(() => {
+      if (token !== hashScrollToken) {
+        ro.disconnect();
+        return;
+      }
+      if (Math.abs(measureTop() - window.scrollY) > 6) jump("auto");
+    });
+    ro.observe(document.documentElement);
+    const scheduleEl = document.getElementById("schedule");
+    const reviewsEl = document.getElementById("reviews");
+    if (scheduleEl) ro.observe(scheduleEl);
+    if (reviewsEl) ro.observe(reviewsEl);
+    window.setTimeout(() => {
+      if (token === hashScrollToken) ro.disconnect();
+    }, 10000);
+  }
+
+  if (updateHistory && window.location.hash !== hash) {
+    history.pushState(null, "", hash);
+  }
+  return true;
+};
+
+const handleSamePageHashClick = (e) => {
+  if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+    return;
+  }
+  const link = e.target.closest("a[href]");
+  if (!link) return;
+  const href = link.getAttribute("href") || "";
+  if (!href || href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:")) return;
+
+  let hash = "";
+  if (href.startsWith("#") && href.length > 1) {
+    hash = href;
+  } else if (href.includes("#")) {
+    const [path, frag] = href.split("#");
+    const cleanPath = (path || "").replace(/^\.\//, "");
+    const page = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+    const targetPage = (cleanPath.split("/").pop() || page).toLowerCase() || "index.html";
+    const samePage =
+      targetPage === page ||
+      targetPage === "" ||
+      (page === "index.html" && (targetPage === "" || targetPage === "index.html")) ||
+      ((page === "" || page === "/") && (targetPage === "" || targetPage === "index.html"));
+    if (frag && samePage) {
+      hash = `#${frag}`;
+    }
+  }
+  if (!hash) return;
+
+  let target = null;
+  try {
+    target = document.querySelector(hash);
+  } catch {
+    return;
+  }
+  if (!target) return;
+
+  e.preventDefault();
+  scrollToHashTarget(hash, { behavior: "smooth", updateHistory: true });
+};
+
+document.addEventListener("click", handleSamePageHashClick);
+
+const syncHashOnLoad = () => {
+  const hash = window.location.hash;
+  if (!hash || hash === "#") return;
+  try {
+    history.scrollRestoration = "manual";
+  } catch {
+    /* ignore */
+  }
+  /* Prevent native jump fighting our offset; re-apply as embeds settle */
+  scrollToHashTarget(hash, { behavior: "auto", updateHistory: false });
+  window.setTimeout(() => scrollToHashTarget(hash, { behavior: "auto", updateHistory: false }), 200);
+  window.setTimeout(() => scrollToHashTarget(hash, { behavior: "auto", updateHistory: false }), 700);
+  window.setTimeout(() => scrollToHashTarget(hash, { behavior: "auto", updateHistory: false }), 1600);
+  window.setTimeout(() => scrollToHashTarget(hash, { behavior: "auto", updateHistory: false }), 3200);
+};
+
+window.addEventListener("hashchange", () => {
+  revealFadeIns();
+  scrollToHashTarget(window.location.hash, { behavior: "smooth", updateHistory: false });
+});
+window.addEventListener("DOMContentLoaded", syncHashOnLoad);
+window.addEventListener("load", () => {
+  revealFadeIns();
+  syncHashOnLoad();
+});
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -211,80 +373,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     navMenu.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", (e) => {
-        const href = link.getAttribute("href") || "";
-        const hash = href.startsWith("#") && href.length > 1 ? href : "";
-        const samePageHash =
-          hash ||
-          (href.includes("#") && !href.startsWith("http")
-            ? `#${href.split("#")[1] || ""}`
-            : "");
-        const target =
-          samePageHash && samePageHash !== "#"
-            ? document.querySelector(samePageHash)
-            : null;
-
+      link.addEventListener("click", () => {
         setMenuOpen(false);
         closeNavDropdowns();
-
-        /* Wait for menu close + body unlock, then scroll with measured header offset.
-           Re-correct as Momence embeds / images above the target finish loading. */
-        if (target && (isMobileNav() || hash)) {
-          e.preventDefault();
-
-          const headerOffset = () => {
-            const announcement = document.querySelector(".announcement-bar");
-            const headerEl = document.getElementById("header");
-            return (
-              (announcement && getComputedStyle(announcement).display !== "none"
-                ? announcement.offsetHeight
-                : 0) +
-              (headerEl ? headerEl.offsetHeight : 0) +
-              12
-            );
-          };
-
-          const measureTop = () =>
-            Math.max(
-              0,
-              target.getBoundingClientRect().top + window.scrollY - headerOffset()
-            );
-
-          const scrollToTarget = (behavior = "smooth") => {
-            window.scrollTo({ top: measureTop(), behavior });
-          };
-
-          const settleScroll = () => {
-            let tries = 0;
-            const maxTries = 16;
-            const tick = () => {
-              const desired = measureTop();
-              if (Math.abs(desired - window.scrollY) > 6) {
-                window.scrollTo({
-                  top: desired,
-                  behavior: tries < 2 ? "smooth" : "auto"
-                });
-              }
-              tries += 1;
-              if (tries < maxTries) {
-                window.setTimeout(tick, tries < 4 ? 120 : 220);
-              }
-            };
-            window.setTimeout(tick, 150);
-          };
-
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              window.setTimeout(() => {
-                scrollToTarget("smooth");
-                settleScroll();
-                if (samePageHash) {
-                  history.pushState(null, "", samePageHash);
-                }
-              }, isMobileNav() ? 100 : 0);
-            });
-          });
-        }
       });
     });
 
