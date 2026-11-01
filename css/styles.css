@@ -1843,6 +1843,14 @@ img { max-width: 100%; display: block; }
   border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 
+/* nightshift. — Bebas Neue (Bebas is caps-only; force uppercase) */
+.format-name--night-shift {
+  font-family: var(--font-title);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
 .format-tags {
   font-family: var(--font-body);
   font-size: 0.62rem;
