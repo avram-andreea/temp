@@ -75,45 +75,85 @@ const scrollToHashTarget = (hash, { behavior = "smooth", updateHistory = false }
     window.scrollTo({ top: measureTop(), behavior: mode });
   };
 
-  /* Instant first correction after layout paint, then keep settling as embeds load */
+  let ro = null;
+  let settleTimer = 0;
+  let releaseTimer = 0;
+
+  const teardown = () => {
+    if (settleTimer) window.clearTimeout(settleTimer);
+    if (releaseTimer) window.clearTimeout(releaseTimer);
+    settleTimer = 0;
+    releaseTimer = 0;
+    if (ro) {
+      ro.disconnect();
+      ro = null;
+    }
+    window.removeEventListener("wheel", onUserIntent, true);
+    window.removeEventListener("touchmove", onUserIntent, true);
+    window.removeEventListener("keydown", onUserKey, true);
+  };
+
+  const cancelFollow = () => {
+    if (token !== hashScrollToken) return;
+    hashScrollToken += 1; /* invalidate this follow without starting a new scroll */
+    teardown();
+  };
+
+  const onUserIntent = () => cancelFollow();
+  const onUserKey = (e) => {
+    const keys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " ", "Spacebar"];
+    if (keys.includes(e.key)) cancelFollow();
+  };
+
+  /* Stop auto-correct as soon as the user tries to scroll away */
+  window.addEventListener("wheel", onUserIntent, { passive: true, capture: true });
+  window.addEventListener("touchmove", onUserIntent, { passive: true, capture: true });
+  window.addEventListener("keydown", onUserKey, { capture: true });
+
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       jump(behavior);
     });
   });
 
+  /* Brief settle only — long follow loops were yanking users back to #pricing */
   let tries = 0;
-  const maxTries = 32;
+  const maxTries = 8;
   const settle = () => {
     if (token !== hashScrollToken) return;
     const desired = measureTop();
-    if (Math.abs(desired - window.scrollY) > 4) {
-      jump(tries < 3 ? "smooth" : "auto");
+    if (Math.abs(desired - window.scrollY) > 8) {
+      jump(tries < 2 ? "smooth" : "auto");
     }
     tries += 1;
     if (tries < maxTries) {
-      window.setTimeout(settle, tries < 8 ? 100 : 280);
+      settleTimer = window.setTimeout(settle, tries < 4 ? 120 : 200);
+    } else {
+      teardown();
     }
   };
-  window.setTimeout(settle, 60);
+  settleTimer = window.setTimeout(settle, 80);
 
-  /* Recheck when page / embed height changes (Momence schedule / reviews / images) */
   if (typeof ResizeObserver !== "undefined") {
-    const ro = new ResizeObserver(() => {
+    ro = new ResizeObserver(() => {
       if (token !== hashScrollToken) {
-        ro.disconnect();
+        teardown();
         return;
       }
-      if (Math.abs(measureTop() - window.scrollY) > 6) jump("auto");
+      if (Math.abs(measureTop() - window.scrollY) > 10) jump("auto");
     });
     ro.observe(document.documentElement);
     const scheduleEl = document.getElementById("schedule");
     const reviewsEl = document.getElementById("reviews");
     if (scheduleEl) ro.observe(scheduleEl);
     if (reviewsEl) ro.observe(reviewsEl);
-    window.setTimeout(() => {
-      if (token === hashScrollToken) ro.disconnect();
-    }, 10000);
+    releaseTimer = window.setTimeout(() => {
+      if (token === hashScrollToken) teardown();
+    }, 1800);
+  } else {
+    releaseTimer = window.setTimeout(() => {
+      if (token === hashScrollToken) teardown();
+    }, 1800);
   }
 
   if (updateHistory && window.location.hash !== hash) {
@@ -172,12 +212,8 @@ const syncHashOnLoad = () => {
   } catch {
     /* ignore */
   }
-  /* Prevent native jump fighting our offset; re-apply as embeds settle */
+  /* One corrected jump + one short post-load settle — avoid repeated yank loops */
   scrollToHashTarget(hash, { behavior: "auto", updateHistory: false });
-  window.setTimeout(() => scrollToHashTarget(hash, { behavior: "auto", updateHistory: false }), 200);
-  window.setTimeout(() => scrollToHashTarget(hash, { behavior: "auto", updateHistory: false }), 700);
-  window.setTimeout(() => scrollToHashTarget(hash, { behavior: "auto", updateHistory: false }), 1600);
-  window.setTimeout(() => scrollToHashTarget(hash, { behavior: "auto", updateHistory: false }), 3200);
 };
 
 window.addEventListener("hashchange", () => {
@@ -187,7 +223,9 @@ window.addEventListener("hashchange", () => {
 window.addEventListener("DOMContentLoaded", syncHashOnLoad);
 window.addEventListener("load", () => {
   revealFadeIns();
-  syncHashOnLoad();
+  if (window.location.hash && window.location.hash !== "#") {
+    scrollToHashTarget(window.location.hash, { behavior: "auto", updateHistory: false });
+  }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -597,27 +635,67 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
         clickMomenceControl("STUDIO");
+        return;
       }
+      if (key === "pod") {
+        const clickPod = () =>
+          clickMomenceControl("POD") ||
+          clickMomenceControl("grip.pod") ||
+          clickMomenceControl("GRIP.POD") ||
+          clickMomenceControl("Pod");
+        if (activeScheduleFilter === "today" || activeScheduleFilter === "tomorrow") {
+          remountScheduleUpcoming();
+          whenMomenceReady(clickPod);
+          return;
+        }
+        clickPod();
+      }
+    };
+
+    const setActiveScheduleFilter = (key) => {
+      const btn = document.querySelector(`[data-schedule-filter="${key}"]`);
+      if (!btn) return;
+      document.querySelectorAll("[data-schedule-filter]").forEach((el) => {
+        const active = el === btn;
+        el.classList.toggle("is-active", active);
+        el.setAttribute("aria-selected", active ? "true" : "false");
+      });
+      applyScheduleFilter(key);
+      activeScheduleFilter = key || "all";
     };
 
     document.querySelectorAll("[data-schedule-filter]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const key = btn.getAttribute("data-schedule-filter");
-        document.querySelectorAll("[data-schedule-filter]").forEach((el) => {
-          const active = el === btn;
-          el.classList.toggle("is-active", active);
-          el.setAttribute("aria-selected", active ? "true" : "false");
-        });
-        applyScheduleFilter(key);
-        activeScheduleFilter = key || "all";
+        setActiveScheduleFilter(key);
       });
     });
 
-    /* Initial load: Today is active — click Momence Today / today's date once the widget paints */
-    whenMomenceReady(() => {
-      if (clickMomenceControl("Today")) return true;
-      return selectDayOffset(0);
+    /* Book grip.pod etc. → jump to schedule and select Pod filter */
+    document.querySelectorAll("[data-schedule-jump]").forEach((link) => {
+      link.addEventListener("click", () => {
+        const key = link.getAttribute("data-schedule-jump");
+        if (!key) return;
+        window.setTimeout(() => setActiveScheduleFilter(key), 80);
+      });
     });
+
+    /* Deep link: ?filter=pod#schedule (from grip.pod Book buttons) */
+    const scheduleFilterParam = new URLSearchParams(window.location.search).get("filter");
+    const startWithPod = scheduleFilterParam === "pod";
+
+    if (startWithPod) {
+      whenMomenceReady(() => {
+        setActiveScheduleFilter("pod");
+        return true;
+      });
+    } else {
+      /* Initial load: Today is active — Pod stays deselected by default */
+      whenMomenceReady(() => {
+        if (clickMomenceControl("Today")) return true;
+        return selectDayOffset(0);
+      });
+    }
   }
 
   /* ---- Studio gallery vertical wave scroll ---- */

@@ -2160,12 +2160,16 @@ img { max-width: 100%; display: block; }
   padding: 1rem 1.5rem;
   text-align: center;
   border-left: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pass-btn {
   display: inline-block;
   width: 100%;
   max-width: 200px;
+  margin-inline: auto;
   padding: 0.85rem 1rem;
   font-family: var(--font-title);
   font-size: 0.85rem;
@@ -2399,8 +2403,8 @@ img { max-width: 100%; display: block; }
 ========================= */
 
 .find-us {
-  background: var(--brown);
-  color: var(--soft-white);
+  background: var(--sand-light);
+  color: var(--heading-color);
   padding: 0;
 }
 
@@ -2428,10 +2432,11 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 1.2rem;
+  color: var(--heading-color);
 }
 
 .find-us-intro {
-  color: rgba(246, 244, 240, 0.75);
+  color: rgba(71, 65, 63, 0.72);
   font-size: 0.95rem;
   max-width: 420px;
   margin-bottom: 2rem;
@@ -2451,7 +2456,7 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.7;
+  color: rgba(71, 65, 63, 0.55);
   margin-bottom: 0.25rem;
 }
 
@@ -2461,23 +2466,24 @@ img { max-width: 100%; display: block; }
   font-size: 0.92rem;
   letter-spacing: 0.02em;
   line-height: 1.65;
+  color: rgba(0, 0, 0, 0.78);
 }
 
 .find-us-details dd em {
   display: block;
   margin-top: 0.5rem;
   font-style: normal;
-  opacity: 0.85;
+  color: rgba(71, 65, 63, 0.62);
 }
 
 .find-us-details a {
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid rgba(246, 244, 240, 0.3);
+  border-bottom: 1px solid rgba(71, 65, 63, 0.28);
   transition: border-color 0.2s ease;
 }
 
-.find-us-details a:hover { border-color: #fff; }
+.find-us-details a:hover { border-color: var(--brown); }
 
 .find-us-map {
   position: relative;
@@ -2485,6 +2491,7 @@ img { max-width: 100%; display: block; }
   width: 100%;
   /* Absolute iframe needs a definite box; % height alone collapses on mobile */
   align-self: stretch;
+  background: var(--sand);
 }
 
 .find-us-map iframe {
@@ -2494,16 +2501,15 @@ img { max-width: 100%; display: block; }
   height: 100%;
   border: 0;
   display: block;
-  filter: grayscale(30%) contrast(1.05) brightness(0.95);
-  mix-blend-mode: luminosity;
-  opacity: 0.85;
+  filter: grayscale(20%) contrast(1.02) brightness(1.05);
+  opacity: 0.95;
 }
 
 .find-us-map::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(71, 65, 63, 0.2);
+  background: rgba(235, 230, 223, 0.18);
   pointer-events: none;
 }
 
@@ -2515,27 +2521,27 @@ img { max-width: 100%; display: block; }
 }
 
 .find-us .btn-filled {
-  background: var(--soft-white);
-  color: var(--brown);
-  border-color: var(--soft-white);
+  background: var(--brown);
+  color: var(--soft-white);
+  border-color: var(--brown);
 }
 
 .find-us .btn-filled:hover {
-  background: var(--sand);
-  border-color: var(--sand);
-  color: var(--brown);
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: var(--soft-white);
 }
 
 .find-us .btn-ghost {
   background: transparent;
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.75);
+  color: var(--brown);
+  border-color: rgba(71, 65, 63, 0.45);
 }
 
 .find-us .btn-ghost:hover {
-  background: #fff;
+  background: var(--soft-white);
   color: var(--brown);
-  border-color: #fff;
+  border-color: var(--brown);
 }
 
 @media (max-width: 768px) {
@@ -3404,11 +3410,95 @@ img { max-width: 100%; display: block; }
 .hp-carousel,
 .move-carousel {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+/* Move section: always scrollable with arrows (5 session cards) */
+.move-carousel .hp-carousel__btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  background: var(--soft-white);
+  color: var(--heading-color);
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 3;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.move-carousel .hp-carousel__btn:hover,
+.move-carousel .hp-carousel__btn:focus-visible {
+  border-color: var(--brown);
+}
+
+.move-carousel .hp-carousel__btn:disabled {
+  opacity: 1;
+  color: rgba(71, 65, 63, 0.32);
+  border-color: rgba(71, 65, 63, 0.18);
+  cursor: default;
+}
+
+.move-carousel .move-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+.move-carousel .move-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.move-carousel .move-grid > .move-card {
+  flex: 0 0 calc((100% - 2.5rem) / 3);
+  width: calc((100% - 2.5rem) / 3);
+  max-width: calc((100% - 2.5rem) / 3);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  box-sizing: border-box;
+}
+
+@media (max-width: 980px) {
+  .move-carousel .move-grid > .move-card {
+    flex-basis: calc((100% - 1.25rem) / 2);
+    width: calc((100% - 1.25rem) / 2);
+    max-width: calc((100% - 1.25rem) / 2);
+  }
+}
+
+@media (max-width: 768px) {
+  .move-carousel .move-grid {
+    gap: 0;
+  }
+
+  .move-carousel .move-grid > .move-card {
+    flex-basis: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 @media (min-width: 769px) {
   .hp-carousel__btn {
     display: none !important;
+  }
+
+  .move-carousel .hp-carousel__btn {
+    display: inline-flex !important;
   }
 }
 

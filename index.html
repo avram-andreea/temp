@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>grip. - Wellness Studio, Digbeth Birmingham</title>
-<meta name="description" content="Megaformer, ReforMAT, Yoga & HIIT in Digbeth, Birmingham. Move slower. Feel deeper. Leave stronger." />
+<meta name="description" content="Megaformer, ReforMAT, Yoga, HIIT & Reiki in Digbeth, Birmingham. Move slower. Feel deeper. Leave stronger." />
 
 <link rel="canonical" href="https://www.grip-wellness.com/" />
 <meta name="robots" content="index, follow" />
@@ -50,6 +50,7 @@
             <a href="sessions/megaformer.html" role="menuitem">Megaformer</a>
             <a href="sessions/reformat.html" role="menuitem">ReforMAT</a>
             <a href="sessions/yoga.html" role="menuitem">Yoga</a>
+            <a href="sessions/reiki.html" role="menuitem">Reiki</a>
             <a href="sessions/hiit.html" role="menuitem">HIIT</a>
             <a href="sessions/grip-pod.html" role="menuitem">grip.pod</a>
           </div>
@@ -104,7 +105,7 @@
   <div class="hp-hero-overlay"></div>
   <div class="container hp-hero-inner">
     <h1 class="hp-hero-title">Move slower.<br>Feel deeper.<br>Leave stronger.</h1>
-    <p class="hp-hero-lead">Megaformer, Pilates, Yoga, HIIT and intelligent solo training in the heart of Digbeth, Birmingham.</p>
+    <p class="hp-hero-lead">Megaformer, Pilates, Yoga, HIIT, Reiki and intelligent solo training in the heart of Digbeth, Birmingham.</p>
     <div class="hp-hero-actions">
       <a href="book.html" class="btn btn-filled">View Classes</a>
       <a href="intro-offers.html" class="btn btn-light">New Here?</a>
@@ -137,7 +138,7 @@
       <article class="intro-box" data-offer="studio-intro">
         <span class="intro-box__label" data-field="name">Studio Intro</span>
         <h3 class="intro-box__title">
-          <span data-field="quantity">4</span> ReforMAT, Yoga or Hiit sessions
+          <span data-field="quantity">4</span> ReforMAT, Yoga, Hiit or Reiki sessions
         </h3>
         <p class="intro-box__price">
           <span class="intro-box__amount" data-field="price">£45</span>
@@ -163,6 +164,7 @@
       <button type="button" class="schedule-filter" data-schedule-filter="tomorrow" role="tab" aria-selected="false">Tomorrow</button>
       <button type="button" class="schedule-filter" data-schedule-filter="megaformer" role="tab" aria-selected="false">Megaformer</button>
       <button type="button" class="schedule-filter" data-schedule-filter="studio" role="tab" aria-selected="false">Studio</button>
+      <button type="button" class="schedule-filter" data-schedule-filter="pod" role="tab" aria-selected="false">Pod</button>
     </div>
 
     <div class="schedule-preview" id="schedulePreview">
@@ -208,7 +210,7 @@
 
       <article class="start-path-card">
         <h3 class="start-path-card__title">Studio</h3>
-        <p class="start-path-card__tagline">ReforMAT, Yoga + HIIT</p>
+        <p class="start-path-card__tagline">ReforMAT, Yoga, HIIT + Reiki</p>
         <p class="start-path-card__copy">Best if you want flexibility across movement styles.</p>
         <a href="#sessions" class="btn btn-ghost">Explore Studio sessions</a>
       </article>
@@ -257,8 +259,19 @@
         </div>
         <div class="move-card__body">
           <h3 class="move-card__title">Yoga</h3>
-          <p class="move-card__desc">Somatic Hatha Flow and Restorative Yin - slow, mindful practices to leave you calmer and more connected.</p>
+          <p class="move-card__desc">Somatic Hatha Flow and Vinyasa - mindful and flowing practices to leave you calmer, stronger and more connected.</p>
           <a href="sessions/yoga.html" class="btn btn-ghost">Explore Yoga</a>
+        </div>
+      </article>
+
+      <article class="move-card">
+        <div class="move-card__media">
+          <img src="images/studio/studio-01-lounge.png" alt="Reiki session" onerror="this.style.display='none'">
+        </div>
+        <div class="move-card__body">
+          <h3 class="move-card__title">Reiki</h3>
+          <p class="move-card__desc">A gentle Japanese practice that gives you time to slow down and rest - settle in, fully clothed, and be still.</p>
+          <a href="sessions/reiki.html" class="btn btn-ghost">Explore Reiki</a>
         </div>
       </article>
 
@@ -312,7 +325,7 @@
       <article class="format-card format-card--afterdark">
         <h3 class="format-name format-name--night-shift">nightshift.</h3>
         <p class="format-tags">After-hours · rhythm · intensity</p>
-        <p class="format-copy">High-intensity under low light and deep beats - your Friday night, redefined.</p>
+        <p class="format-copy">High-intensity under low light and deep beats - your club fix, throughout the week.</p>
       </article>
       </div>
       <button type="button" class="hp-carousel__btn" id="formatsNextBtn" aria-label="Next format">
@@ -442,15 +455,14 @@
       <h2 class="section-title">Train solo. Not unsupported.</h2>
       <p>Private sessions with AI-guided form feedback, rep counting and personalised cues - so you can train alone without guessing.</p>
       <ul class="pod-steps" aria-label="How grip.pod works">
-        <li><strong>01 Book</strong> - Choose a 40 or 60-minute pod slot.</li>
+        <li><strong>01 Book</strong> - Choose a 60-minute pod slot.</li>
         <li><strong>02 Train</strong> - Follow guided strength, HIIT, core or conditioning.</li>
         <li><strong>03 Adjust</strong> - ReflectAI™ cues form, reps and pacing in real time.</li>
       </ul>
       <div class="pod-pricing" data-pod-pricing>
-        <p><span data-field="single-label">40 mins</span> <strong data-field="single-price">£16</strong></p>
         <p><span data-field="pack-label">60 mins</span> <strong data-field="pack-price">£22</strong></p>
       </div>
-      <a href="sessions/grip-pod.html#booking" class="btn btn-filled">Book grip.pod</a>
+      <a href="?filter=pod#schedule" class="btn btn-filled" data-schedule-jump="pod">Book grip.pod</a>
     </div>
   </div>
 </section>
@@ -494,22 +506,22 @@
             <div class="passes-label-col"></div>
             <div class="passes-col">
               <span class="passes-col-title">Mega packs</span>
-              <span class="passes-col-note">Megaformer · 60 day expiry</span>
+              <span class="passes-col-note">Megaformer · 30 day expiry</span>
             </div>
             <div class="passes-col">
               <span class="passes-col-title">Studio packs</span>
-              <span class="passes-col-note">ReforMAT · Yoga · HIIT</span>
+              <span class="passes-col-note">ReforMAT · Yoga · HIIT · Reiki</span>
             </div>
           </div>
-          <!-- <div class="passes-row">
-            <div class="passes-label">drop in <span class="passes-label-sessions">1 session</span></div>
-            <div class="passes-cell" data-label="Mega packs"><span class="pass-btn pass-btn--outline pass-btn--info">£25 · £25/class</span></div>
-            <div class="passes-cell" data-label="Studio packs"><span class="pass-btn pass-btn--filled pass-btn--info">£18 · £18/class</span></div>
-          </div> -->
           <div class="passes-row">
             <div class="passes-label">grip.silver <span class="passes-label-sessions">5 sessions</span></div>
             <div class="passes-cell" data-label="Mega packs"><a href="https://momence.com/m/809169" class="pass-btn pass-btn--outline" target="_blank" rel="noopener noreferrer">£90 · £18/class</a></div>
             <div class="passes-cell" data-label="Studio packs"><a href="https://momence.com/m/809170" class="pass-btn pass-btn--filled" target="_blank" rel="noopener noreferrer">£75 · £15/class</a></div>
+          </div>
+          <div class="passes-row">
+            <div class="passes-label">grip.8 <span class="passes-label-sessions">8 sessions</span></div>
+            <div class="passes-cell" data-label="Mega packs"><a href="book.html" class="pass-btn pass-btn--outline">£129</a></div>
+            <div class="passes-cell" data-label="Studio packs"><a href="book.html" class="pass-btn pass-btn--filled">£129</a></div>
           </div>
           <div class="passes-row">
             <div class="passes-label">grip.gold <span class="passes-label-sessions">10 sessions</span></div>
@@ -517,39 +529,28 @@
             <div class="passes-cell" data-label="Studio packs"><a href="https://momence.com/m/809171" class="pass-btn pass-btn--filled" target="_blank" rel="noopener noreferrer">£130 · £13/class</a></div>
           </div>
           <div class="passes-row">
-            <div class="passes-label">grip.platinum <span class="passes-label-sessions">15 sessions</span></div>
-            <div class="passes-cell" data-label="Mega packs"><a href="https://momence.com/m/809174" class="pass-btn pass-btn--outline" target="_blank" rel="noopener noreferrer">£240 · £16/class</a></div>
-            <div class="passes-cell" data-label="Studio packs"><a href="https://momence.com/m/809173" class="pass-btn pass-btn--filled" target="_blank" rel="noopener noreferrer">£180 · £12/class</a></div>
+            <div class="passes-label">grip.12 <span class="passes-label-sessions">12 sessions</span></div>
+            <div class="passes-cell" data-label="Mega packs"><a href="book.html" class="pass-btn pass-btn--outline">£179</a></div>
+            <div class="passes-cell" data-label="Studio packs"><a href="book.html" class="pass-btn pass-btn--filled">£179</a></div>
           </div>
         </div>
-        <p class="passes-expiry">*Best for flexible training without a monthly commitment. 60 day expiry.</p>
+        <p class="passes-expiry">*Best for flexible training without a monthly commitment. 30 day expiry.</p>
       </div>
     </div>
 
     <div class="price-panel" id="price-panel-member" role="tabpanel" aria-labelledby="tab-member" hidden>
-      <div class="founding-grid founding-grid--duo" style="margin-inline: auto;">
+      <div class="founding-grid founding-grid--single" style="margin-inline: auto;">
         <article class="founding-card founding-card--noire">
           <h3 class="founding-name">grip.noire</h3>
           <p class="founding-tag">Unlimited · ideal 3+ / week</p>
-          <div class="founding-price">£300<span>/mo</span></div>
+          <div class="founding-price">£280<span>/mo</span></div>
           <ul>
             <li>Unlimited Megaformer + Studio</li>
-            <li>21 day advance booking</li>
+            <li>Unlimited POD access</li>
+            <li>Monthly check-in with your instructor</li>
             <li>Member goody bag</li>
           </ul>
           <a href="https://momence.com/m/809145" class="btn btn-filled btn-block" target="_blank" rel="noopener noreferrer">Join now</a>
-        </article>
-        <article class="founding-card founding-card--dark">
-          <h3 class="founding-name">founding grip.noire</h3>
-          <p class="founding-tag">Limited availability</p>
-          <div class="founding-price">£240<span>/mo</span></div>
-          <ul>
-            <li>Unlimited Megaformer + Studio</li>
-            <li>21 day advance booking</li>
-            <li>Member goody bag</li>
-            <li><strong>same price, for life</strong></li>
-          </ul>
-          <a href="https://momence.com/m/809120" class="btn btn-filled btn-block" target="_blank" rel="noopener noreferrer">Explore founding grip.noire</a>
         </article>
       </div>
     </div>
@@ -561,10 +562,11 @@
   <div class="container noire-layout">
     <div class="noire-copy">
       <h2 class="section-title">Make it a habit. Make it noire.</h2>
-      <p class="noire-lead" data-field="membership-lead">Unlimited Megaformer and Studio access for members who want grip. as a weekly rhythm - not a one-off.</p>
+      <p class="noire-lead" data-field="membership-lead">Unlimited Megaformer, Studio and POD access for members who want grip. as a weekly rhythm - not a one-off.</p>
       <ul class="noire-benefits" data-field="membership-benefits">
         <li>Unlimited Megaformer + Studio classes</li>
-        <li>21-day advance booking window</li>
+        <li>Unlimited POD access</li>
+        <li>Monthly check-in with your instructor</li>
         <li>Member goody bag</li>
         <li>Best value if you train 3+ times a week</li>
       </ul>
@@ -573,7 +575,7 @@
     </div>
     <aside class="noire-card" data-membership="noire">
       <p class="noire-card__label">grip.noire</p>
-      <p class="noire-card__price"><span data-field="price">£300</span><span data-field="cadence"> / month</span></p>
+      <p class="noire-card__price"><span data-field="price">£280</span><span data-field="cadence"> / month</span></p>
       <div class="noire-value" data-field="membership-looks-like">
         <p class="noire-value__title">Membership looks like</p>
         <ul class="noire-value__lines">
@@ -585,7 +587,6 @@
         </ul>
         <p class="noire-value__close">More than unlimited classes.</p>
       </div>
-      <a href="https://momence.com/m/809120" class="text-link" target="_blank" rel="noopener noreferrer">Explore founding grip.noire - £240 - limited availability</a>
     </aside>
   </div>
 </section>
@@ -678,6 +679,7 @@
         <li><a href="sessions/megaformer.html">Megaformer</a></li>
         <li><a href="sessions/reformat.html">ReforMAT</a></li>
         <li><a href="sessions/yoga.html">Yoga</a></li>
+        <li><a href="sessions/reiki.html">Reiki</a></li>
         <li><a href="sessions/hiit.html">HIIT</a></li>
         <li><a href="sessions/grip-pod.html">grip.pod</a></li>
       </ul>
