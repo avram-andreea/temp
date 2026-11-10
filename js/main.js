@@ -538,6 +538,45 @@ document.addEventListener("DOMContentLoaded", () => {
       src: "https://momence.com/plugin/host-schedule/host-schedule.js"
     };
 
+    const clearSchedulePreview = () => {
+      const ribbon = document.getElementById("ribbon-schedule");
+      document.getElementById("momence-plugin-host-schedule")?.remove();
+      document.getElementById("hp-pod-booking")?.remove();
+      if (ribbon) ribbon.innerHTML = "";
+      [...schedulePreview.querySelectorAll(":scope > *:not(#ribbon-schedule)")]
+        .forEach((node) => node.remove());
+    };
+
+    const showPodBooking = () => {
+      clearSchedulePreview();
+      const wrap = document.createElement("div");
+      wrap.id = "hp-pod-booking";
+      wrap.className = "hp-pod-booking";
+      wrap.innerHTML = `
+        <p class="hp-pod-booking__lead">Book a private grip.pod session.</p>
+        <iframe
+          id="iframe_appointments_259434_hp"
+          src="https://momence.com/appointments/259434?boardId=209471"
+          style="width:100%;border:0;min-height:640px;"
+          allowfullscreen="true"
+          title="Book the grip.pod at grip.">
+        </iframe>
+        <p class="center" style="margin-top:1rem;">
+          <a href="sessions/grip-pod.html" class="btn btn-ghost">About grip.pod</a>
+        </p>
+      `;
+      schedulePreview.appendChild(wrap);
+
+      const onMsg = (e) => {
+        const height = +e.data?.height;
+        const type = e.data?.type;
+        const iframe = document.querySelector("#iframe_appointments_259434_hp");
+        if (!type || !String(type).match("iframe_appointments_259434") || isNaN(height) || !iframe) return;
+        iframe.style.height = `${height}px`;
+      };
+      window.addEventListener("message", onMsg);
+    };
+
     const remountScheduleUpcoming = ({ selectShowAll = false } = {}) => {
       const ribbon = document.getElementById("ribbon-schedule");
       if (!ribbon) return false;
@@ -547,11 +586,7 @@ document.addEventListener("DOMContentLoaded", () => {
         (oldScript && (oldScript.getAttribute("host_id") || oldScript.getAttribute("host-id"))) ||
         SCHEDULE_EMBED.host_id;
 
-      /* Clear previous Momence mount (plugin inserts #momence-plugin-host-schedule beside the script) */
-      document.getElementById("momence-plugin-host-schedule")?.remove();
-      ribbon.innerHTML = "";
-      [...schedulePreview.querySelectorAll(":scope > *:not(#ribbon-schedule)")]
-        .forEach((node) => node.remove());
+      clearSchedulePreview();
 
       /*
         Momence reads config from: script[host_id][src$="host-schedule.js"]
@@ -565,7 +600,7 @@ document.addEventListener("DOMContentLoaded", () => {
       config.setAttribute("host_id", hostId);
       config.setAttribute("teacher_ids", (oldScript && oldScript.getAttribute("teacher_ids")) || SCHEDULE_EMBED.teacher_ids);
       config.setAttribute("location_ids", (oldScript && oldScript.getAttribute("location_ids")) || SCHEDULE_EMBED.location_ids);
-      config.setAttribute("tag_ids", (oldScript && oldScript.getAttribute("tag_ids")) || SCHEDULE_EMBED.tag_ids);
+      config.setAttribute("tag_ids", SCHEDULE_EMBED.tag_ids);
       config.setAttribute("lite_mode", (oldScript && oldScript.getAttribute("lite_mode")) || SCHEDULE_EMBED.lite_mode);
       config.setAttribute(
         "hide_drop_in_price",
@@ -583,7 +618,6 @@ document.addEventListener("DOMContentLoaded", () => {
       import(`${SCHEDULE_EMBED.src}?v=${Date.now()}`)
         .then(afterMount)
         .catch(() => {
-          /* Fallback: classic module tag without query (may no-op if already evaluated) */
           const next = document.createElement("script");
           next.async = true;
           next.type = "module";
@@ -603,52 +637,56 @@ document.addEventListener("DOMContentLoaded", () => {
       return true;
     };
 
+    const ensureClassSchedule = (thenFn) => {
+      if (document.getElementById("hp-pod-booking") || !document.getElementById("hp-schedule-embed")) {
+        remountScheduleUpcoming();
+        whenMomenceReady(() => {
+          thenFn?.();
+          return true;
+        });
+        return;
+      }
+      thenFn?.();
+    };
+
     const applyScheduleFilter = (key) => {
+      if (key === "pod") {
+        showPodBooking();
+        return;
+      }
+
       if (key === "all") {
-        // Remount, then select Momence "Show all" so it mirrors the Today chip behaviour
         remountScheduleUpcoming({ selectShowAll: true });
         return;
       }
       if (key === "today") {
-        if (!clickMomenceControl("Today")) selectDayOffset(0);
+        ensureClassSchedule(() => {
+          if (!clickMomenceControl("Today")) selectDayOffset(0);
+        });
         return;
       }
       if (key === "tomorrow") {
-        // Momence often has no Tomorrow chip - pick tomorrow on the date strip
-        if (!clickMomenceControl("Tomorrow")) selectDayOffset(1);
+        ensureClassSchedule(() => {
+          if (!clickMomenceControl("Tomorrow")) selectDayOffset(1);
+        });
         return;
       }
       if (key === "megaformer") {
-        // If coming from a day filter, reset first so tag filter applies to full upcoming list
-        if (activeScheduleFilter === "today" || activeScheduleFilter === "tomorrow") {
+        if (activeScheduleFilter === "pod" || activeScheduleFilter === "today" || activeScheduleFilter === "tomorrow") {
           remountScheduleUpcoming();
           whenMomenceReady(() => clickMomenceControl("MEGAFORMER"));
           return;
         }
-        clickMomenceControl("MEGAFORMER");
+        ensureClassSchedule(() => clickMomenceControl("MEGAFORMER"));
         return;
       }
       if (key === "studio") {
-        if (activeScheduleFilter === "today" || activeScheduleFilter === "tomorrow") {
+        if (activeScheduleFilter === "pod" || activeScheduleFilter === "today" || activeScheduleFilter === "tomorrow") {
           remountScheduleUpcoming();
           whenMomenceReady(() => clickMomenceControl("STUDIO"));
           return;
         }
-        clickMomenceControl("STUDIO");
-        return;
-      }
-      if (key === "pod") {
-        const clickPod = () =>
-          clickMomenceControl("POD") ||
-          clickMomenceControl("grip.pod") ||
-          clickMomenceControl("GRIP.POD") ||
-          clickMomenceControl("Pod");
-        if (activeScheduleFilter === "today" || activeScheduleFilter === "tomorrow") {
-          remountScheduleUpcoming();
-          whenMomenceReady(clickPod);
-          return;
-        }
-        clickPod();
+        ensureClassSchedule(() => clickMomenceControl("STUDIO"));
       }
     };
 
@@ -685,10 +723,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const startWithPod = scheduleFilterParam === "pod";
 
     if (startWithPod) {
-      whenMomenceReady(() => {
-        setActiveScheduleFilter("pod");
-        return true;
-      });
+      setActiveScheduleFilter("pod");
     } else {
       /* Initial load: Today is active — Pod stays deselected by default */
       whenMomenceReady(() => {
@@ -702,6 +737,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const studioGallery = document.getElementById("studioGallery");
   if (studioGallery) {
     const studioImages = [
+      { src: "images/studio/studio-lounge.jpg", alt: "Studio lounge seating with members" },
+      { src: "images/studio/studio-mat-class.jpg", alt: "Mat class in the studio" },
+      { src: "images/studio/studio-megaformer-class.jpg", alt: "Megaformer class in the studio" },
       { src: "images/studio/studio-06-reception.png", alt: "grip. reception desk" },
       { src: "images/studio/studio-05-window.png", alt: "Studio window seating with grip. branding" },
       { src: "images/studio/studio-03-megaformer.png", alt: "Megaformer studio floor" },
@@ -713,28 +751,46 @@ document.addEventListener("DOMContentLoaded", () => {
     const motionClasses = ["studio-wave__col--up", "studio-wave__col--down", "studio-wave__col--up-slow"];
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    const preloadImage = (item) =>
+      new Promise((resolve) => {
+        const probe = new Image();
+        probe.onload = () => resolve(item);
+        probe.onerror = () => resolve(null);
+        probe.src = item.src;
+      });
+
     const buildFigure = (item) => {
       const figure = document.createElement("figure");
+      figure.classList.add("is-ready");
       const img = document.createElement("img");
       img.src = item.src;
       img.alt = item.alt;
-      img.loading = "lazy";
+      img.loading = "eager";
+      img.decoding = "async";
+      img.addEventListener("error", () => figure.remove());
       figure.appendChild(img);
       return figure;
     };
 
-    cols.forEach((col, colIndex) => {
-      const offset = colIndex;
-      const sequence = [
-        ...studioImages.slice(offset),
-        ...studioImages.slice(0, offset)
-      ];
-      /* Duplicate the strip so the vertical loop can scroll seamlessly */
-      const loopItems = prefersReducedMotion ? sequence.slice(0, 2) : [...sequence, ...sequence];
-      col.replaceChildren(...loopItems.map(buildFigure));
-      if (!prefersReducedMotion) {
-        col.classList.add(motionClasses[colIndex] || motionClasses[0]);
+    const mountGallery = (usable) => {
+      if (!usable.length) {
+        studioGallery.hidden = true;
+        return;
       }
+      cols.forEach((col, colIndex) => {
+        const offset = colIndex % usable.length;
+        const sequence = [...usable.slice(offset), ...usable.slice(0, offset)];
+        /* Duplicate the strip so the vertical loop can scroll seamlessly */
+        const loopItems = prefersReducedMotion ? sequence.slice(0, 2) : [...sequence, ...sequence];
+        col.replaceChildren(...loopItems.map(buildFigure));
+        if (!prefersReducedMotion) {
+          col.classList.add(motionClasses[colIndex] || motionClasses[0]);
+        }
+      });
+    };
+
+    Promise.all(studioImages.map(preloadImage)).then((results) => {
+      mountGallery(results.filter(Boolean));
     });
   }
 
