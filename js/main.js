@@ -794,6 +794,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* ---- Momence schedule: hide tag chips we don't offer as filters ---- */
+  const HIDDEN_SCHEDULE_TAGS = ["stretch"];
+  const hideScheduleTagChips = () => {
+    document.querySelectorAll(".momence-host_dashboard-tags_row [role='switch']").forEach((chip) => {
+      if (HIDDEN_SCHEDULE_TAGS.includes(chip.textContent.trim().toLowerCase())) {
+        chip.style.setProperty("display", "none", "important");
+      }
+    });
+  };
+  new MutationObserver(hideScheduleTagChips).observe(document.body, { childList: true, subtree: true });
+  hideScheduleTagChips();
+
   /* ---- Copyright year ---- */
   const yearEl = document.getElementById("copyrightYear");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
