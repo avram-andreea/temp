@@ -2065,6 +2065,13 @@ img { max-width: 100%; display: block; }
    PASSES PRICING TABLE
 ========================= */
 
+.hp-pod-booking__lead {
+  text-align: center;
+  margin: 0 0 1.25rem;
+  font-family: var(--font-body);
+  color: rgba(71, 65, 63, 0.75);
+}
+
 .passes-wrap {
   margin-top: 2.5rem;
 }
@@ -2132,6 +2139,21 @@ img { max-width: 100%; display: block; }
 
 .passes-row--highlight {
   background: rgba(107, 95, 86, 0.04);
+}
+
+.passes-row--span {
+  grid-template-columns: 1.2fr 2fr;
+}
+
+.passes-cell--span {
+  grid-column: 2 / -1;
+}
+
+/* Match outer edges of the centred Mega + Studio buttons above (max-width 200px each) */
+.passes-cell--span .pass-btn {
+  max-width: none;
+  width: min(100%, calc(50% + 225px));
+  margin-inline: auto;
 }
 
 .passes-label {
@@ -4007,10 +4029,14 @@ a.reviews-rating:hover {
 .studio-wave figure {
   margin: 0;
   overflow: hidden;
-  background: var(--sand);
+  background: transparent;
   position: relative;
   flex: 0 0 auto;
   width: 100%;
+}
+
+.studio-wave figure:not(.is-ready) {
+  display: none;
 }
 
 .studio-wave figure:nth-child(3n + 1) { aspect-ratio: 3 / 4; }
@@ -4444,7 +4470,6 @@ a.reviews-rating:hover {
   font-family: var(--font-heading);
   letter-spacing: var(--letter-heading);
   font-size: clamp(1.25rem, 2.5vw, 1.55rem);
-
   color: var(--brown);
   margin: 0 0 1.25rem;
 }
@@ -4572,11 +4597,13 @@ a.reviews-rating:hover {
   background: var(--sand-light);
   border: 1px solid var(--border);
   padding: clamp(1.5rem, 3vw, 2rem);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.75rem;
-  align-content: start;
   text-align: left;
   justify-items: start;
+  height: auto;
+  box-sizing: border-box;
 }
 
 .yoga-hub-card__title {
@@ -4590,26 +4617,48 @@ a.reviews-rating:hover {
 
 .yoga-hub-card__tagline {
   font-family: var(--font-heading);
+  font-weight: 400;
+  font-synthesis: none;
   letter-spacing: var(--letter-heading);
   font-size: 1.15rem;
+  line-height: 1.35;
   color: var(--brown);
   margin: 0;
 }
 
 .yoga-hub-card__meta {
-  margin: 0.25rem 0 0.5rem;
+  margin: 0.25rem 0 0;
   font-size: 0.95rem;
 }
 
 .yoga-expand {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .yoga-expand__summary {
   list-style: none;
   cursor: pointer;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
+  flex: 0 1 auto;
+  min-height: 0;
+  font-weight: 400;
+  font-synthesis: none;
+}
+
+/* Equal heights only while every card is collapsed */
+.yoga-hub-grid:not(:has(.yoga-expand[open])) {
+  align-items: stretch;
+}
+
+.yoga-hub-grid:not(:has(.yoga-expand[open])) .yoga-expand__summary {
+  flex: 1 1 auto;
+}
+
+.yoga-hub-grid:not(:has(.yoga-expand[open])) .yoga-expand__cta {
+  margin-top: auto;
 }
 
 .yoga-expand__summary::-webkit-details-marker { display: none; }
@@ -4618,6 +4667,7 @@ a.reviews-rating:hover {
 .yoga-expand__preview {
   display: grid;
   gap: 0.75rem;
+  flex: 0 1 auto;
 }
 
 .yoga-expand__cta {
@@ -4625,6 +4675,7 @@ a.reviews-rating:hover {
   align-items: center;
   justify-content: center;
   width: fit-content;
+  margin-top: 0;
   padding: 0.7rem 1.2rem;
   background: var(--accent);
   color: #fff;
@@ -4676,6 +4727,10 @@ a.reviews-rating:hover {
   padding: 0.7rem 1.4rem;
   font-size: 0.65rem;
   letter-spacing: 0.12em;
+}
+
+.yoga-expand__book + .yoga-expand__book {
+  margin-top: 0.75rem;
 }
 
 @media (max-width: 768px) {
