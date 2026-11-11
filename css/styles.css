@@ -2065,6 +2065,16 @@ img { max-width: 100%; display: block; }
    PASSES PRICING TABLE
 ========================= */
 
+[data-grip-pod-chip].is-grip-pod-active {
+  background: var(--brown) !important;
+  border-color: var(--brown) !important;
+  color: var(--soft-white) !important;
+}
+
+.grip-pod-chip-panel {
+  margin-top: 1.5rem;
+}
+
 .hp-pod-booking__lead {
   text-align: center;
   margin: 0 0 1.25rem;
@@ -2216,14 +2226,14 @@ img { max-width: 100%; display: block; }
 }
 
 .pass-btn--filled {
-  background: var(--brown);
-  color: var(--soft-white);
-  border: 1px solid var(--brown);
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--accent);
 }
 
 .pass-btn--filled:hover {
-  background: var(--accent-dark);
-  border-color: var(--accent-dark);
+  background: var(--accent);
+  color: #fff;
   transform: translateY(-2px);
 }
 
@@ -2242,8 +2252,8 @@ img { max-width: 100%; display: block; }
 }
 
 .pass-btn--filled.pass-btn--info:hover {
-  background: var(--brown);
-  border-color: var(--brown);
+  background: transparent;
+  color: var(--text);
 }
 
 /* =========================
@@ -4731,6 +4741,22 @@ a.reviews-rating:hover {
 
 .yoga-expand__book + .yoga-expand__book {
   margin-top: 0.75rem;
+}
+
+.yoga-expand__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: 26rem;
+  margin: 1.5rem auto 0;
+}
+
+.yoga-expand__actions .yoga-expand__book,
+.yoga-expand__actions .yoga-expand__book + .yoga-expand__book {
+  width: 100%;
+  margin: 0;
+  align-items: center;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
