@@ -803,8 +803,105 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   };
-  new MutationObserver(hideScheduleTagChips).observe(document.body, { childList: true, subtree: true });
-  hideScheduleTagChips();
+
+  /* ---- Momence schedule: add a Pod chip (pod is booked via appointments, not a class tag) ---- */
+  let podChipActive = false;
+
+  const podPanelHtml = `
+    <iframe
+      id="iframe_appointments_259434_chip"
+      src="https://momence.com/appointments/259434?boardId=209471"
+      style="width:100%;border:0;min-height:640px;"
+      allowfullscreen="true"
+      title="Book the grip.pod at grip.">
+    </iframe>
+  `;
+
+  window.addEventListener("message", (e) => {
+    const height = +e.data?.height;
+    const type = e.data?.type;
+    const iframe = document.getElementById("iframe_appointments_259434_chip");
+    if (!iframe || !type || !String(type).match("iframe_appointments_259434") || isNaN(height)) return;
+    iframe.style.height = `${height}px`;
+  });
+
+  const setPodChipState = (row, active) => {
+    podChipActive = active;
+    const chip = row.querySelector("[data-grip-pod-chip]");
+    chip?.setAttribute("aria-checked", active ? "true" : "false");
+    chip?.classList.toggle("is-grip-pod-active", active);
+
+    let sibling = row.nextElementSibling;
+    while (sibling) {
+      if (!sibling.hasAttribute("data-grip-pod-panel")) {
+        sibling.style.display = active ? "none" : "";
+      }
+      sibling = sibling.nextElementSibling;
+    }
+
+    const existing = row.parentElement?.querySelector("[data-grip-pod-panel]");
+    if (active && !existing) {
+      const panel = document.createElement("div");
+      panel.setAttribute("data-grip-pod-panel", "");
+      panel.className = "grip-pod-chip-panel";
+      panel.innerHTML = podPanelHtml;
+      row.after(panel);
+    } else if (!active) {
+      existing?.remove();
+    }
+  };
+
+  const addPodScheduleChip = () => {
+    document.querySelectorAll(".momence-host_dashboard-tags_row").forEach((row) => {
+      if (!row.querySelector("[data-grip-pod-chip]")) {
+        const template = row.querySelector("[role='switch']");
+        if (!template) return;
+        const chip = template.cloneNode(false);
+        chip.setAttribute("data-grip-pod-chip", "");
+        chip.setAttribute("aria-checked", "false");
+        chip.removeAttribute("id");
+        chip.textContent = "Pod";
+        chip.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const homePodTab = document.querySelector("[data-schedule-filter='pod']");
+          if (homePodTab) {
+            homePodTab.click();
+            return;
+          }
+          setPodChipState(row, !podChipActive);
+        });
+        row.appendChild(chip);
+      }
+
+      if (podChipActive) {
+        let sibling = row.nextElementSibling;
+        while (sibling) {
+          if (!sibling.hasAttribute("data-grip-pod-panel") && sibling.style.display !== "none") {
+            sibling.style.display = "none";
+          }
+          sibling = sibling.nextElementSibling;
+        }
+      }
+    });
+  };
+
+  document.addEventListener("click", (e) => {
+    if (!podChipActive) return;
+    const target = e.target;
+    if (!(target instanceof Element)) return;
+    if (target.closest("[data-grip-pod-chip], [data-grip-pod-panel]")) return;
+    if (!target.closest(".momence-host_schedule")) return;
+    const row = document.querySelector(".momence-host_dashboard-tags_row");
+    if (row) setPodChipState(row, false);
+  });
+
+  const syncScheduleChips = () => {
+    hideScheduleTagChips();
+    addPodScheduleChip();
+  };
+  new MutationObserver(syncScheduleChips).observe(document.body, { childList: true, subtree: true });
+  syncScheduleChips();
 
   /* ---- Copyright year ---- */
   const yearEl = document.getElementById("copyrightYear");
